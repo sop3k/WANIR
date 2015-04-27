@@ -1,0 +1,92 @@
+﻿<metro:Window x:Class="WANIRPartners.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        xmlns:views="clr-namespace:WANIRPartners.Views"
+        xmlns:utils="clr-namespace:WANIRPartners.Utils"
+        xmlns:viewModels="clr-namespace:WANIRPartners.ViewModels"
+              
+        xmlns:metro="http://schemas.codeplex.com/elysium"
+        xmlns:params="http://schemas.codeplex.com/elysium/params"
+
+        params:Manager.Theme="Light"
+        params:Manager.AccentBrush="{x:Static metro:AccentBrushes.Blue}"
+        params:Manager.ContrastBrush="White"
+        Background="{DynamicResource BackgroundBrush}"      
+     >
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:PartnersViewModel}">
+            <views:PartnersView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ProjectsViewModel}">
+            <views:ProjectsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SingleProjectViewModel}">
+            <views:SingleProjectView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type utils:NamedCommand}">
+            <metro:CommandButton Header="{Binding Name}" >
+                <TextBlock/>
+            </metro:CommandButton>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Window.DataContext>
+        <viewModels:ApplicationViewModel/>
+    </Window.DataContext>
+    
+    
+    <!--<metro:Window.ApplicationBar>
+        <metro:ApplicationBar IsOpen="True">
+            <ItemsControl ItemsSource="{Binding CurrentPageCommands}">
+                <ContentControl Content="{Binding}" />
+            </ItemsControl>
+            <metro:CommandButton metro:ApplicationBar.Dock="Right">
+                <TextBlock Text="Wyjście" />
+            </metro:CommandButton>
+        </metro:ApplicationBar>
+    </metro:Window.ApplicationBar>-->
+    
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+       
+        <TabControl ItemsSource="{Binding PageViewModels}"  
+                    SelectedItem="{Binding CurrentPageViewModel}" 
+                    TabStripPlacement="Left" Grid.Row="0">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                    <Setter Property="Header" Value="{Binding Name}"/>
+                </Style>
+            </TabControl.Resources>
+                <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding .}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding CurrentPageCommands}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+
+</metro:Window>
