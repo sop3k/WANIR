@@ -9,22 +9,23 @@ using WANIRPartners.Utils;
 
 namespace WANIRPartners.ViewModels
 {
-    public class ApplicationViewModel : ObservableObject
+    public class ApplicationViewModel : ObservableObject, IViewController
     {
         #region Fields
 
         private ICommand _changePageCommand;
 
-        private IPageViewModel _currentPageViewModel;
-        private ObservableCollection<IPageViewModel> _pageViewModels;
+        private PageViewModel _currentPageViewModel;
+        private ObservableCollection<PageViewModel> _pageViewModels;
 
         #endregion
 
         public ApplicationViewModel()
         {
             // Add available pages
-            PageViewModels.Add(new PartnersViewModel());
-            PageViewModels.Add(new ProjectsViewModel());
+            PageViewModels.Add(new PartnersViewModel(this));
+            PageViewModels.Add(new ProjectsViewModel(this));
+            PageViewModels.Add(new SettingsViewModel(this));
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];
@@ -38,21 +39,21 @@ namespace WANIRPartners.ViewModels
             {
                 if (_changePageCommand == null)
                 {
-                    _changePageCommand = new RelayCommand<IPageViewModel>(
-                        p => ChangeViewModel((IPageViewModel)p),
-                        p => p is IPageViewModel);
+                    _changePageCommand = new RelayCommand<PageViewModel>(
+                        p => ChangeViewModel((PageViewModel)p),
+                        p => p is PageViewModel);
                 }
 
                 return _changePageCommand;
             }
         }
 
-        public ObservableCollection<IPageViewModel> PageViewModels
+        public ObservableCollection<PageViewModel> PageViewModels
         {
             get
             {
                 if (_pageViewModels == null)
-                    _pageViewModels = new ObservableCollection<IPageViewModel>();
+                    _pageViewModels = new ObservableCollection<PageViewModel>();
 
                 return _pageViewModels;
             }
@@ -63,7 +64,7 @@ namespace WANIRPartners.ViewModels
             get { return new ObservableCollection<NamedCommand>(CurrentPageViewModel.Commands); }
         }
 
-        public IPageViewModel CurrentPageViewModel
+        public PageViewModel CurrentPageViewModel
         {
             get
             {
@@ -85,13 +86,9 @@ namespace WANIRPartners.ViewModels
 
         #region Methods
 
-        private void ChangeViewModel(IPageViewModel viewModel)
+        private void ChangeViewModel(PageViewModel viewModel)
         {
-            if (!PageViewModels.Contains(viewModel))
-                PageViewModels.Add(viewModel);
-
-            CurrentPageViewModel = PageViewModels
-                .FirstOrDefault(vm => vm == viewModel);
+            CurrentPageViewModel = viewModel;
         }
 
         #endregion

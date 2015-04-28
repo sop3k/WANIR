@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using WANIRPartners.Models;
-using WANIRPartners.Utils;
 
 using MvvmFoundation.Wpf;
 
+using WANIRPartners.Utils;
+
 namespace WANIRPartners.ViewModels
 {
-    public class CreateProjectViewModel : ChildPageViewModel
+    public class CreatePartnerViewModel : ChildPageViewModel
     {
-        public CreateProjectViewModel()
+        public CreatePartnerViewModel()
             : base(null)
-        { }
+        {}
 
         override public String Name
         {

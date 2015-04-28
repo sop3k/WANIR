@@ -359,5 +359,7 @@ namespace MvvmFoundation.Wpf
         readonly MessageToActionsMap _messageToActionsMap = new MessageToActionsMap();
 
         #endregion // Fields
+
+        public static Messenger Default;
     }
 }

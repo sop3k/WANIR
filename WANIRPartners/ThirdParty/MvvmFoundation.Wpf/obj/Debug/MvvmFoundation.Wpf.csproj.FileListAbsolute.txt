@@ -2,3 +2,7 @@ C:\WORK\WANIRPartners\WANIRPartners\ThirdParty\MvvmFoundation.Wpf\bin\Debug\Mvvm
 C:\WORK\WANIRPartners\WANIRPartners\ThirdParty\MvvmFoundation.Wpf\bin\Debug\MvvmFoundation.Wpf.pdb
 C:\WORK\WANIRPartners\WANIRPartners\ThirdParty\MvvmFoundation.Wpf\obj\Debug\MvvmFoundation.Wpf.dll
 C:\WORK\WANIRPartners\WANIRPartners\ThirdParty\MvvmFoundation.Wpf\obj\Debug\MvvmFoundation.Wpf.pdb
+C:\Users\t.sobkowiak\Documents\wanir\WANIRPartners\ThirdParty\MvvmFoundation.Wpf\bin\Debug\MvvmFoundation.Wpf.dll
+C:\Users\t.sobkowiak\Documents\wanir\WANIRPartners\ThirdParty\MvvmFoundation.Wpf\bin\Debug\MvvmFoundation.Wpf.pdb
+C:\Users\t.sobkowiak\Documents\wanir\WANIRPartners\ThirdParty\MvvmFoundation.Wpf\obj\Debug\MvvmFoundation.Wpf.dll
+C:\Users\t.sobkowiak\Documents\wanir\WANIRPartners\ThirdParty\MvvmFoundation.Wpf\obj\Debug\MvvmFoundation.Wpf.pdb

@@ -14,7 +14,7 @@
         params:Manager.ContrastBrush="White"
         Background="{DynamicResource BackgroundBrush}"      
      >
-    
+
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:PartnersViewModel}">
             <views:PartnersView />
@@ -25,60 +25,51 @@
         <DataTemplate DataType="{x:Type viewModels:SingleProjectViewModel}">
             <views:SingleProjectView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CreateProjectViewModel}">
+            <views:CreateProjectView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type utils:NamedCommand}">
-            <metro:CommandButton Header="{Binding Name}" >
-                <TextBlock/>
-            </metro:CommandButton>
+            <Button Command="{Binding Command}">
+                <TextBlock Text="{Binding Name}"/>
+            </Button>
         </DataTemplate>
     </Window.Resources>
-    
+
     <Window.DataContext>
         <viewModels:ApplicationViewModel/>
     </Window.DataContext>
-    
-    
-    <!--<metro:Window.ApplicationBar>
-        <metro:ApplicationBar IsOpen="True">
-            <ItemsControl ItemsSource="{Binding CurrentPageCommands}">
-                <ContentControl Content="{Binding}" />
-            </ItemsControl>
-            <metro:CommandButton metro:ApplicationBar.Dock="Right">
-                <TextBlock Text="Wyjście" />
-            </metro:CommandButton>
-        </metro:ApplicationBar>
-    </metro:Window.ApplicationBar>-->
-    
-    
-    <Grid>
 
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-       
-        <TabControl ItemsSource="{Binding PageViewModels}"  
-                    SelectedItem="{Binding CurrentPageViewModel}" 
-                    TabStripPlacement="Left" Grid.Row="0">
-            <TabControl.Resources>
-                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-                    <Setter Property="Header" Value="{Binding Name}"/>
-                </Style>
-            </TabControl.Resources>
-                <TabControl.ContentTemplate>
-                <DataTemplate>
-                    <ContentPresenter Content="{Binding .}" />
-                </DataTemplate>
-            </TabControl.ContentTemplate>
-        </TabControl>
-
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding CurrentPageCommands}" >
+        <ItemsControl Grid.Row="0" Grid.Column="0" ItemsSource="{Binding PageViewModels}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel />
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Name}" HorizontalAlignment="Right" 
+                            Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                            CommandParameter="{Binding }">
+                        <Button.LayoutTransform>
+                            <RotateTransform Angle="-90"/>
+                        </Button.LayoutTransform>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ItemsControl Grid.Row="1" Grid.Column="2" ItemsSource="{Binding CurrentPageCommands}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
@@ -87,6 +78,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <ContentControl Grid.Column="1" Grid.Row="0" Content="{Binding CurrentPageViewModel}"/>
     </Grid>
 
 </metro:Window>

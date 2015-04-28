@@ -1,9 +1,4 @@
-﻿//using System.Windows;
-
-using Elysium.Controls;
-using MahApps.Metro.Controls;
-
-//using MahApps.Metro.Controls;
+﻿using Elysium.Controls;
 
 namespace WANIRPartners
 {
