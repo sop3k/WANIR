@@ -20,7 +20,7 @@ namespace WANIRPartners.ViewModels
 
         override public String Name
         {
-            get { return "Projekty"; }
+            get { return Const.PROJECTS_CAPTION; }
         }
 
         override public IEnumerable<NamedCommand> Commands
@@ -29,7 +29,8 @@ namespace WANIRPartners.ViewModels
             {
                 return new List<NamedCommand>
                 {
-                    new NamedCommand("Dodaj projekt", new RelayCommand(AddProjectCommand)),
+                    new NamedCommand(Const.ADD_CAPTION, new RelayCommand(
+                        () => ShowView(new CreateProjectViewModel(this))))
                 };
             }
         }
@@ -37,13 +38,6 @@ namespace WANIRPartners.ViewModels
         public ObservableCollection<PageViewModel> ProjectViewModels
         {
             get { return projects; }
-        }
-
-        private void AddProjectCommand()
-        {
-            CreateProjectViewModel view = new CreateProjectViewModel();
-            ICommand change = ViewController.ChangePageCommand;
-            change.Execute(view);
         }
     }
 }

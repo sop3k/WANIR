@@ -9,8 +9,8 @@ namespace WANIRPartners.ViewModels
 {
     public class CreatePartnerViewModel : ChildPageViewModel
     {
-        public CreatePartnerViewModel()
-            : base(null)
+        public CreatePartnerViewModel(PageViewModel parent)
+            : base(parent)
         {}
 
         override public String Name
@@ -24,8 +24,8 @@ namespace WANIRPartners.ViewModels
             {
                 return new List<NamedCommand>
                 {
-                    new NamedCommand("Zapisz", new RelayCommand(Close)),
-                    new NamedCommand("Anuluj", new RelayCommand(Close))
+                    new NamedCommand(Const.SAVE_CAPTION, new RelayCommand(Close)),
+                    new NamedCommand(Const.CANCEL_CAPTION, new RelayCommand(Close))
                 };
             }
         }

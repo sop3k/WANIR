@@ -14,7 +14,7 @@ namespace WANIRPartners.ViewModels
 
         override public string Name
         {
-            get { return "Ustawienia"; }
+            get { return Const.SETTINGS_CAPTION; }
         }
 
         override public IEnumerable<NamedCommand> Commands

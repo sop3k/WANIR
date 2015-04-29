@@ -9,16 +9,28 @@ namespace WANIRPartners.ViewModels
 {
     public abstract class PageViewModel
     {
+        #region Ctor
         public PageViewModel(IViewController controller)
         {
             ViewController = controller;
         }
+        #endregion
 
+        #region Properties
         abstract public String Name{ get; }
 
         abstract public IEnumerable<NamedCommand> Commands { get; }
 
         public IViewController ViewController { get; private set;}
+        #endregion 
+
+        #region Methods
+        public void ShowView(PageViewModel view)
+        {
+            ICommand  changeCommand = ViewController.ChangePageCommand;
+            changeCommand.Execute(view);
+        }
+        #endregion
     }
 
     public abstract class ChildPageViewModel : PageViewModel

@@ -22,7 +22,7 @@ namespace WANIRPartners.ViewModels
 
         override public string Name
         {
-            get { return "Partnerzy"; }
+            get { return Const.PARTNERS_CAPTION; }
         }
 
         override public IEnumerable<NamedCommand> Commands
@@ -31,8 +31,8 @@ namespace WANIRPartners.ViewModels
             {
                 return new List<NamedCommand>
                 {
-                    new NamedCommand("Dodaj partnera", new RelayCommand(AddPartnerCommand)), 
-                    new NamedCommand("Usun partnera", null)
+                    new NamedCommand(Const.ADD_CAPTION, new RelayCommand(AddPartnerCommand)), 
+                    new NamedCommand(Const.DELETE_CAPTION, null)
                 };
             }
         }
@@ -44,9 +44,7 @@ namespace WANIRPartners.ViewModels
 
         private void AddPartnerCommand()
         {
-            CreatePartnerViewModel view = new CreatePartnerViewModel();
-            ICommand change = ViewController.ChangePageCommand;
-            change.Execute(view);
+            ShowView(new CreatePartnerViewModel(this));
         }
     }
 }
