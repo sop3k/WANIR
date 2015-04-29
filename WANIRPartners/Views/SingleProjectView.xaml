@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label Content="{Binding Name}" />
+        <DataGrid ItemsSource="{Binding ProjectPartners}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItem="{Binding CurrentPartner, Mode=TwoWay}" />
     </Grid>
 </UserControl>

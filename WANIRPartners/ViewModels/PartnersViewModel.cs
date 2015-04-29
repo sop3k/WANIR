@@ -17,7 +17,7 @@ namespace WANIRPartners.ViewModels
         { }
 
         private ObservableCollection<Partner> partners = new ObservableCollection<Partner>(
-            ParterGenerator.GeneratePartners(100)
+            ParterGenerator.GeneratePartners(100, "Partner")
         );
 
         override public string Name

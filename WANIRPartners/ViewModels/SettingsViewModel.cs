@@ -23,7 +23,7 @@ namespace WANIRPartners.ViewModels
             {
                 return new List<NamedCommand>
                 {
-                    new NamedCommand("Zapisz", null)
+                    new NamedCommand(Const.SAVE_CAPTION, null)
                 };
             }
         }

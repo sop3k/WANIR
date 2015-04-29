@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using MvvmFoundation.Wpf;
 
 using WANIRPartners.Utils;
+using WANIRPartners.Models;
 
 namespace WANIRPartners.ViewModels
 {
-    class CreatePartnerViewModel : ChildPageViewModel
+    class CallInfoViewModel : ChildPageViewModel
     {
-        public CreatePartnerViewModel(PageViewModel parent)
-            : base(parent)
-        {}
+        public CallInfoViewModel(ChildPageViewModel parent, Partner partner)
+            : base(parent.Parent)
+        {
+            Partner = partner;
+        }
 
         override public String Name
         {
-            get { return "NOWY PROJEKT"; }
+            get { return "INFORMACJE O ROZMOWIE"; }
         }
 
         override public IEnumerable<NamedCommand> Commands
@@ -28,6 +31,12 @@ namespace WANIRPartners.ViewModels
                     new NamedCommand(Const.CANCEL_CAPTION, new RelayCommand(Close))
                 };
             }
+        }
+
+        public Partner Partner
+        {
+            get;
+            private set;
         }
     }
 }

@@ -22,14 +22,14 @@ namespace WANIRPartners.Models
 
     class ParterGenerator
     {
-        public static IEnumerable<Partner> GeneratePartners(int count)
+        public static IEnumerable<Partner> GeneratePartners(int count, string prefix)
         {
             var r = new Random();
             String[] types = {"POWIAT", "SZKOLA", "GMINA"};
             for (int i = 0; i < count; i++)
             {
                 yield return new Partner(
-                    name: String.Format("Name_{0}", i),
+                    name: String.Format("{0}_{1}", prefix, i),
                     lastname: String.Format("LastName_{0}", i),
                     phone: String.Format("{0}", r.Next(1000000)),
                     type: types[r.Next(0, 3)]

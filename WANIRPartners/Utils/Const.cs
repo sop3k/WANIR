@@ -12,6 +12,7 @@ namespace WANIRPartners.Utils
         public const string CANCEL_CAPTION = "Anuluj";
         public const string ADD_CAPTION = "Dodaj";
         public const string DELETE_CAPTION = "Usuń";
+        public const string CALL_CAPTION = "Zadzwoń";
 
         public const string PROJECTS_CAPTION = "PROJEKTY";
         public const string PARTNERS_CAPTION = "PARTNERZY";

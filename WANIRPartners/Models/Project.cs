@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WANIRPartners.Models
 {
@@ -13,6 +10,14 @@ namespace WANIRPartners.Models
             Name = name;
         }
 
-       public String Name { get; set; }
+        public IEnumerable<Partner> Partners
+        {
+            get 
+            {
+                return ParterGenerator.GeneratePartners(10, Name);
+            }
+        }
+
+        public String Name { get; set; }
     }
 }

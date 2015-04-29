@@ -8,15 +8,17 @@ using MvvmFoundation.Wpf;
 using WANIRPartners.Models;
 using WANIRPartners.Utils;
 
+using System.Windows;
+
 namespace WANIRPartners.ViewModels
 {
     public class ProjectsViewModel: PageViewModel
     {
         public ProjectsViewModel(IViewController controller)
             : base(controller)
-        { }
-
-        private ObservableCollection<PageViewModel> projects = new ObservableCollection<PageViewModel>();
+        {
+            CurrentProjectView = ProjectsViews[0];
+        }
 
         override public String Name
         {
@@ -27,17 +29,47 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
-                return new List<NamedCommand>
-                {
+                List<NamedCommand> cmds = new List<NamedCommand>{
                     new NamedCommand(Const.ADD_CAPTION, new RelayCommand(
                         () => ShowView(new CreateProjectViewModel(this))))
+                };
+                cmds.AddRange(CurrentProjectView.Commands);
+                return cmds;
+            }
+        }
+
+        public ObservableCollection<SingleProjectViewModel> ProjectsViews
+        {
+            get 
+            {
+                return new ObservableCollection<SingleProjectViewModel>
+                {
+                    new SingleProjectViewModel(this, new Project("PROJECT_1")),
+                    new SingleProjectViewModel(this, new Project("PROJECT_2")),
+                    new SingleProjectViewModel(this, new Project("PROJECT_3")),
+                    new SingleProjectViewModel(this, new Project("PROJECT_4"))
                 };
             }
         }
 
-        public ObservableCollection<PageViewModel> ProjectViewModels
+        public SingleProjectViewModel CurrentProjectView
         {
-            get { return projects; }
+            get { return _currentProjectView; }
+            private set
+            {
+                _currentProjectView = value;
+                RaisePropertyChanged("CurrentProjectView");
+            }
         }
+
+        public ICommand ChangeProjectViewCommand
+        {
+            get
+            {
+                return new RelayCommand<SingleProjectViewModel>(p => { CurrentProjectView = p; });
+            }
+        }
+
+        private SingleProjectViewModel _currentProjectView;
     }
 }

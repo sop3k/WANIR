@@ -5,6 +5,7 @@
         xmlns:views="clr-namespace:WANIRPartners.Views"
         xmlns:utils="clr-namespace:WANIRPartners.Utils"
         xmlns:viewModels="clr-namespace:WANIRPartners.ViewModels"
+        xmlns:models="clr-namespace:WANIRPartners.Models"
               
         xmlns:metro="http://schemas.codeplex.com/elysium"
         xmlns:params="http://schemas.codeplex.com/elysium/params"
@@ -79,6 +80,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <ContentControl Grid.Column="1" Grid.Row="0" Content="{Binding CurrentPageViewModel}"/>
+        <Image Grid.Column="0" Grid.Row="1" Source="gfx/w.jpg"/>
     </Grid>
 
 </metro:Window>

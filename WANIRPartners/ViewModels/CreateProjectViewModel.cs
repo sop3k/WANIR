@@ -8,7 +8,7 @@ using MvvmFoundation.Wpf;
 
 namespace WANIRPartners.ViewModels
 {
-    public class CreateProjectViewModel : ChildPageViewModel
+    class CreateProjectViewModel : ChildPageViewModel
     {
         public CreateProjectViewModel(PageViewModel parent)
             : base(parent)
@@ -27,6 +27,22 @@ namespace WANIRPartners.ViewModels
                 {
                     new NamedCommand(Const.SAVE_CAPTION, new RelayCommand(Close)),
                     new NamedCommand(Const.CANCEL_CAPTION, new RelayCommand(Close))
+                };
+            }
+        }
+
+        public ObservableCollection<Project> Projects
+        {
+            get
+            {
+                return new ObservableCollection<Project>
+                {
+                    new Project("PROJECT_1"),
+                    new Project("PROJECT_2"),
+                    new Project("PROJECT_3"),
+                    new Project("PROJECT_4"),
+                    new Project("PROJECT_5"),
+                    new Project("PROJECT_6"),
                 };
             }
         }
