@@ -13,10 +13,11 @@ namespace WANIRPartners.Models
             Type = type;
         }
 
-        public string Name { get; private set; }
-        public string LastName { get; private set; }
-        public string Phone { get; private set; }
-        public string Type { get; private set; }
+        public virtual int Id { get; protected set; }
+        public virtual string Name { get; set; }
+        public virtual string LastName { get; set; }
+        public virtual string Phone { get; set; }
+        public virtual string Type { get; set; }
 
     }
 

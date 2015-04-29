@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 
+using NHibernate;
+using WANIRPartners.DB;
+
 namespace WANIRPartners
 {
     /// <summary>

@@ -5,7 +5,7 @@ namespace WANIRPartners.Models
 {
     public class Project
     {
-        public Project(String name)
+        public Project(string name)
         {
             Name = name;
         }
@@ -18,6 +18,7 @@ namespace WANIRPartners.Models
             }
         }
 
-        public String Name { get; set; }
+        public virtual int Id { get; protected set; }
+        public virtual string Name { get; set; }
     }
 }
