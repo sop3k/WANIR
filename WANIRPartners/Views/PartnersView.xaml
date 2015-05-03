@@ -7,7 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="20,0,0,0">
-        <DataGrid ItemsSource="{Binding Partners}" Margin="0,10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Label VerticalAlignment="Center">Nazwa:</Label>
+            <TextBox Text="{Binding Name}" MinWidth="150" Height="28"/>
+            <Label VerticalAlignment="Center">Województwo:</Label>
+            <ComboBox SelectedItem="{Binding Province}" ItemsSource="{Binding Provinces}" MinWidth="150" Height="28"/>
+            <Label VerticalAlignment="Center">Powiat:</Label>
+            <ComboBox SelectedItem="{Binding District}" ItemsSource="{Binding Districts}" MinWidth="150" Height="28"/>
+            <Label VerticalAlignment="Center">Typ:</Label>
+            <ComboBox SelectedItem="{Binding Type}" ItemsSource="{Binding Types}" MinWidth="150" Height="28"/>
+        </StackPanel>
+        <DataGrid ItemsSource="{Binding Partners}"  SelectedItem="{Binding SelectedPartner}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1"/>
     </Grid>
     
 </UserControl>

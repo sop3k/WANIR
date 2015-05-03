@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 using MvvmFoundation.Wpf;
@@ -8,7 +9,7 @@ using MvvmFoundation.Wpf;
 using WANIRPartners.Models;
 using WANIRPartners.Utils;
 
-using System.Windows;
+using NHibernate.Linq;
 
 namespace WANIRPartners.ViewModels
 {
@@ -17,38 +18,40 @@ namespace WANIRPartners.ViewModels
         public ProjectsViewModel(IViewController controller)
             : base(controller)
         {
-            CurrentProjectView = ProjectsViews[0];
+            CurrentProjectView = ProjectsViews.AsQueryable().FirstOrDefault();
         }
 
-        override public String Name
+        override public String ViewName
         {
             get { return Const.PROJECTS_CAPTION; }
         }
-
-        override public IEnumerable<NamedCommand> Commands
+        override public ObservableCollection<NamedCommand> Commands
         {
             get
             {
                 List<NamedCommand> cmds = new List<NamedCommand>{
                     new NamedCommand(Const.ADD_CAPTION, new RelayCommand(
-                        () => ShowView(new CreateProjectViewModel(this))))
+                        () => ShowView(new CreateProjectViewModel(this)))),
+                    new NamedCommand(Const.DELETE_CAPTION, new RelayCommand(
+                        ShowDeleteProjectView,
+                        () => CurrentProjectView != null))
                 };
-                cmds.AddRange(CurrentProjectView.Commands);
-                return cmds;
+
+                if(CurrentProjectView != null)
+                    cmds.AddRange(CurrentProjectView.Commands);
+
+                return new ObservableCollection<NamedCommand>(cmds);
             }
         }
 
         public ObservableCollection<SingleProjectViewModel> ProjectsViews
         {
-            get 
+            get
             {
-                return new ObservableCollection<SingleProjectViewModel>
-                {
-                    new SingleProjectViewModel(this, new Project("PROJECT_1")),
-                    new SingleProjectViewModel(this, new Project("PROJECT_2")),
-                    new SingleProjectViewModel(this, new Project("PROJECT_3")),
-                    new SingleProjectViewModel(this, new Project("PROJECT_4"))
-                };
+                return new ObservableCollection<SingleProjectViewModel>(
+                    from project in Session.Query<Project>()
+                    select new SingleProjectViewModel(this, project)
+                );
             }
         }
 
@@ -62,14 +65,25 @@ namespace WANIRPartners.ViewModels
             }
         }
 
+        public void ShowDeleteProjectView()
+        {
+            var view = new DeleteProjectViewModel(this, CurrentProjectView.CurrentProject);
+            ShowView(view);
+            CurrentProjectView = ProjectsViews.FirstOrDefault();
+        }
+
         public ICommand ChangeProjectViewCommand
         {
             get
             {
-                return new RelayCommand<SingleProjectViewModel>(p => { CurrentProjectView = p; });
+                return new RelayCommand<SingleProjectViewModel>(p =>
+                {
+                    CurrentProjectView = p;
+                    ViewController.ChangePageCommand.Execute(this);
+                });
             }
         }
-
-        private SingleProjectViewModel _currentProjectView;
+        
+        SingleProjectViewModel _currentProjectView;
     }
 }

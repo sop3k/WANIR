@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-using MvvmFoundation.Wpf;
+using NHibernate;
 
+using MvvmFoundation.Wpf;
+using WANIRPartners.Models;
 using WANIRPartners.Utils;
 
 namespace WANIRPartners.ViewModels
 {
-    public abstract class PageViewModel : ObservableObject
+    public abstract class PageViewModel : ObservableObject, IDisposable
     {
         #region Ctor
         public PageViewModel(IViewController controller)
@@ -18,10 +20,27 @@ namespace WANIRPartners.ViewModels
         }
         #endregion
 
-        #region Properties
-        abstract public String Name{ get; }
+        #region Session
+        public virtual ISessionFactory SessionFactory
+        {
+            get { return Boostrapper.SessionFactory; }
+        }
 
-        abstract public IEnumerable<NamedCommand> Commands { get; }
+        public virtual ISession Session
+        {
+            get
+            {
+                if (session == null)
+                    session = SessionFactory.OpenSession();
+                return session;
+            }
+        }
+        #endregion
+
+        #region Properties
+        abstract public String ViewName { get; }
+
+        abstract public ObservableCollection<NamedCommand> Commands { get; }
 
         public IViewController ViewController { get; private set;}
         #endregion 
@@ -32,7 +51,87 @@ namespace WANIRPartners.ViewModels
             ICommand  changeCommand = ViewController.ChangePageCommand;
             changeCommand.Execute(view);
         }
+        public virtual void Dispose()
+		{
+			if(session!=null)
+				session.Dispose();
+        }
         #endregion
+
+        #region Fields
+        private ISession session;
+        #endregion 
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                RaisePropertyChanged("Name");
+            }
+        }
+
+        public string Type
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
+                RaisePropertyChanged("Type");
+            }
+        }
+
+        public string Province
+        {
+            get { return _province; }
+            set
+            {
+                _province = value;
+                RaisePropertyChanged("Province");
+                RaisePropertyChanged("Districts");
+            }
+        }
+
+        public string District
+        {
+            get { return _district; }
+            set
+            {
+                _district = value;
+                RaisePropertyChanged("District");
+            }
+        }
+
+        public IEnumerable<string> Districts
+        {
+            get
+            {
+                return Province != null ? Const.Provinces[Province]
+                    : new List<string>();
+            }
+        }
+        public IEnumerable<string> Provinces
+        {
+            get { return Const.Provinces.Keys; }
+        }
+        public IEnumerable<string> Types
+        {
+            get { return Const.Types; }
+        }
+        public IEnumerable<string> Regions
+        {
+            get { return Const.Regions; }
+        }
+        public IEnumerable<int> Years
+        {
+            get { return Const.Years; }
+        }
+
+        private string _province;
+        private string _district;
+        private string _type;
+        private string _name;
     }
 
     public abstract class ChildPageViewModel : PageViewModel
@@ -57,5 +156,38 @@ namespace WANIRPartners.ViewModels
         #region Properties
         public PageViewModel Parent { get; private set; }
         #endregion
+
+        public override ISession Session
+        {
+            get {  return Parent.Session; }
+        }
+    }
+
+    public abstract class CommonChildPageViewModel<T> : ChildPageViewModel
+        where T: ObjectPopulator<T>, new()
+    {
+        #region Ctor
+
+        public CommonChildPageViewModel(PageViewModel parent)
+            : base(parent)
+        {}
+
+        #endregion
+        public void Save()
+        {
+            using(var tx = Session.BeginTransaction())
+            {
+                T obj = new T();
+                obj.Populate(this);
+                Session.SaveOrUpdate(obj);
+                tx.Commit();
+            }
+
+            Close();
+        }
+        public void Cancel()
+        {
+            Close();
+        }
     }
 }

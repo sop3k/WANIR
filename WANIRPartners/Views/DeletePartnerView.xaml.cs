@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WANIRPartners.Views
 {
     /// <summary>
-    /// Interaction logic for CallView.xaml
+    /// Interaction logic for DeletePartnerView.xaml
     /// </summary>
-    public partial class CallView : UserControl
+    public partial class DeletePartnerView : UserControl
     {
-        public CallView()
+        public DeletePartnerView()
         {
             InitializeComponent();
         }

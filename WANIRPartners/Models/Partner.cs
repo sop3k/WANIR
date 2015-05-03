@@ -1,40 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using NHibernate;
+using NHibernate.Util;
+using WANIRPartners.Models;
+using WANIRPartners.Utils;
 
 namespace WANIRPartners.Models
 {
-    public class Partner
+    public class Partner : ObjectPopulator<Partner>
     {
-        public Partner(string name, string lastname, string phone, string type)
-        {
-            Name = name;
-            LastName = lastname;
-            Phone = phone;
-            Type = type;
-        }
-
+        public Partner() {}
         public virtual int Id { get; protected set; }
         public virtual string Name { get; set; }
-        public virtual string LastName { get; set; }
         public virtual string Phone { get; set; }
         public virtual string Type { get; set; }
+        public virtual string Gmina { get; set; }
+        public virtual string Province { get; set; }
+        public virtual string District { get; set; }
+        public virtual string ContactPerson { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string Address{ get; set; }
+        public virtual string Position { get; set; }
+        public virtual string Department { get; set; }
+        public virtual string ContactAddress { get; set; }
+        public virtual string ContactPhone { get; set; }
+        public virtual string ContactEmail { get; set; }
+        public virtual string Region { get; set; }
+        public virtual string Comment { get; set; }
+        public virtual int CooperationYear { get; set; }
+        public virtual bool ProjectWritingAndRealization { get; set; }
+        public virtual bool ProjectWriting { get; set; }
+        public virtual bool ProjectMeeting { get; set; }
+        public virtual bool ProjectRealization { get; set; }
+        public virtual string AcquiredBy { get; set; }
+        public virtual string ServicedBy { get; set; }
+        public virtual string Other { get; set; }
 
+        public virtual IList<CallInfo> Calls{ get; set; }
     }
 
-    class ParterGenerator
+    class PartnerGenerator
     {
-        public static IEnumerable<Partner> GeneratePartners(int count, string prefix)
+        public static void GeneratePartners(ISession session, int count, string prefix)
         {
-            var r = new Random();
-            String[] types = {"POWIAT", "SZKOLA", "GMINA"};
-            for (int i = 0; i < count; i++)
+            using (var tx = session.BeginTransaction())
             {
-                yield return new Partner(
-                    name: String.Format("{0}_{1}", prefix, i),
-                    lastname: String.Format("LastName_{0}", i),
-                    phone: String.Format("{0}", r.Next(1000000)),
-                    type: types[r.Next(0, 3)]
-                    );
+                var r = new Random();
+                for (int i = 0; i < count; i++)
+                {
+                    var p = new Partner
+                    {
+                        Name = String.Format("{0}_{1}", prefix, i),
+                        Phone = String.Format("{0}", r.Next(1000000)),
+                        Type = Const.Types[r.Next(0, Const.Types.Count)],
+                        Province = Const.Provinces.Keys.First(),
+                        District = Const.Provinces[Const.Provinces.Keys.First()].First()
+                        
+                    };
+                    session.Save(p);
+                }
+
+                tx.Commit();
             }
         }
     }

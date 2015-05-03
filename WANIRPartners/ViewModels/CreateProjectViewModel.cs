@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using WANIRPartners.Models;
 using WANIRPartners.Utils;
 
@@ -8,43 +9,29 @@ using MvvmFoundation.Wpf;
 
 namespace WANIRPartners.ViewModels
 {
-    class CreateProjectViewModel : ChildPageViewModel
+    class CreateProjectViewModel : CommonChildPageViewModel<Project>
     {
         public CreateProjectViewModel(PageViewModel parent)
             : base(parent)
         { }
 
-        override public String Name
+        override public String ViewName
         {
-            get { return "NOWY PROJEKT"; }
+            get { return Const.PROJECT_CREATE_CAPTION; }
         }
 
-        override public IEnumerable<NamedCommand> Commands
+        override public ObservableCollection<NamedCommand> Commands
         {
             get
             {
-                return new List<NamedCommand>
+                return new ObservableCollection<NamedCommand>
                 {
-                    new NamedCommand(Const.SAVE_CAPTION, new RelayCommand(Close)),
+                    new NamedCommand(Const.SAVE_CAPTION, new RelayCommand(Save)),
                     new NamedCommand(Const.CANCEL_CAPTION, new RelayCommand(Close))
                 };
             }
         }
 
-        public ObservableCollection<Project> Projects
-        {
-            get
-            {
-                return new ObservableCollection<Project>
-                {
-                    new Project("PROJECT_1"),
-                    new Project("PROJECT_2"),
-                    new Project("PROJECT_3"),
-                    new Project("PROJECT_4"),
-                    new Project("PROJECT_5"),
-                    new Project("PROJECT_6"),
-                };
-            }
-        }
+        public bool Mailing{ get; set; }
     }
 }

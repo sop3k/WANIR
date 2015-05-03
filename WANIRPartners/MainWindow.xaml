@@ -5,7 +5,6 @@
         xmlns:views="clr-namespace:WANIRPartners.Views"
         xmlns:utils="clr-namespace:WANIRPartners.Utils"
         xmlns:viewModels="clr-namespace:WANIRPartners.ViewModels"
-        xmlns:models="clr-namespace:WANIRPartners.Models"
               
         xmlns:metro="http://schemas.codeplex.com/elysium"
         xmlns:params="http://schemas.codeplex.com/elysium/params"
@@ -28,6 +27,21 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:CreateProjectViewModel}">
             <views:CreateProjectView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CreatePartnerViewModel}">
+            <views:CreatePartnerView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CallInfoViewModel}">
+            <views:CallInfoView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:DeleteProjectViewModel}">
+            <views:DeleteProjectView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:DeletePartnerViewModel}">
+            <views:DeletePartnerView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
+            <views:SettingsView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type utils:NamedCommand}">
             <Button Command="{Binding Command}">
@@ -57,7 +71,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding Name}" HorizontalAlignment="Right" 
+                    <Button Content="{Binding ViewName}" HorizontalAlignment="Right" 
                             Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
                             CommandParameter="{Binding }">
                         <Button.LayoutTransform>

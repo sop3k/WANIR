@@ -5,15 +5,16 @@ using WANIRPartners.Models;
 
 namespace WANIRPartners.Mappings
 {
-    public class PartnerMap : ClassMap<Partner>
+    public class ProjectMap : ClassMap<Project>
     {
-        public PartnerMap()
+        public ProjectMap()
         {
             Id(x => x.Id);
             Map(x => x.Name);
-            Map(x => x.LastName);
-            Map(x => x.Phone);
+            Map(x => x.District);
+            Map(x => x.Province);
             Map(x => x.Type);
+            Map(x => x.Mailing);
         }
     }
 }

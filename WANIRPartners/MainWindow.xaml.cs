@@ -2,6 +2,7 @@
 
 using NHibernate;
 using WANIRPartners.DB;
+using WANIRPartners.Utils;
 
 namespace WANIRPartners
 {

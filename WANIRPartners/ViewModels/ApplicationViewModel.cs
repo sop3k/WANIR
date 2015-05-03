@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using MvvmFoundation.Wpf;
@@ -29,6 +26,7 @@ namespace WANIRPartners.ViewModels
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];
+
         }
 
         #region Properties / Commands
@@ -43,6 +41,7 @@ namespace WANIRPartners.ViewModels
                         p => ChangeViewModel((PageViewModel)p),
                         p => p is PageViewModel);
                 }
+
 
                 return _changePageCommand;
             }
@@ -61,7 +60,10 @@ namespace WANIRPartners.ViewModels
 
         public ObservableCollection<NamedCommand> CurrentPageCommands
         {
-            get { return new ObservableCollection<NamedCommand>(CurrentPageViewModel.Commands); }
+            get
+            {
+                return CurrentPageViewModel.Commands;
+            }
         }
 
         public PageViewModel CurrentPageViewModel
@@ -72,13 +74,9 @@ namespace WANIRPartners.ViewModels
             }
             set
             {
-                if (_currentPageViewModel != value)
-                {
-                    _currentPageViewModel = value;
-
-                    RaisePropertyChanged("CurrentPageViewModel");
-                    RaisePropertyChanged("CurrentPageCommands");
-                }
+                _currentPageViewModel = value;
+                RaisePropertyChanged("CurrentPageViewModel");
+                RaisePropertyChanged("CurrentPageCommands");
             }
         }
 

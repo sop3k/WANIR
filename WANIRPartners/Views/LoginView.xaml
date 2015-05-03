@@ -1,0 +1,12 @@
+﻿<Window x:Class="WANIRPartners.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WANIRPartners - Logowanie" Height="187" Width="400" ResizeMode="NoResize">
+    <StackPanel>
+        <Label Content="Nazwa użytkownika:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="244" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="356"/>
+        <Label Content="Hasło:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="244" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="356"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="294,10,0,0" VerticalAlignment="Top" Width="75"/>
+    </StackPanel>
+</Window>

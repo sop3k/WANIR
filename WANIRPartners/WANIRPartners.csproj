@@ -50,7 +50,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>gfx\w.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>WANIRPartners.App</StartupObject>
@@ -79,6 +80,9 @@
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
@@ -130,33 +134,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DB\Mappings\PartnerMapping.cs" />
-    <Compile Include="DB\Mappings\ProjectMapping.cs" />
+    <Compile Include="Models\Mappings\CallInfoMapping.cs" />
+    <Compile Include="Models\Mappings\PartnerMapping.cs" />
+    <Compile Include="Models\Mappings\ProjectMapping.cs" />
     <Compile Include="DB\SessionFactory.cs" />
+    <Compile Include="Models\CallInfo.cs" />
+    <Compile Include="Models\Common.cs" />
     <Compile Include="Models\Partner.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Utils\Boostrapper.cs" />
+    <Compile Include="Utils\Common.cs" />
     <Compile Include="Utils\Const.cs" />
+    <Compile Include="Utils\Doc\DocumentPrinter.cs" />
+    <Compile Include="Utils\Doc\Munger.cs" />
+    <Compile Include="Utils\Doc\Word.cs" />
+    <Compile Include="Utils\ProvincesFactory.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="Utils\NamedCommand.cs" />
     <Compile Include="ViewModels\CallInfoViewModel.cs" />
     <Compile Include="ViewModels\CreatePartnerViewModel.cs" />
     <Compile Include="ViewModels\CreateProjectViewModel.cs" />
+    <Compile Include="ViewModels\DeletePartnerViewModel.cs" />
+    <Compile Include="ViewModels\DeleteProjectViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="Utils\IViewController.cs" />
     <Compile Include="ViewModels\PartnersViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SingleProjectViewModel.cs" />
-    <Compile Include="Views\CallView.xaml.cs">
-      <DependentUpon>CallView.xaml</DependentUpon>
+    <Compile Include="Views\CallInfoView.xaml.cs">
+      <DependentUpon>CallInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreatePartnerView.xaml.cs">
       <DependentUpon>CreatePartnerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateProjectView.xaml.cs">
       <DependentUpon>CreateProjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeletePartnerView.xaml.cs">
+      <DependentUpon>DeletePartnerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteProjectView.xaml.cs">
+      <DependentUpon>DeleteProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PartnersView.xaml.cs">
       <DependentUpon>PartnersView.xaml</DependentUpon>
@@ -170,7 +192,15 @@
     <Compile Include="Views\SingleProjectView.xaml.cs">
       <DependentUpon>SingleProjectView.xaml</DependentUpon>
     </Compile>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="Views\DeletePartnerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeleteProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,14 +212,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\CallView.xaml">
+    <Page Include="Views\CallInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,9 +277,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="gfx\w.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ThirdParty\MvvmFoundation.Wpf\MvvmFoundation.Wpf.csproj">

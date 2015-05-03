@@ -5,7 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label Content="{Binding Name}"/>
+    <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="5" Padding="8" Header="Ustawienia wydruku">
+    <Grid Width="auto" Height="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Width="auto">
+            <Label Content="Wzorzec pliku wydruku dla partnera:"/>
+            <StackPanel Orientation="Horizontal" Height="50">
+                <TextBox Text="{Binding PartnerPrintTemplatePath}" Margin="10" MinWidth="200" Width="auto" />
+                <Button Content="Wybierz" HorizontalAlignment="Right" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Width="auto">
+            <Label Content="Wzorzec pliku wydruku dla raportu:"/>
+            <StackPanel Orientation="Horizontal" Height="50">
+                <TextBox Text="{Binding CallReportPrintTemplatePath}" Margin="10" MinWidth="200" Width="auto"/>
+                <Button Content="Wybierz" HorizontalAlignment="Right" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
+    </GroupBox>
 </UserControl>

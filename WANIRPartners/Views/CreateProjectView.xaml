@@ -5,7 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="8" Padding="5" Header="Nowy projekt">
     <Grid>
-        <Label Content="{Binding Name}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Nazwa" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Height="28" Text="{Binding Name}"  Margin="10"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Typ " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Types}" SelectedItem="{Binding Type}" Margin="10"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Wojewodztwo" Margin="10"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Provinces}" SelectedItem="{Binding Province}" Margin="10"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Powiat" Margin="10"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Districts}" SelectedItem="{Binding District}" Margin="10"/>
+
+        <CheckBox Grid.Column="1" Grid.Row="4"  Content="Mailing" IsChecked="{Binding Mailing}" Margin="10"/>
+    
     </Grid>
+    </GroupBox>
 </UserControl>
