@@ -236,7 +236,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Nastepny" Command="{Binding PrintCommand}" 
+                <Button Content="Nastepny" Command="{Binding MoveToNextCommand}" 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Right"  Margin="10" />
         </StackPanel>

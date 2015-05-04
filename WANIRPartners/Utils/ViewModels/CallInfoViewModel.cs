@@ -20,7 +20,12 @@ namespace WANIRPartners.ViewModels
             CallInfo = call.CallInfo;
          
             _singleProjectView = (SingleProjectViewModel)parent;
+            _next = _singleProjectView.PartnersWithCallInfo
+                .SkipWhile(x => x.CallInfo != null)
+                .FirstOrDefault();
+
         }
+
         #region View
         override public String ViewName
         {
@@ -38,24 +43,30 @@ namespace WANIRPartners.ViewModels
             }
         }
         #endregion
+
         public CallInfo CallInfo { get; set; }
+
         public Partner Partner{ get; private set; }
+
         public Project Project{ get; private set; }
+
         public ICommand MoveToNextCommand {
-            get { return new RelayCommand(MoveToNextPartner); }
+            get 
+            {
+                return new RelayCommand(
+                    MoveToNextPartner, 
+                    () => _next != null
+                ); 
+            }
         }
 
         void MoveToNextPartner()
         {
             Save();
-            
-            var info = _singleProjectView.PartnersWithCallInfo
-                .SkipWhile(x => x.CallInfo != null)
-                .FirstOrDefault();
-
-            ShowView(new CallInfoViewModel(_singleProjectView, Project, info));
+            ShowView(new CallInfoViewModel(_singleProjectView, Project, _next));
         }
 
         private readonly SingleProjectViewModel _singleProjectView;
+        private PartnerInfoCall _next;
     }
 }

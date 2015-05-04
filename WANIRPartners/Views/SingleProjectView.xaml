@@ -3,13 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid"
+             xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid ItemsSource="{Binding PartnersWithCallInfo}" 
+        <ExtendedGridControl:ExtendedDataGrid ItemsSource="{Binding PartnersWithCallInfo}" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Stretch"
-                  SelectionMode="Single" SelectionUnit="FullRow"
-                  SelectedItem="{Binding CurrentItem}"/>
+                  SelectionMode="Single"
+                  SelectedItem="{Binding CurrentItem}"
+                  FontSize="14"
+                  IsReadOnly="True"
+                  BorderThickness="0" AutoGenerateColumns="False" GroupByControlVisibility="Collapsed" Margin="0,0,5,5">
+            
+            <ExtendedGridControl:ExtendedDataGrid.Columns>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Nazwa partnera" AllowAutoFilter="False" Binding="{Binding Partner.Name}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Województwo" AllowAutoFilter="False" Binding="{Binding Partner.Province}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Powiat" AllowAutoFilter="False" Binding="{Binding Partner.District}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Partner.Gmina}" Width="*"/>
+                
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.Calle}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.Date}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.Info}" Width="*"/>
+            </ExtendedGridControl:ExtendedDataGrid.Columns>
+            
+        </ExtendedGridControl:ExtendedDataGrid>
     </Grid>
 </UserControl>

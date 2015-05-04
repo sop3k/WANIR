@@ -44,16 +44,21 @@ namespace WANIRPartners.ViewModels
         {
             get { return CurrentProject.Name; }
         }
+       
         public PartnerInfoCall CurrentItem { get; set; }
+        
         public Project CurrentProject{ get; set; }
+        
         public Partner CurrentPartner
         {
             get { return CurrentItem.Partner; }
         }
+        
         public CallInfo CurrentCallInfo
         {
             get { return CurrentItem.CallInfo; }
         }
+        
         override public ObservableCollection<NamedCommand> Commands
         {
             get
@@ -77,6 +82,7 @@ namespace WANIRPartners.ViewModels
                 };
             }
         }
+        
         public IEnumerable<PartnerInfoCall> PartnersWithCallInfo
         {
             get
@@ -89,11 +95,12 @@ namespace WANIRPartners.ViewModels
                     select new PartnerInfoCall(partner, call);
             }
         }
+        
         private void SendMail()
         {
             MessageBox.Show(Const.SEND_CAPTION);
         }
-
+        
         private void PrintCallInfo()
         {
             DocumentPrinter.Print(Settings.CallReportPrintTemplatePath, CurrentCallInfo);

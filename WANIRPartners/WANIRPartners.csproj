@@ -66,6 +66,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExtendedGrid">
+      <HintPath>ThirdParty\ExtendedDataGrid\ExtendedGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Fluent">
+      <HintPath>ThirdParty\ExtendedDataGrid\Fluent.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -78,14 +84,30 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="ImagePackage">
+      <HintPath>ThirdParty\ExtendedDataGrid\ImagePackage.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>ThirdParty\ExtendedDataGrid\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="MultiEventCommandBinder">
+      <HintPath>ThirdParty\ExtendedDataGrid\MultiEventCommandBinder.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>ThirdParty\ExtendedDataGrid\Office.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -114,6 +136,14 @@
     <Reference Include="System.Reactive.Windows.Threading">
       <HintPath>..\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -128,6 +158,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -151,20 +185,20 @@
     <Compile Include="Utils\Doc\Munger.cs" />
     <Compile Include="Utils\Doc\Word.cs" />
     <Compile Include="Utils\ProvincesFactory.cs" />
-    <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="Utils\ViewModels\ApplicationViewModel.cs" />
     <Compile Include="Utils\NamedCommand.cs" />
-    <Compile Include="ViewModels\CallInfoViewModel.cs" />
-    <Compile Include="ViewModels\CreatePartnerViewModel.cs" />
-    <Compile Include="ViewModels\CreateProjectViewModel.cs" />
-    <Compile Include="ViewModels\DeletePartnerViewModel.cs" />
-    <Compile Include="ViewModels\DeleteProjectViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\PageViewModel.cs" />
+    <Compile Include="Utils\ViewModels\CallInfoViewModel.cs" />
+    <Compile Include="Utils\ViewModels\CreatePartnerViewModel.cs" />
+    <Compile Include="Utils\ViewModels\CreateProjectViewModel.cs" />
+    <Compile Include="Utils\ViewModels\DeletePartnerViewModel.cs" />
+    <Compile Include="Utils\ViewModels\DeleteProjectViewModel.cs" />
+    <Compile Include="Utils\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Utils\ViewModels\PageViewModel.cs" />
     <Compile Include="Utils\IViewController.cs" />
-    <Compile Include="ViewModels\PartnersViewModel.cs" />
-    <Compile Include="ViewModels\ProjectsViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\SingleProjectViewModel.cs" />
+    <Compile Include="Utils\ViewModels\PartnersViewModel.cs" />
+    <Compile Include="Utils\ViewModels\ProjectsViewModel.cs" />
+    <Compile Include="Utils\ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Utils\ViewModels\SingleProjectViewModel.cs" />
     <Compile Include="Views\CallInfoView.xaml.cs">
       <DependentUpon>CallInfoView.xaml</DependentUpon>
     </Compile>

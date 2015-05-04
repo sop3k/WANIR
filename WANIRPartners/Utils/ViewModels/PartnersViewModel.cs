@@ -57,9 +57,9 @@ namespace WANIRPartners.ViewModels
             get
             {
                 var query = Session.CreateCriteria<Partner>();
-                
+
                 if (!String.IsNullOrEmpty(Name))
-                    query.Add(Restrictions.Eq("Name", Name));
+                    query.Add(Restrictions.Like("Name", String.Format("%{0}%", Name)));
                 if (!String.IsNullOrEmpty(Province))
                     query.Add(Restrictions.Eq("Province", Province));
                 if (!String.IsNullOrEmpty(District))
@@ -70,6 +70,7 @@ namespace WANIRPartners.ViewModels
                 return new ObservableCollection<Partner>(query.List<Partner>().ToList());
             }
         }
+
         private void AddPartnerCommand()
         {
             ShowView(new CreatePartnerViewModel(this));
