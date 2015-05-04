@@ -13,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>ccbf3dbb</NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,10 +27,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>ccbf3dbb</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,8 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>wanir.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>WANIRPartners.App</StartupObject>
@@ -60,17 +59,8 @@
     <Reference Include="Elysium">
       <HintPath>..\packages\Elysium.Theme.2.0.4\lib\net45\Elysium.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="ExtendedGrid">
       <HintPath>ThirdParty\ExtendedDataGrid\ExtendedGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="Fluent">
-      <HintPath>ThirdParty\ExtendedDataGrid\Fluent.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
@@ -81,33 +71,11 @@
     <Reference Include="Framework.UI">
       <HintPath>..\packages\Elysium.Extra.1.1.7\lib\net45\Framework.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="ImagePackage">
-      <HintPath>ThirdParty\ExtendedDataGrid\ImagePackage.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>ThirdParty\ExtendedDataGrid\Microsoft.Office.Interop.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="MultiEventCommandBinder">
-      <HintPath>ThirdParty\ExtendedDataGrid\MultiEventCommandBinder.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>ThirdParty\ExtendedDataGrid\Office.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -158,10 +126,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -185,20 +149,20 @@
     <Compile Include="Utils\Doc\Munger.cs" />
     <Compile Include="Utils\Doc\Word.cs" />
     <Compile Include="Utils\ProvincesFactory.cs" />
-    <Compile Include="Utils\ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="Utils\NamedCommand.cs" />
-    <Compile Include="Utils\ViewModels\CallInfoViewModel.cs" />
-    <Compile Include="Utils\ViewModels\CreatePartnerViewModel.cs" />
-    <Compile Include="Utils\ViewModels\CreateProjectViewModel.cs" />
-    <Compile Include="Utils\ViewModels\DeletePartnerViewModel.cs" />
-    <Compile Include="Utils\ViewModels\DeleteProjectViewModel.cs" />
-    <Compile Include="Utils\ViewModels\LoginViewModel.cs" />
-    <Compile Include="Utils\ViewModels\PageViewModel.cs" />
+    <Compile Include="ViewModels\CallInfoViewModel.cs" />
+    <Compile Include="ViewModels\CreatePartnerViewModel.cs" />
+    <Compile Include="ViewModels\CreateProjectViewModel.cs" />
+    <Compile Include="ViewModels\DeletePartnerViewModel.cs" />
+    <Compile Include="ViewModels\DeleteProjectViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="Utils\IViewController.cs" />
-    <Compile Include="Utils\ViewModels\PartnersViewModel.cs" />
-    <Compile Include="Utils\ViewModels\ProjectsViewModel.cs" />
-    <Compile Include="Utils\ViewModels\SettingsViewModel.cs" />
-    <Compile Include="Utils\ViewModels\SingleProjectViewModel.cs" />
+    <Compile Include="ViewModels\PartnersViewModel.cs" />
+    <Compile Include="ViewModels\ProjectsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SingleProjectViewModel.cs" />
     <Compile Include="Views\CallInfoView.xaml.cs">
       <DependentUpon>CallInfoView.xaml</DependentUpon>
     </Compile>
@@ -306,6 +270,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="province.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -334,6 +301,51 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="wanir.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="wanir_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="wanirm.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.96.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.96.0\build\net45\System.Data.SQLite.Core.targets')" />

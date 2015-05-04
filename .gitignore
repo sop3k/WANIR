@@ -6,3 +6,6 @@ WANIRPartners/packages.config
 WANIRPartners/ThirdParty/MvvmFoundation.Wpf/obj/
 WANIRPartners/ThirdParty/MvvmFoundation.Wpf/bin/
 Backup/
+WANIRSetup/Release/
+WANIRSetup/Debug/
+WANIRPartners/ThirdParty/

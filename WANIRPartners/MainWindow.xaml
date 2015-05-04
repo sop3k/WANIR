@@ -13,8 +13,12 @@
         params:Manager.Theme="Light"
         params:Manager.AccentBrush="{x:Static metro:AccentBrushes.Blue}"
         params:Manager.ContrastBrush="White"
-        Background="{DynamicResource BackgroundBrush}"      
+        Icon="wanir.ico"      
      >
+
+    <Window.Background>
+        <ImageBrush ImageSource="wanir_bg.jpg"></ImageBrush>
+    </Window.Background>
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:PartnersViewModel}">
@@ -51,11 +55,7 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Window.DataContext>
-        <viewModels:ApplicationViewModel/>
-    </Window.DataContext>
-
-    <Grid>
+    <Grid Margin="0,0,10,10" Opacity="0.95">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
@@ -64,7 +64,7 @@
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ItemsControl Grid.Row="0" Grid.Column="0" ItemsSource="{Binding PageViewModels}" >
+        <ItemsControl Grid.Row="0" Grid.Column="0" ItemsSource="{Binding PageViewModels}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -95,7 +95,6 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <ContentControl Grid.Column="1" Grid.Row="0" Content="{Binding CurrentPageViewModel}"/>
-        <Image Grid.Column="0" Grid.Row="1" Source="gfx/w.jpg"/>
     </Grid>
 
 </metro:Window>

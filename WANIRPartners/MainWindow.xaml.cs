@@ -11,6 +11,7 @@ namespace WANIRPartners
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new WANIRPartners.ViewModels.ApplicationViewModel();
         }
     }
 }
