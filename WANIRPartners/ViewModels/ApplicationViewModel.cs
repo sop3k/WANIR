@@ -9,7 +9,6 @@ namespace WANIRPartners.ViewModels
     public class ApplicationViewModel : ObservableObject, IViewController
     {
         #region Fields
-
         private ICommand _changePageCommand;
 
         private PageViewModel _currentPageViewModel;

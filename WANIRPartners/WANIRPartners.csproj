@@ -178,6 +178,10 @@
     <Compile Include="Views\DeleteProjectView.xaml.cs">
       <DependentUpon>DeleteProjectView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="Views\ErrorView.xaml.cs">
+      <DependentUpon>ErrorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PartnersView.xaml.cs">
       <DependentUpon>PartnersView.xaml</DependentUpon>
     </Compile>
@@ -195,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DeleteProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ErrorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,7 +11,9 @@ namespace WANIRPartners.DB
 {
     public class SQLiteSessionFactory
     {
-        private const string DbFile = "wanir.db";
+        private static readonly string DbFile = System.IO.Path.Combine(System.Environment.GetFolderPath(
+            System.Environment.SpecialFolder.ApplicationData),
+            "wanir.db");
 
         public static ISessionFactory CreateSessionFactory()
         {
