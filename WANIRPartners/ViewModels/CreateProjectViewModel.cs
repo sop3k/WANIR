@@ -11,9 +11,11 @@ namespace WANIRPartners.ViewModels
 {
     class CreateProjectViewModel : CommonChildPageViewModel<Project>
     {
-        public CreateProjectViewModel(PageViewModel parent)
+        public CreateProjectViewModel(PageViewModel parent, bool isMailing)
             : base(parent)
-        { }
+        {
+            Mailing = isMailing;
+        }
 
         override public String ViewName
         {
@@ -32,6 +34,10 @@ namespace WANIRPartners.ViewModels
             }
         }
 
-        public bool Mailing{ get; set; }
+        public bool Mailing
+        {
+            get;
+            private set;
+        }
     }
 }

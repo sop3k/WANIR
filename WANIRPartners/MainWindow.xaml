@@ -16,9 +16,10 @@
         Icon="wanir.ico"      
      >
 
+    <!--
     <Window.Background>
         <ImageBrush ImageSource="wanir_bg.jpg"></ImageBrush>
-    </Window.Background>
+    </Window.Background>-->
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:PartnersViewModel}">
@@ -44,6 +45,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:DeletePartnerViewModel}">
             <views:DeletePartnerView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MailingProjectsViewModel}">
+            <views:MailingProjectsView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
             <views:SettingsView/>

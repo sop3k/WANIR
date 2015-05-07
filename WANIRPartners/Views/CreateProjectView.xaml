@@ -31,7 +31,7 @@
         <Label Grid.Column="0" Grid.Row="3" Content="Powiat" Margin="10"/>
         <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Districts}" SelectedItem="{Binding District}" Margin="10"/>
 
-        <CheckBox Grid.Column="1" Grid.Row="4"  Content="Mailing" IsChecked="{Binding Mailing}" Margin="10"/>
+        <CheckBox Grid.Column="1" Grid.Row="4"  Content="Mailing" IsChecked="{Binding Mailing}" Margin="10" IsEnabled="False" />
     
     </Grid>
     </GroupBox>

@@ -26,6 +26,7 @@ namespace WANIRPartners.Utils
 
         public const string PROJECTS_CAPTION = "PROJEKTY";
         public const string PARTNERS_CAPTION = "PARTNERZY";
+        public const string MAILING_PROJECTS_CAPTION = "MAILING";
         public const string SETTINGS_CAPTION = "USTAWIENIA";
 
         public static Dictionary<String, List<String>> Provinces

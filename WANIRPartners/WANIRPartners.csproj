@@ -160,6 +160,7 @@
     <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="Utils\IViewController.cs" />
     <Compile Include="ViewModels\PartnersViewModel.cs" />
+    <Compile Include="ViewModels\MailingProjectsViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SingleProjectViewModel.cs" />
@@ -181,6 +182,9 @@
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MailingProjectsView.xaml.cs">
+      <DependentUpon>MailingProjectsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PartnersView.xaml.cs">
       <DependentUpon>PartnersView.xaml</DependentUpon>
@@ -234,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MailingProjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

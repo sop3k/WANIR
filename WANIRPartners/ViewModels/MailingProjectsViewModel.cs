@@ -13,9 +13,9 @@ using NHibernate.Linq;
 
 namespace WANIRPartners.ViewModels
 {
-    public class ProjectsViewModel: PageViewModel
+    public class MailingProjectsViewModel: PageViewModel
     {
-        public ProjectsViewModel(IViewController controller)
+        public MailingProjectsViewModel(IViewController controller)
             : base(controller)
         {
             CurrentProjectView = ProjectsViews.AsQueryable().FirstOrDefault();
@@ -23,7 +23,7 @@ namespace WANIRPartners.ViewModels
 
         override public String ViewName
         {
-            get { return Const.PROJECTS_CAPTION; }
+            get { return Const.MAILING_PROJECTS_CAPTION; }
         }
         override public ObservableCollection<NamedCommand> Commands
         {
@@ -31,7 +31,7 @@ namespace WANIRPartners.ViewModels
             {
                 List<NamedCommand> cmds = new List<NamedCommand>{
                     new NamedCommand(Const.ADD_CAPTION, new RelayCommand(
-                        () => ShowView(new CreateProjectViewModel(this, false)))),
+                        () => ShowView(new CreateProjectViewModel(this, true)))),
                     new NamedCommand(Const.DELETE_CAPTION, new RelayCommand(
                         ShowDeleteProjectView,
                         () => CurrentProjectView != null))
@@ -49,7 +49,7 @@ namespace WANIRPartners.ViewModels
             get
             {
                 return new ObservableCollection<SingleProjectViewModel>(
-                    from project in Session.Query<Project>().Where(p => p.Mailing == false)
+                    from project in Session.Query<Project>().Where(p => p.Mailing)
                     select new SingleProjectViewModel(this, project)
                 );
             }

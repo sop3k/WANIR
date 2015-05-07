@@ -21,6 +21,7 @@ namespace WANIRPartners.ViewModels
             // Add available pages
             PageViewModels.Add(new PartnersViewModel(this));
             PageViewModels.Add(new ProjectsViewModel(this));
+            PageViewModels.Add(new MailingProjectsViewModel(this));
             PageViewModels.Add(new SettingsViewModel(this));
 
             // Set starting page
