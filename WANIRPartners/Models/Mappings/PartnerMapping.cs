@@ -36,6 +36,7 @@ namespace WANIRPartners.Mappings
             Map(x => x.Other);
 
             HasMany(x => x.Calls).Inverse().Cascade.All();
+            HasMany(x => x.Mails).Inverse().Cascade.All();
         }
     }
 }

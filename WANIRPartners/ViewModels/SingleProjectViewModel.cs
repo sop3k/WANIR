@@ -29,6 +29,7 @@ namespace WANIRPartners.ViewModels
         public string Name { get { return Partner.Name; } }
         public string District { get { return Partner.District; } }
 
+
         public Partner Partner { get; set; }
         public CallInfo CallInfo { get ; set; }
     };
@@ -40,6 +41,7 @@ namespace WANIRPartners.ViewModels
         {
             CurrentProject = project;
         }
+
         override public string ViewName
         {
             get { return CurrentProject.Name; }
@@ -65,15 +67,10 @@ namespace WANIRPartners.ViewModels
             {
                 return new ObservableCollection<NamedCommand>
                 {
-                    new NamedCommand(Const.CALL_CAPTION, 
+                    new NamedCommand(Const.EDIT_CAPTION, 
                         new RelayCommand( 
                             () => ShowView(new CallInfoViewModel(this, CurrentProject, CurrentItem)),
-                            () => CurrentItem != null && !CurrentProject.Mailing && CurrentItem.CallInfo == null)),
-                    
-                    new NamedCommand(Const.SEND_CAPTION, 
-                        new RelayCommand( 
-                            SendMail, 
-                            () => CurrentProject.Mailing)),
+                            () => CurrentItem != null && !CurrentProject.Mailing)),
 
                     new NamedCommand(Const.PRINT_CAPTION, 
                         new RelayCommand(
@@ -94,11 +91,6 @@ namespace WANIRPartners.ViewModels
                     from call in partner.Calls.DefaultIfEmpty()
                     select new PartnerInfoCall(partner, call);
             }
-        }
-        
-        private void SendMail()
-        {
-            MessageBox.Show(Const.SEND_CAPTION);
         }
         
         private void PrintCallInfo()

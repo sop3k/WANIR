@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="WANIRPartners.Views.MailProjectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid"
+             xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <ExtendedGridControl:ExtendedDataGrid ItemsSource="{Binding Partners}" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding CurrentPartner}"
+                  FontSize="14"
+                  IsReadOnly="True"
+                  BorderThickness="0" AutoGenerateColumns="False" GroupByControlVisibility="Collapsed" Margin="0,0,5,5" Grid.Row="0">
+
+            <ExtendedGridControl:ExtendedDataGrid.Columns>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Nazwa partnera" AllowAutoFilter="False" Binding="{Binding Name}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Województwo" AllowAutoFilter="False" Binding="{Binding Province}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Powiat" AllowAutoFilter="False" Binding="{Binding District}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Gmina}" Width="*"/>
+            </ExtendedGridControl:ExtendedDataGrid.Columns>
+
+        </ExtendedGridControl:ExtendedDataGrid>
+
+        <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="10" Header="Wysłane do partnera" Grid.Row="1">
+            <ExtendedGridControl:ExtendedDataGrid ItemsSource="{Binding CurrentPartner.Mails}" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  SelectionMode="Single"
+                  FontSize="14"
+                  IsReadOnly="True"
+                  BorderThickness="0" AutoGenerateColumns="False" GroupByControlVisibility="Collapsed" Margin="10">
+
+                <ExtendedGridControl:ExtendedDataGrid.Columns>
+                    <ExtendedColumn:ExtendedDataGridTextColumn Header="Data wysłania" AllowAutoFilter="False" Binding="{Binding Date}" Width="200"/>
+                    <ExtendedColumn:ExtendedDataGridTextColumn Header="Temat" AllowAutoFilter="False" Binding="{Binding Subject}" Width="*" />
+                </ExtendedGridControl:ExtendedDataGrid.Columns>
+
+            </ExtendedGridControl:ExtendedDataGrid> 
+        </GroupBox>
+    </Grid>
+</UserControl>

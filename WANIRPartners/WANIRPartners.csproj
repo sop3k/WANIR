@@ -132,7 +132,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\MailInfo.cs" />
     <Compile Include="Models\Mappings\CallInfoMapping.cs" />
+    <Compile Include="Models\Mappings\MailInfoMapping.cs" />
     <Compile Include="Models\Mappings\PartnerMapping.cs" />
     <Compile Include="Models\Mappings\ProjectMapping.cs" />
     <Compile Include="DB\SessionFactory.cs" />
@@ -157,10 +159,12 @@
     <Compile Include="ViewModels\DeletePartnerViewModel.cs" />
     <Compile Include="ViewModels\DeleteProjectViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MailInfoViewModel.cs" />
+    <Compile Include="ViewModels\MailProjectViewModel.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="Utils\IViewController.cs" />
     <Compile Include="ViewModels\PartnersViewModel.cs" />
-    <Compile Include="ViewModels\MailingProjectsViewModel.cs" />
+    <Compile Include="ViewModels\MailingViewModel.cs" />
     <Compile Include="ViewModels\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SingleProjectViewModel.cs" />
@@ -183,8 +187,11 @@
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MailingProjectsView.xaml.cs">
-      <DependentUpon>MailingProjectsView.xaml</DependentUpon>
+    <Compile Include="Views\MailInfoView.xaml.cs">
+      <DependentUpon>MailInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MailingView.xaml.cs">
+      <DependentUpon>MailingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PartnersView.xaml.cs">
       <DependentUpon>PartnersView.xaml</DependentUpon>
@@ -194,6 +201,9 @@
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MailProjectView.xaml.cs">
+      <DependentUpon>MailProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SingleProjectView.xaml.cs">
       <DependentUpon>SingleProjectView.xaml</DependentUpon>
@@ -241,7 +251,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MailingProjectsView.xaml">
+    <Page Include="Views\MailInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MailingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,6 +270,10 @@
     <Page Include="Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MailProjectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SingleProjectView.xaml">
       <SubType>Designer</SubType>
@@ -331,10 +349,28 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="Microsoft.Office.Interop.Word">
       <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>8</VersionMajor>
       <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

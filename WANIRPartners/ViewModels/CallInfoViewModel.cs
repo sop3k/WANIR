@@ -17,7 +17,11 @@ namespace WANIRPartners.ViewModels
         {
             Partner = call.Partner;
             Project = project;
-            CallInfo = call.CallInfo;
+
+            if (call.CallInfo == null)
+                CallInfo = new CallInfo { Partner = Partner, Project = Project };
+            else
+                CallInfo = call.CallInfo;
          
             _singleProjectView = (SingleProjectViewModel)parent;
             _next = _singleProjectView.PartnersWithCallInfo
@@ -50,6 +54,42 @@ namespace WANIRPartners.ViewModels
 
         public Project Project{ get; private set; }
 
+        public DateTime FirstDate 
+        {
+            get
+            {
+                return CallInfo.FirstDate ?? DateTime.Now;
+            }
+            set
+            {
+                CallInfo.FirstDate = value;
+            }
+        }
+
+        public DateTime SecondDate
+        {
+            get
+            {
+                return CallInfo.SecondDate ?? DateTime.Now;
+            }
+            set
+            {
+                CallInfo.SecondDate = value;
+            }
+        }
+
+        public DateTime MeetingDate
+        {
+            get
+            {
+                return CallInfo.MeetingDate ?? DateTime.Now;
+            }
+            set
+            {
+                CallInfo.MeetingDate = value;
+            }
+        }
+
         public ICommand MoveToNextCommand {
             get 
             {
@@ -65,6 +105,23 @@ namespace WANIRPartners.ViewModels
             Save();
             ShowView(new CallInfoViewModel(_singleProjectView, Project, _next));
         }
+
+        public override void Save()
+        {
+            using (var tx = Session.BeginTransaction())
+            {
+                Session.SaveOrUpdate(CallInfo);
+                Session.SaveOrUpdate(Partner);
+                Session.SaveOrUpdate(Project);
+
+                tx.Commit();
+            }
+
+            Close();
+        }
+
+        public bool FirstCallEnable { get { return String.IsNullOrEmpty(CallInfo.FirstCallee) == true; } }
+        public bool SecondCallEnable { get { return String.IsNullOrEmpty(CallInfo.FirstCallee) == false; } }
 
         private readonly SingleProjectViewModel _singleProjectView;
         private PartnerInfoCall _next;

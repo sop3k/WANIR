@@ -31,11 +31,17 @@
         <DataTemplate DataType="{x:Type viewModels:SingleProjectViewModel}">
             <views:SingleProjectView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MailProjectViewModel}">
+            <views:MailProjectView />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:CreateProjectViewModel}">
             <views:CreateProjectView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:CreatePartnerViewModel}">
             <views:CreatePartnerView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MailInfoViewModel}">
+            <views:MailInfoView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:CallInfoViewModel}">
             <views:CallInfoView/>
@@ -46,7 +52,7 @@
         <DataTemplate DataType="{x:Type viewModels:DeletePartnerViewModel}">
             <views:DeletePartnerView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:MailingProjectsViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:MailingViewModel}">
             <views:MailingProjectsView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">

@@ -17,6 +17,7 @@ namespace WANIRPartners.ViewModels
         {
             get { return Const.PARTNER_CREATE_CAPTION; }
         }
+
         override public ObservableCollection<NamedCommand> Commands
         {
             get

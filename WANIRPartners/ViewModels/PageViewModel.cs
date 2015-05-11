@@ -173,7 +173,7 @@ namespace WANIRPartners.ViewModels
         {}
 
         #endregion
-        public void Save()
+        public virtual void Save()
         {
             using(var tx = Session.BeginTransaction())
             {
@@ -185,6 +185,7 @@ namespace WANIRPartners.ViewModels
 
             Close();
         }
+
         public void Cancel()
         {
             Close();

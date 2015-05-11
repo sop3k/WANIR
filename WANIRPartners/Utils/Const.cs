@@ -8,18 +8,19 @@ namespace WANIRPartners.Utils
     class Const
     {
         public static string SEND_CAPTION = "Wyślij";
+        public static string SEND_ALL_CAPTION = "Wyślij do wszytskich";
         public static string PRINT_CAPTION = "Drukuj";
         public static string EXPORT_CAPTION = "Exportuj";
         public static string IMPORT_CAPTION = "Importuj";
         public const string YES_CAPTION = "Tak";
         public const string NO_CAPTION = "Nie";
-
+        
         public const string REMOVE_PROJECT = "Usuwanie projektu";
         public const string SAVE_CAPTION = "Zapisz";
         public const string CANCEL_CAPTION = "Anuluj";
         public const string ADD_CAPTION = "Dodaj";
         public const string DELETE_CAPTION = "Usuń";
-        public const string CALL_CAPTION = "Zadzwoń";
+        public const string EDIT_CAPTION = "Edytuj";
 
         public const string PARTNER_CREATE_CAPTION = "Tworzenie nowego partnera";
         public const string PROJECT_CREATE_CAPTION = "Tworzenie nowego projektu";
@@ -28,6 +29,8 @@ namespace WANIRPartners.Utils
         public const string PARTNERS_CAPTION = "PARTNERZY";
         public const string MAILING_PROJECTS_CAPTION = "MAILING";
         public const string SETTINGS_CAPTION = "USTAWIENIA";
+
+        public const string OUTLOOK_OPEN = "Otwórz outlooka";
 
         public static Dictionary<String, List<String>> Provinces
         {

@@ -23,9 +23,13 @@
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Powiat" AllowAutoFilter="False" Binding="{Binding Partner.District}" />
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Partner.Gmina}" Width="*"/>
                 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.Calle}" Width="*"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.Date}" Width="*"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.Info}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstDate}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstCallee}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstInfo}" Width="*"/>
+
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.SecondDate}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.SecondCallee}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.SecondInfo}" Width="*"/>
             </ExtendedGridControl:ExtendedDataGrid.Columns>
             
         </ExtendedGridControl:ExtendedDataGrid>

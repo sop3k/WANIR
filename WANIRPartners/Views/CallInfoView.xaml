@@ -58,7 +58,6 @@
                         <Label Grid.Column="3" Grid.Row="0" Content="{Binding Partner.District}" FontSize="16" VerticalAlignment="Center" Foreground="Brown"></Label>
                         <Label Grid.Column="4" Grid.Row="0" Content="Adres:" FontSize="14" VerticalAlignment="Center"/>
                         <Label Grid.Column="5" Grid.Row="0" Content="{Binding Partner.Address}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Grid.ColumnSpan="2"></Label>
-                        <Label Grid.Column="6" Grid.Row="0" Content="{Binding Partner.District}" FontSize="16" VerticalAlignment="Center" Foreground="Brown"></Label>
                         <Label Grid.Column="7" Grid.Row="0" Content="Telefon:" FontSize="14" />
                         <Label Grid.Column="8" Grid.Row="0" Content="{Binding Partner.Phone}" FontSize="16" VerticalAlignment="Center" Foreground="Brown"></Label>
                         <Label Grid.Column="9" Grid.Row="0" Content="Email:" FontSize="14" VerticalAlignment="Center"/>
@@ -134,13 +133,13 @@
                     </Grid>
                 </Border>
 
-                <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="5" Header="Pierwsza Rozmowa">
+                <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="5" Header="Pierwsza Rozmowa" IsEnabled="{Binding FirstCallEnable}">
                     <Grid HorizontalAlignment="Stretch" Width="auto" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="200*"></ColumnDefinition>
+                            <ColumnDefinition Width="200*"></ColumnDefinition>
+                            <ColumnDefinition Width="200*"></ColumnDefinition>
+                            <ColumnDefinition Width="200*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
@@ -149,18 +148,18 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Content="Osoba wykonujące rozmowę:" FontSize="14" VerticalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="1" Content="{Binding Partner.ContactPerson}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CallInfo.FirstCallee}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="0" Grid.Column="2" Content="Data rozmowy:" FontSize="14" VerticalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="3" Content="{x:Static sys:DateTime.Now}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <DatePicker Grid.Row="0" Grid.Column="3" SelectedDate="{Binding FirstDate}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Uwagi:" FontSize="14" VerticalAlignment="Center"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Partner.ContactEmail}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding CallInfo.FirstInfo}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="5" Header="Druga Rozmowa">
+                <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="5" Header="Druga Rozmowa" IsEnabled="{Binding SecondCallEnable}">
                     <Grid HorizontalAlignment="Stretch" Width="auto" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200*"></ColumnDefinition>
@@ -180,29 +179,28 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Content="Osoba wykonująca rozmowę:" FontSize="14" VerticalAlignment="Center"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Partner.ContactPerson}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Partner.SecondCalle}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="0" Grid.Column="2" Content="Data rozmowy:" FontSize="14" VerticalAlignment="Center"/>
-                        <DatePicker Grid.Row="0" Grid.Column="3" SelectedDate="{x:Static sys:DateTime.Now}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <DatePicker Grid.Row="0" Grid.Column="3" SelectedDate="{Binding SecondDate}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Spotkanie:" FontSize="14" VerticalAlignment="Top" Margin="5"/>
-                        <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Partner.ContactAddress}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5" SelectedValue="Nie">
+                        <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding CallInfo.Meeting}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5" SelectedValue="Nie">
                             <ComboBoxItem Name="yes">Tak</ComboBoxItem>
                             <ComboBoxItem Name="no">Nie</ComboBoxItem>
                         </ComboBox>
 
                         <Label Grid.Row="1" Grid.Column="2" Content="Data spotkania:" FontSize="14" VerticalAlignment="Center"/>
-                        <DatePicker Grid.Row="1" Grid.Column="3" SelectedDate="{x:Static sys:DateTime.Now}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <DatePicker Grid.Row="1" Grid.Column="3" SelectedDate="{Binding MeetingDate}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="2" Grid.Column="0" Content="Niezdecydowany(ustalenia):" FontSize="14" VerticalAlignment="Center"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Partner.ContactPerson}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding CallInfo.Undecided}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="3" Grid.Column="0" Content="Odmowa(powód):" FontSize="14" VerticalAlignment="Center"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Partner.ContactPerson}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding CallInfo.ResignationReason}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="4" Grid.Column="0" Content="Uwagi:" FontSize="14" VerticalAlignment="Center"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Partner.ContactPerson}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
-
+                        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Partner.SecondInfo}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                     </Grid>
                 </GroupBox>
@@ -223,19 +221,19 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Content="Osoba odbywająca spotkanie:" FontSize="14" VerticalAlignment="Center" Margin="0,4"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Partner.Name}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CallInfo.MeetingPerson}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="0" Grid.Column="2" Content="Projekt:" FontSize="14" VerticalAlignment="Top" Margin="5"/>
-                        <ComboBox Grid.Row="0" Grid.Column="3" Text="{Binding Partner.ContactAddress}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5" SelectedValue="Nie">
+                        <ComboBox Grid.Row="0" Grid.Column="3" Text="{Binding CallInfo.ActiveProject}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5" SelectedValue="Nie">
                             <ComboBoxItem Name="yes_">Tak</ComboBoxItem>
                             <ComboBoxItem Name="no_">Nie</ComboBoxItem>
                         </ComboBox>
 
                         <Label Grid.Row="0" Grid.Column="4" Content="Osoba pisząca projekt:" FontSize="14" VerticalAlignment="Center" Margin="0,4"/>
-                        <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding Partner.ContactPhone}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5,5,5,4"/>
+                        <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding CallInfo.ProjectWriter}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5,5,5,4"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Uwagi:" FontSize="14" VerticalAlignment="Center" Margin="0,4"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Text="{Binding Partner.ContactPhone}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5,5,5,4"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Text="{Binding CallInfo.MeetingInfo}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5,5,5,4"/>
 
                     </Grid>
                 </GroupBox>

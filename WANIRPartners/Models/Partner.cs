@@ -38,6 +38,7 @@ namespace WANIRPartners.Models
         public virtual string Other { get; set; }
 
         public virtual IList<CallInfo> Calls{ get; set; }
+        public virtual IList<MailInfo> Mails { get; set; }
     }
 
     class PartnerGenerator
@@ -52,6 +53,7 @@ namespace WANIRPartners.Models
                     var p = new Partner
                     {
                         Name = String.Format("{0}_{1}", prefix, i),
+                        Email = String.Format("{0}_{1}@com.pl", prefix, i),
                         Phone = String.Format("{0}", r.Next(1000000)),
                         Type = Const.Types[r.Next(0, Const.Types.Count)],
                         Province = Const.Provinces.Keys.First(),

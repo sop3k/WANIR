@@ -13,9 +13,9 @@ using NHibernate.Linq;
 
 namespace WANIRPartners.ViewModels
 {
-    public class MailingProjectsViewModel: PageViewModel
+    public class MailingViewModel: PageViewModel
     {
-        public MailingProjectsViewModel(IViewController controller)
+        public MailingViewModel(IViewController controller)
             : base(controller)
         {
             CurrentProjectView = ProjectsViews.AsQueryable().FirstOrDefault();
@@ -25,6 +25,7 @@ namespace WANIRPartners.ViewModels
         {
             get { return Const.MAILING_PROJECTS_CAPTION; }
         }
+
         override public ObservableCollection<NamedCommand> Commands
         {
             get
@@ -44,18 +45,18 @@ namespace WANIRPartners.ViewModels
             }
         }
 
-        public ObservableCollection<SingleProjectViewModel> ProjectsViews
+        public ObservableCollection<MailProjectViewModel> ProjectsViews
         {
             get
             {
-                return new ObservableCollection<SingleProjectViewModel>(
+                return new ObservableCollection<MailProjectViewModel>(
                     from project in Session.Query<Project>().Where(p => p.Mailing)
-                    select new SingleProjectViewModel(this, project)
+                    select new MailProjectViewModel(this, project)
                 );
             }
         }
 
-        public SingleProjectViewModel CurrentProjectView
+        public MailProjectViewModel CurrentProjectView
         {
             get { return _currentProjectView; }
             private set
@@ -76,7 +77,7 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
-                return new RelayCommand<SingleProjectViewModel>(p =>
+                return new RelayCommand<MailProjectViewModel>(p =>
                 {
                     CurrentProjectView = p;
                     ViewController.ChangePageCommand.Execute(this);
@@ -84,6 +85,6 @@ namespace WANIRPartners.ViewModels
             }
         }
         
-        SingleProjectViewModel _currentProjectView;
+        MailProjectViewModel _currentProjectView;
     }
 }
