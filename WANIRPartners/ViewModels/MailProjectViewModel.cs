@@ -76,7 +76,7 @@ namespace WANIRPartners.ViewModels
 
         public IEnumerable<MailInfo> CurrentPartnerMails
         {
-            get { return CurrentPartner.Mails; }
+            get { return CurrentPartner.Mails.Where(x => x.Project == CurrentProject); }
         }
 
         private void SendMail(Partner partner)

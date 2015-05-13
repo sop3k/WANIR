@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_01E227015F444806935713B535129582"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0EC7257E778546F79BF3F07BC3F87233"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -375,14 +381,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CDC925C3BE09C9D8E70EE774EF08FB53"
-        "OwnerKey" = "8:_0EC7257E778546F79BF3F07BC3F87233"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CDC925C3BE09C9D8E70EE774EF08FB53"
-        "OwnerKey" = "8:_123A8439882547A186209853E8AED524"
+        "MsmKey" = "8:_D05EB34297604462847AA077FAF6066F"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -435,8 +435,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_EB72B774EAAB1B5C9F974EEC31AE90B1"
         "OwnerKey" = "8:_0EC7257E778546F79BF3F07BC3F87233"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EB72B774EAAB1B5C9F974EEC31AE90B1"
+        "OwnerKey" = "8:_123A8439882547A186209853E8AED524"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_668E2C8E323641ADC2A215DF2A506B47"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -448,7 +460,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CDC925C3BE09C9D8E70EE774EF08FB53"
+        "OwnerKey" = "8:_0EC7257E778546F79BF3F07BC3F87233"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EB72B774EAAB1B5C9F974EEC31AE90B1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -565,12 +583,6 @@
         "OwnerKey" = "8:_DAA1D416754942DF2C85E42CCE3AE40D"
         "MsmSig" = "8:_UNDEFINED"
         }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_668E2C8E323641ADC2A215DF2A506B47"
-        "MsmSig" = "8:_UNDEFINED"
-        }
     }
     "Configurations"
     {
@@ -596,6 +608,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
         "Release"
@@ -658,6 +678,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_01E227015F444806935713B535129582"
+            {
+            "SourcePath" = "8:..\\WANIRPartners\\schemas\\Partners.schema"
+            "TargetName" = "8:Partners.schema"
+            "Tag" = "8:"
+            "Folder" = "8:_D0A3F6BEF6F348E480CC16F2E1D4E3E6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_167872BF87AE5F5F31E66E82BD276600"
             {
             "AssemblyRegister" = "3:1"
@@ -1267,23 +1307,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CDC925C3BE09C9D8E70EE774EF08FB53"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D05EB34297604462847AA077FAF6066F"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MvvmFoundation.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_CDC925C3BE09C9D8E70EE774EF08FB53"
-                    {
-                    "Name" = "8:MvvmFoundation.Wpf.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MvvmFoundation.Wpf.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\WANIRPartners\\wanir.ico"
+            "TargetName" = "8:wanir.ico"
             "Tag" = "8:"
-            "Folder" = "8:_C7EEC9B0CF254E96BE16160B62DB6A8D"
+            "Folder" = "8:_51E228F4445D42FFA40B1A282929EAD6"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1295,7 +1324,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DAA1D416754942DF2C85E42CCE3AE40D"
@@ -1349,6 +1378,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EB72B774EAAB1B5C9F974EEC31AE90B1"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MvvmFoundation.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_EB72B774EAAB1B5C9F974EEC31AE90B1"
+                    {
+                    "Name" = "8:MvvmFoundation.Wpf.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MvvmFoundation.Wpf.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C7EEC9B0CF254E96BE16160B62DB6A8D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -1365,6 +1425,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_D0A3F6BEF6F348E480CC16F2E1D4E3E6"
+                    {
+                    "Name" = "8:schemas"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_6FCDF9447A2D4ACBA05271D0735388B7"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_AB6D5C6DA4324FD3A752D95BF3905581"
@@ -1439,7 +1510,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WANIRPartners"
         "ProductCode" = "8:{7472EE7D-A7EC-445C-95C1-2F4215661899}"
-        "PackageCode" = "8:{7F62BF30-E275-478E-BC76-049FB24A29ED}"
+        "PackageCode" = "8:{680A4018-3E63-4D21-819F-E8B327A7B38B}"
         "UpgradeCode" = "8:{09E48F78-7DD3-4EE7-B0E1-FFB5EADC8BC2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1570,7 +1641,7 @@
             "Target" = "8:_0EC7257E778546F79BF3F07BC3F87233"
             "Folder" = "8:_AB6D5C6DA4324FD3A752D95BF3905581"
             "WorkingFolder" = "8:_51E228F4445D42FFA40B1A282929EAD6"
-            "Icon" = "8:"
+            "Icon" = "8:_D05EB34297604462847AA077FAF6066F"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D79FAB57859246ED87227A846CB2F957"
@@ -1988,7 +2059,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_0EC7257E778546F79BF3F07BC3F87233"
             {
-            "SourcePath" = "8:..\\WANIRPartners\\obj\\Release\\WANIRPartners.exe"
+            "SourcePath" = "8:..\\WANIRPartners\\obj\\Debug\\WANIRPartners.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_51E228F4445D42FFA40B1A282929EAD6"
@@ -2016,7 +2087,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_123A8439882547A186209853E8AED524"
             {
-            "SourcePath" = "8:..\\WANIRPartners\\obj\\Release\\WANIRPartners.exe"
+            "SourcePath" = "8:..\\WANIRPartners\\obj\\Debug\\WANIRPartners.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C7EEC9B0CF254E96BE16160B62DB6A8D"

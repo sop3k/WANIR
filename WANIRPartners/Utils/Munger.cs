@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace WANIRPartners.Utils.Doc
+namespace WANIRPartners.Utils
 {
     /// <summary>
     /// An instance of Munger gets a value from or puts a value into a target object. The property

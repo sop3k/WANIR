@@ -10,7 +10,7 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
@@ -32,14 +32,17 @@
 
         </ExtendedGridControl:ExtendedDataGrid>
 
-        <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="10" Header="Wysłane do partnera" Grid.Row="1">
-            <ExtendedGridControl:ExtendedDataGrid ItemsSource="{Binding CurrentPartner.Mails}" 
+        <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="5" Header="Wysłane do partnera" Grid.Row="1" MinHeight="50">
+            <ExtendedGridControl:ExtendedDataGrid ItemsSource="{Binding CurrentPartnerMails}" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Stretch"
                   SelectionMode="Single"
                   FontSize="14"
                   IsReadOnly="True"
-                  BorderThickness="0" AutoGenerateColumns="False" GroupByControlVisibility="Collapsed" Margin="10">
+                  BorderThickness="0" 
+                  AutoGenerateColumns="False" 
+                  GroupByControlVisibility="Collapsed" 
+                  Margin="5" MinHeight="30">
 
                 <ExtendedGridControl:ExtendedDataGrid.Columns>
                     <ExtendedColumn:ExtendedDataGridTextColumn Header="Data wysłania" AllowAutoFilter="False" Binding="{Binding Date}" Width="200"/>

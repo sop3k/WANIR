@@ -100,10 +100,25 @@ namespace WANIRPartners.ViewModels
             }
         }
 
+        public ICommand SendCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    SendMail, 
+                    () => Partner.ContactEmail != null || Partner.Email != null);
+            }
+        }
+
         void MoveToNextPartner()
         {
             Save();
             ShowView(new CallInfoViewModel(_singleProjectView, Project, _next));
+        }
+
+        void SendMail()
+        {
+            ShowView(new MailInfoViewModel(this, Project, new List<Partner>{ Partner } ));
         }
 
         public override void Save()

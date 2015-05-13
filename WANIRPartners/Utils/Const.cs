@@ -32,6 +32,8 @@ namespace WANIRPartners.Utils
 
         public const string OUTLOOK_OPEN = "Otwórz outlooka";
 
+        public const string PARTNERS_SCHEMA = "Partners.schema";
+
         public static Dictionary<String, List<String>> Provinces
         {
             get { return Boostrapper.Provinces; }

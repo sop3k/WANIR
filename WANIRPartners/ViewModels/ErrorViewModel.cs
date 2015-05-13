@@ -36,7 +36,6 @@ namespace WANIRPartners.ViewModels
             }
         }
 
-
         public ICommand Close
         {
             get

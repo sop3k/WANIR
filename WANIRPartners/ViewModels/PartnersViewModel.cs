@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Windows;
+using Microsoft.Win32;
+using System.IO;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +9,7 @@ using System.IO;
 using MvvmFoundation.Wpf;
 using NHibernate.Criterion;
 using NHibernate.Linq;
+
 using WANIRPartners.Models;
 using WANIRPartners.Utils;
 using WANIRPartners.Utils.Doc;
@@ -30,6 +34,7 @@ namespace WANIRPartners.ViewModels
         {
             get { return Const.PARTNERS_CAPTION; }
         }
+        
         override public ObservableCollection<NamedCommand> Commands
         {
             get
@@ -51,7 +56,9 @@ namespace WANIRPartners.ViewModels
                 };
             }
         }
+        
         public Partner SelectedPartner { get; set; }
+
         public ObservableCollection<Partner> Partners
         {
             get
@@ -83,8 +90,15 @@ namespace WANIRPartners.ViewModels
 
         private void ImportPartnersCommand()
         { }
+
         private void ExportPartnersCommand()
-        { }
+        {
+            var dialog = new SaveFileDialog();
+            if(dialog.ShowDialog() == true)
+            {
+                new PartnersExcelExporter(dialog.FileName).Export(Partners.ToList<Partner>(), null, Const.PARTNERS_SCHEMA);
+            }
+        }
 
         private void PrintPartnerCommand()
         {
