@@ -34,7 +34,7 @@ namespace WANIRPartners.ViewModels
                         () => ShowView(new CreateProjectViewModel(this, false)))),
                     new NamedCommand(Const.DELETE_CAPTION, new RelayCommand(
                         ShowDeleteProjectView,
-                        () => CurrentProjectView != null))
+                        () => CurrentProjectView != null && ProjectsViews.Count != 0))
                 };
 
                 if(CurrentProjectView != null)
