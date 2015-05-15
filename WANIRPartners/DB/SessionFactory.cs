@@ -26,12 +26,15 @@ namespace WANIRPartners.DB
 
         private static void BuildSchema(Configuration config)
         {
-            //Remove file
+#if DEBUG
             if(System.IO.File.Exists(DbFile))
                 System.IO.File.Delete(DbFile);
-            // this NHibernate tool takes a configuration (with mapping info in)
-            // and exports a database schema from it
             new SchemaExport(config).Create(false, true);
+#else
+            if(!System.IO.File.Exists(DbFile))
+                new SchemaExport(config).Create(false, true);
+#endif
+
         }
     }
 

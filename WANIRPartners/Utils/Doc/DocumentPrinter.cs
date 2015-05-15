@@ -9,7 +9,7 @@ namespace WANIRPartners.Utils.Doc
 	{
 		static public void Print(string path, Object fillerObject)
 		{
-			Word word = new Word(false);
+			Word word = new Word(true);
 			try
 			{
 				using (WordDoc doc = word.Open(path))

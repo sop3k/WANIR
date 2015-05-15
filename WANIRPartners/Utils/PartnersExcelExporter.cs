@@ -9,11 +9,11 @@ using WANIRPartners.Models;
 
 namespace WANIRPartners.Utils
 {
-    public class SchemaElem
+    public class SchemaElem<T>
     {
         private String _Header;
         private String _MemberGetter;
-        Func<Partner, int, Object> Getter = null;
+        Func<T, int, Object> Getter = null;
 
         public SchemaElem(String header, String getter)
         {
@@ -21,21 +21,21 @@ namespace WANIRPartners.Utils
             _MemberGetter = getter;
         }
 
-        public SchemaElem(String header, Func<Partner, int, Object> getter)
+        public SchemaElem(String header, Func<T, int, Object> getter)
         {
             _Header = header;
             Getter = getter;
         }
 
-        public Object GetValue<T>(Object obj, int index)
+        public Object GetValue<U>(Object obj, int index)
         {
             if (!String.IsNullOrEmpty(_MemberGetter))
             {
-                return TypeUtils.GetValueFromAnonymousType<T>(obj, _MemberGetter);
+                return TypeUtils.GetValueFromAnonymousType<U>(obj, _MemberGetter);
             }
             else if (Getter != null)
             {
-                return Getter.Invoke((Partner)obj, index);
+                return Getter.Invoke((T)obj, index);
             }
             return null;
         }
@@ -46,15 +46,15 @@ namespace WANIRPartners.Utils
         }
     }
 
-    class CSVSchema
+    class CSVSchema<T>
     {
-        private ProviderXLSRules rules;
+        private ProviderXLSRules<T> rules;
 
-        public static SchemaElem FreeSpace = new SchemaElem(String.Empty, String.Empty);
+        public static SchemaElem<T> FreeSpace = new SchemaElem<T>(String.Empty, String.Empty);
 
         public CSVSchema(String file)
         {
-            rules = new ProviderXLSRules(file);
+            rules = new ProviderXLSRules<T>(file);
         }
 
         public String[] GetHeaders()
@@ -62,22 +62,22 @@ namespace WANIRPartners.Utils
             return rules.GetNames();
         }
 
-        public Object GetValue(String name, SchemaProvider hit, int index)
+        public Object GetValue(String name, SchemaProvider<T> hit, int index)
         {
             return rules.GetValue(name, hit, index);
         }
 
-        public String GetTitle(SchemaProvider hit)
+        public String GetTitle(SchemaProvider<T> hit)
         {
             return rules.GetTitle(hit);
         }
 
-        public String GetFooter(SchemaProvider hit)
+        public String GetFooter(SchemaProvider<T> hit)
         {
             return rules.GetFooter(hit);
         }
 
-        public String GetFilename(SchemaProvider hit)
+        public String GetFilename(SchemaProvider<T> hit)
         {
             return rules.GetFilename(hit);
         }
@@ -113,20 +113,20 @@ namespace WANIRPartners.Utils
         }
     }
 
-    class PartnersExcelExporter
+    class ExcelExporter<T>
     {
         protected StreamWriter writer;
         protected String Path;
 
-        public PartnersExcelExporter(String path)
+        public ExcelExporter(String path)
         {
             Path = System.IO.Path.ChangeExtension(path, "xls");
             writer = new StreamWriter(Path, false, Encoding.GetEncoding("utf-8"));
         }
 
-        public void Export(List<Partner> toExport, Project project, string schema_name)
+        public void Export(List<T> toExport, Project project, string schema_name)
         {
-            CSVSchema schema = LoadSchema(schema_name);
+            CSVSchema<T> schema = LoadSchema(schema_name);
             String SheetName = System.IO.Path.GetFileNameWithoutExtension(System.IO.Path.GetFileName(Path));
 
             try
@@ -147,13 +147,13 @@ namespace WANIRPartners.Utils
                     WriteHeader(writer, schema);
 
                     int index = 0;
-                    foreach (Partner partner in toExport)
+                    foreach (T partner in toExport)
                     {
                         index++;
                         writer.WriteStartElement("Row");
                         foreach (String name in schema.GetHeaders())
                         {
-                            var value = schema.GetValue(name, new SchemaProvider(partner, project), index);
+                            var value = schema.GetValue(name, new SchemaProvider<T>(partner, project), index);
                             WriteCell(writer, value, schema.GetType(name), schema.GetFormat(name), schema.GetAutoFilter());
                         }
                         writer.WriteEndElement();
@@ -174,7 +174,7 @@ namespace WANIRPartners.Utils
             }
         }
 
-        private void WriteColumnProperties(XmlWriter writer, CSVSchema schema)
+        private void WriteColumnProperties(XmlWriter writer, CSVSchema<T> schema)
         {
             foreach (String name in schema.GetHeaders())
             {
@@ -227,7 +227,7 @@ namespace WANIRPartners.Utils
             writer.WriteEndElement();
         }
 
-        private void WriteHeader(XmlWriter writer, CSVSchema schema)
+        private void WriteHeader(XmlWriter writer, CSVSchema<T> schema)
         {
             writer.WriteStartElement("Row");
             foreach (String name in schema.GetHeaders())
@@ -240,9 +240,9 @@ namespace WANIRPartners.Utils
             writer.WriteEndElement();
         }
 
-        private void WriteTitle(XmlWriter writer, Project project, CSVSchema schema, List<Partner> toExport)
+        private void WriteTitle(XmlWriter writer, Project project, CSVSchema<T> schema, List<T> toExport)
         {
-            String title = schema.GetTitle(new SchemaProvider(toExport.First(), project));
+            String title = schema.GetTitle(new SchemaProvider<T>(toExport.First(), project));
             if (String.IsNullOrEmpty(title))
                 return;
 
@@ -251,9 +251,9 @@ namespace WANIRPartners.Utils
             writer.WriteEndElement();
         }
 
-        private void WriteFooter(XmlWriter writer, Project project, CSVSchema schema, List<Partner> toExport)
+        private void WriteFooter(XmlWriter writer, Project project, CSVSchema<T> schema, List<T> toExport)
         {
-            String footer = schema.GetFooter(new SchemaProvider(toExport.First(), project));
+            String footer = schema.GetFooter(new SchemaProvider<T>(toExport.First(), project));
             if (String.IsNullOrEmpty(footer))
                 return;
 
@@ -262,7 +262,7 @@ namespace WANIRPartners.Utils
             writer.WriteEndElement();
         }
 
-        private void WriteDocumentStyles(XmlWriter writer, CSVSchema schema)
+        private void WriteDocumentStyles(XmlWriter writer, CSVSchema<T> schema)
         {
             writer.WriteStartElement("Styles");
 
@@ -317,10 +317,10 @@ namespace WANIRPartners.Utils
             writer.WriteAttributeString("xmlns", "html", null, "http://www.w3.org/TR/REC-html40");
         }
 
-        private CSVSchema LoadSchema(String name)
+        private CSVSchema<T> LoadSchema(String name)
         {
             String path = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "schemas");
-            return new CSVSchema(System.IO.Path.Combine(path, System.IO.Path.ChangeExtension(name, "schema")));
+            return new CSVSchema<T>(System.IO.Path.Combine(path, System.IO.Path.ChangeExtension(name, "schema")));
         }
     }
 }

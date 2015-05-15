@@ -2,17 +2,17 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using MvvmFoundation.Wpf;
-
-using NHibernate.Linq;
-
-using WANIRPartners.Models;
-using WANIRPartners.Utils;
-
+using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.TextFormatting;
 using Remotion.Linq.Clauses.ExpressionTreeVisitors;
+
+using MvvmFoundation.Wpf;
+using NHibernate.Linq;
+
+using WANIRPartners.Models;
+using WANIRPartners.Utils;
 using WANIRPartners.Utils.Doc;
 
 namespace WANIRPartners.ViewModels
@@ -76,6 +76,9 @@ namespace WANIRPartners.ViewModels
                         new RelayCommand(
                             PrintCallInfo, 
                             () => CurrentItem != null && CurrentItem.CallInfo != null))
+,
+                   new NamedCommand(Const.EXPORT_CAPTION, 
+                        new RelayCommand(ExportProjectCommand))
                 };
             }
         }
@@ -96,6 +99,17 @@ namespace WANIRPartners.ViewModels
         private void PrintCallInfo()
         {
             DocumentPrinter.Print(Settings.CallReportPrintTemplatePath, CurrentCallInfo);
+        }
+
+        private void ExportProjectCommand()
+        {
+            var dialog = new SaveFileDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                new ExcelExporter<PartnerInfoCall>(dialog.FileName).Export(
+                    PartnersWithCallInfo.ToList<PartnerInfoCall>(), null, Const.PROJECTS_SCHEMA
+                );
+            }
         }
     }
 }

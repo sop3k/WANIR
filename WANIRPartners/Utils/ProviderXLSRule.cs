@@ -16,7 +16,7 @@ namespace WANIRPartners.Utils
         XLS
     }
 
-    class ProviderXLSRules
+    class ProviderXLSRules<T>
     {
         private FileFormat fileFormat = FileFormat.XLS;
         private bool autoFilter = false;
@@ -25,7 +25,7 @@ namespace WANIRPartners.Utils
         private List<String> Ordered = new List<String>();
         private Dictionary<String, String> formats = new Dictionary<string, string>();
         private Dictionary<String, String> types = new Dictionary<string, string>();
-        private Dictionary<String, Func<SchemaProvider, int, String>> Definitions = new Dictionary<String, Func<SchemaProvider, int, String>>();
+        private Dictionary<String, Func<SchemaProvider<T>, int, String>> Definitions = new Dictionary<String, Func<SchemaProvider<T>, int, String>>();
 
         public ProviderXLSRules(String file)
         {
@@ -74,7 +74,7 @@ namespace WANIRPartners.Utils
                             Munger[] ObjectArguments = Array.ConvertAll(StringArguments.Slice(1, -1),
                                                                        (String arg) => { return new Munger(arg); });
 
-                            Func<SchemaProvider, int, String> Func = (SchemaProvider hit, int index) =>
+                            Func<SchemaProvider<T>, int, String> Func = (SchemaProvider<T> hit, int index) =>
                             {
                                 Object[] Arguments = new Object[] { index };
                                 var m = Array.ConvertAll(ObjectArguments,
@@ -92,7 +92,7 @@ namespace WANIRPartners.Utils
                         }
                         else if (Code.StartsWith("Empty"))
                         {
-                            Func<SchemaProvider, int, String> Func = (SchemaProvider hit, int index) =>
+                            Func<SchemaProvider<T>, int, String> Func = (SchemaProvider<T> hit, int index) =>
                             {
                                 return String.Empty;
                             };
@@ -124,7 +124,7 @@ namespace WANIRPartners.Utils
                         else
                         {
                             Munger munger = new Munger(Code);
-                            Func<SchemaProvider, int, String> Func = (SchemaProvider hit, int index) =>
+                            Func<SchemaProvider<T>, int, String> Func = (SchemaProvider<T> hit, int index) =>
                             {
                                 Object value = munger.GetValue(hit);
                                 //if (value != null)
@@ -148,7 +148,7 @@ namespace WANIRPartners.Utils
             }
         }
 
-        private void AddToColumns(String Name, Func<SchemaProvider, int, String> Func)
+        private void AddToColumns(String Name, Func<SchemaProvider<T>, int, String> Func)
         {
             if (!Definitions.ContainsKey(Name))
                 Definitions.Add(Name, Func);
@@ -157,9 +157,9 @@ namespace WANIRPartners.Utils
                 Ordered.Add(Name);
         }
 
-        public String GetValue(String Name, SchemaProvider hit, int Index)
+        public String GetValue(String Name, SchemaProvider<T> hit, int Index)
         {
-            Func<SchemaProvider, int, String> func = null;
+            Func<SchemaProvider<T>, int, String> func = null;
             Definitions.TryGetValue(Name, out func);
             if (func != null)
                 return func.Invoke(hit, Index);
@@ -198,17 +198,17 @@ namespace WANIRPartners.Utils
             return String.Format("s_{0}", StyleRanomizer.Next(10000));
         }
 
-        public String GetTitle(SchemaProvider hit)
+        public String GetTitle(SchemaProvider<T> hit)
         {
             return GetValue("Title", hit, 0);
         }
 
-        public String GetFooter(SchemaProvider hit)
+        public String GetFooter(SchemaProvider<T> hit)
         {
             return GetValue("Footer", hit, 0);
         }
 
-        public String GetFilename(SchemaProvider hit)
+        public String GetFilename(SchemaProvider<T> hit)
         {
             return PathValidation.CleanFileName(GetValue("Filename", hit, 0));
         }
@@ -234,7 +234,7 @@ namespace WANIRPartners.Utils
         }
     }
 
-    class SchemaProvider
+    class SchemaProvider<T>
     {
         Dictionary<String, Object> attributes = new Dictionary<string, object>();
 
@@ -243,12 +243,13 @@ namespace WANIRPartners.Utils
             attributes = attr;
         }
 
-        public SchemaProvider(Partner partner, Project project)
+        public SchemaProvider(T obj, Project project)
             : this(new Dictionary<String, Object>{ 
                     { "Now", DateTime.Now },
                     { "Project", project },
-                    { "Partner", partner }}
-            )
+                    { "Data", obj },
+                    { "Partner", obj }
+            })
         { }
 
         public Object this[String index]

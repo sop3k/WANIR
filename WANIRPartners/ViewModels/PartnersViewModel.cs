@@ -96,7 +96,8 @@ namespace WANIRPartners.ViewModels
             var dialog = new SaveFileDialog();
             if(dialog.ShowDialog() == true)
             {
-                new PartnersExcelExporter(dialog.FileName).Export(Partners.ToList<Partner>(), null, Const.PARTNERS_SCHEMA);
+                new ExcelExporter<Partner>(dialog.FileName).Export(
+                    Partners.ToList<Partner>(), null, Const.PARTNERS_SCHEMA);
             }
         }
 

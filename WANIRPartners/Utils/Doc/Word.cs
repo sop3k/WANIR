@@ -33,6 +33,7 @@ namespace WANIRPartners.Utils.Doc
         {
             MSWord.Documents docs = WordApp.Documents;
             MSWord.Document doc;
+            bool opened = false;
 
             try
             {
@@ -43,12 +44,15 @@ namespace WANIRPartners.Utils.Doc
                                 ref Common.Missing, ref Common.Missing, ref Common.Missing, ref Common.Missing, ref Common.Missing, ref Common.Missing,
                                 ref Common.Missing, ref Common.Missing, ref Common.Missing, ref Common.Missing);
 
+                opened = true;
+
                 Documents.Add( new WordDoc( doc, path ) );
                 return Documents.Last();
             }
             catch ( Exception )
             {
-                docs.Close(ref Common.Missing, ref Common.Missing, ref Common.Missing);
+                if(opened)
+                    docs.Close(ref Common.Missing, ref Common.Missing, ref Common.Missing);
                 throw;
             }
         }
