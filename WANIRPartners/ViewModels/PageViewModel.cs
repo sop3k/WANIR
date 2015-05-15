@@ -46,11 +46,19 @@ namespace WANIRPartners.ViewModels
         #endregion 
 
         #region Methods
+        
         public void ShowView(PageViewModel view)
         {
             ICommand  changeCommand = ViewController.ChangePageCommand;
             changeCommand.Execute(view);
         }
+
+        public void ShowView()
+        {
+            ICommand changeCommand = ViewController.ChangePageCommand;
+            changeCommand.Execute(null);
+        }
+
         public virtual void Dispose()
 		{
 			if(session!=null)

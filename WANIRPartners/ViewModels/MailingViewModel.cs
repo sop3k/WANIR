@@ -69,8 +69,8 @@ namespace WANIRPartners.ViewModels
         public void ShowDeleteProjectView()
         {
             var view = new DeleteProjectViewModel(this, CurrentProjectView.CurrentProject);
+            CurrentProjectView = null;
             ShowView(view);
-            CurrentProjectView = ProjectsViews.FirstOrDefault();
         }
 
         public ICommand ChangeProjectViewCommand

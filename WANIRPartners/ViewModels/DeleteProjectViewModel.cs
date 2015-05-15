@@ -13,10 +13,12 @@ namespace WANIRPartners.ViewModels
         {
             Project = project;
         }
+
         override public String ViewName
         {
             get { return Const.REMOVE_PROJECT; }
         }
+
         override public ObservableCollection<NamedCommand> Commands
         {
             get
@@ -28,7 +30,9 @@ namespace WANIRPartners.ViewModels
                 };
             }
         }
+
         public Project Project { get; set; }
+
         private void Delete()
         {
             using (var tx = Session.BeginTransaction())
