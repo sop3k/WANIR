@@ -14,6 +14,9 @@ namespace WANIRPartners.Utils
         public static string IMPORT_CAPTION = "Importuj";
         public const string YES_CAPTION = "Tak";
         public const string NO_CAPTION = "Nie";
+
+        public const string ADD_PROJECT_CAPTION = "Dodaj projekt";
+        public const string DELETE_PROJECT_CAPTION = "Usuń projekt";
         
         public const string REMOVE_PROJECT = "Usuwanie projektu";
         public const string SAVE_CAPTION = "Zapisz";

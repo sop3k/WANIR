@@ -30,9 +30,9 @@ namespace WANIRPartners.ViewModels
             get
             {
                 List<NamedCommand> cmds = new List<NamedCommand>{
-                    new NamedCommand(Const.ADD_CAPTION, new RelayCommand(
+                    new NamedCommand(Const.ADD_PROJECT_CAPTION, new RelayCommand(
                         () => ShowView(new CreateProjectViewModel(this, false)))),
-                    new NamedCommand(Const.DELETE_CAPTION, new RelayCommand(
+                    new NamedCommand(Const.DELETE_PROJECT_CAPTION, new RelayCommand(
                         ShowDeleteProjectView,
                         () => CurrentProjectView != null && ProjectsViews.Count != 0))
                 };
