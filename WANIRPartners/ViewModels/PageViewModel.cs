@@ -111,6 +111,16 @@ namespace WANIRPartners.ViewModels
             }
         }
 
+        public string FullText
+        {
+            get { return _fulltext; }
+            set
+            {
+                _fulltext = value;
+                RaisePropertyChanged("FullText");
+            }
+        }
+
         public IEnumerable<string> Districts
         {
             get
@@ -140,6 +150,7 @@ namespace WANIRPartners.ViewModels
         private string _district;
         private string _type;
         private string _name;
+        private string _fulltext;
     }
 
     public abstract class ChildPageViewModel : PageViewModel

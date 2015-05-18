@@ -17,6 +17,9 @@ namespace WANIRPartners.Models
         public virtual string District { get; set; }
         public virtual bool Mailing { get; set; }
         public virtual string Type { get; set; }
+
+        public virtual IList<CallInfo> Calls { get; set; }
+        public virtual IList<MailInfo> Mails { get; set; }
     }
 
     class ProjectGenerator

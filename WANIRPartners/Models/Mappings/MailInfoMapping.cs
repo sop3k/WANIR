@@ -14,7 +14,7 @@ namespace WANIRPartners.Models.Mappings
             Map(x => x.Subject);
 
             References(x => x.Partner);
-            References(x => x.Project);          
+            References(x => x.Project);
         }
     }
 }

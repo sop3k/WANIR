@@ -5,8 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
+using System.Collections.Generic;
+using System.Windows.Input;
+
 using MvvmFoundation.Wpf;
+
 using NHibernate.Criterion;
 using NHibernate.Linq;
 
@@ -21,13 +24,6 @@ namespace WANIRPartners.ViewModels
         public PartnersViewModel(IViewController controller)
             : base(controller)
         {
-            PropertyChanged += OnPropertyChanged;
-        }
-
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-        {
-            if(propertyChangedEventArgs.PropertyName != "Partners")
-                RaisePropertyChanged("Partners");
         }
 
         override public string ViewName
@@ -35,6 +31,16 @@ namespace WANIRPartners.ViewModels
             get { return Const.PARTNERS_CAPTION; }
         }
         
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => RaisePropertyChanged("Partners")
+                );
+            }
+        }
+
         override public ObservableCollection<NamedCommand> Commands
         {
             get
@@ -46,7 +52,11 @@ namespace WANIRPartners.ViewModels
                     new NamedCommand(Const.DELETE_CAPTION, 
                         new RelayCommand(DeletePartnerCommand,
                         () => SelectedPartner != null)),
-                    
+ 
+                    new NamedCommand(Const.EDIT_CAPTION, 
+                        new RelayCommand(EditPartnerCommand,
+                        () => SelectedPartner != null)),
+
                     new NamedCommand(Const.IMPORT_CAPTION, new RelayCommand(ImportPartnersCommand)), 
                     new NamedCommand(Const.EXPORT_CAPTION, new RelayCommand(ExportPartnersCommand)), 
                     
@@ -63,24 +73,60 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
+                List<SimpleExpression> criteria = new List<SimpleExpression>();
+
                 var query = Session.CreateCriteria<Partner>();
 
                 if (!String.IsNullOrEmpty(Name))
-                    query.Add(Restrictions.Like("Name", String.Format("%{0}%", Name)));
-                if (!String.IsNullOrEmpty(Province))
-                    query.Add(Restrictions.Eq("Province", Province));
-                if (!String.IsNullOrEmpty(District))
-                    query.Add(Restrictions.Eq("District", District));
-                if (!String.IsNullOrEmpty(Type))
-                    query.Add(Restrictions.Eq("Type", Type));
+                    criteria.Add(Restrictions.Like("Name", String.Format("%{0}%", Name)));
                 
+                if (!String.IsNullOrEmpty(Province))
+                    criteria.Add(Restrictions.Eq("Province", Province));
+                
+                if (!String.IsNullOrEmpty(District))
+                    criteria.Add(Restrictions.Eq("District", District));
+                
+                if (!String.IsNullOrEmpty(Type))
+                    criteria.Add(Restrictions.Eq("Type", Type));
+
+                if (!String.IsNullOrEmpty(FullText))
+                {
+                    foreach (var col in new string[] { 
+                        "Name", "Province", "District", "Email", "Other", 
+                        "Address", "Position", "Department", "ContactAddress",
+                        "ContactPhone", "Phone", "ContactEmail", "Region", 
+                        "AcquiredBy", "ServicedBy", "Comment" })
+                    {
+                        criteria.Add(Restrictions.Like("Name", String.Format("%{0}%", FullText)));
+                    }
+                }
+
+                if(criteria.Count() > 1)
+                {
+                    var or = Restrictions.Disjunction();
+                    foreach(SimpleExpression exp in criteria)
+                    {
+                        or.Add(exp);
+                    }
+                    query.Add(or);
+                }
+                else if(criteria.Count() == 1)
+                {
+                    query.Add(criteria.First());
+                }
+
                 return new ObservableCollection<Partner>(query.List<Partner>().ToList());
             }
         }
 
         private void AddPartnerCommand()
         {
-            ShowView(new CreatePartnerViewModel(this));
+            ShowView(new CreateEditPartnerViewModel(this, null));
+        }
+
+        private void EditPartnerCommand()
+        {
+            ShowView(new CreateEditPartnerViewModel(this, SelectedPartner));
         }
 
         private void DeletePartnerCommand()

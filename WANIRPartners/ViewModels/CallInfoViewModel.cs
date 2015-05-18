@@ -27,7 +27,6 @@ namespace WANIRPartners.ViewModels
             _next = _singleProjectView.PartnersWithCallInfo
                 .SkipWhile(x => x.CallInfo != null)
                 .FirstOrDefault();
-
         }
 
         #region View

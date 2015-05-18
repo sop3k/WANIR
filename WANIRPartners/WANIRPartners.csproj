@@ -151,6 +151,7 @@
     <Compile Include="Utils\Doc\DocumentPrinter.cs" />
     <Compile Include="Utils\Munger.cs" />
     <Compile Include="Utils\Doc\Word.cs" />
+    <Compile Include="Utils\NHUtils.cs" />
     <Compile Include="Utils\PartnersExcelExporter.cs" />
     <Compile Include="Utils\PathValidation.cs" />
     <Compile Include="Utils\ProviderXLSRule.cs" />
@@ -159,7 +160,7 @@
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="Utils\NamedCommand.cs" />
     <Compile Include="ViewModels\CallInfoViewModel.cs" />
-    <Compile Include="ViewModels\CreatePartnerViewModel.cs" />
+    <Compile Include="ViewModels\CreateEditPartnerViewModel.cs" />
     <Compile Include="ViewModels\CreateProjectViewModel.cs" />
     <Compile Include="ViewModels\DeletePartnerViewModel.cs" />
     <Compile Include="ViewModels\DeleteProjectViewModel.cs" />

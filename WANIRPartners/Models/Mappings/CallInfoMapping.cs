@@ -26,7 +26,7 @@ namespace WANIRPartners.DB.Mappings
             Map(x => x.MeetingInfo);
 
             References(x => x.Partner);
-            References(x => x.Project);           
+            References(x => x.Project);         
         }
     }
 }

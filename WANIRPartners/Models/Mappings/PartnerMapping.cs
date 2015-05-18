@@ -35,8 +35,8 @@ namespace WANIRPartners.Mappings
             Map(x => x.ServicedBy);
             Map(x => x.Other);
 
-            HasMany(x => x.Calls).Inverse().Cascade.All();
-            HasMany(x => x.Mails).Inverse().Cascade.All();
+            HasMany(x => x.Calls).Inverse().Cascade.AllDeleteOrphan();
+            HasMany(x => x.Mails).Inverse().Cascade.AllDeleteOrphan();
         }
     }
 }

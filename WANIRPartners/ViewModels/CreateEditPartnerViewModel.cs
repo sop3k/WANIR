@@ -7,11 +7,15 @@ using WANIRPartners.Utils;
 
 namespace WANIRPartners.ViewModels
 {
-    class CreatePartnerViewModel : CommonChildPageViewModel<Partner>
+    class CreateEditPartnerViewModel : CommonChildPageViewModel<Partner>
     {
-        public CreatePartnerViewModel(PageViewModel parent)
+        public CreateEditPartnerViewModel(PageViewModel parent, Partner partner)
             : base(parent)
-        {}
+        {
+            editedPartner = partner;
+            if (editedPartner != null)
+                Fill(editedPartner);
+        }
 
         override public String ViewName
         {
@@ -28,6 +32,25 @@ namespace WANIRPartners.ViewModels
                     new NamedCommand(Const.CANCEL_CAPTION, new RelayCommand(Cancel))
                 };
             }
+        }
+
+        private void Fill(Partner partner)
+        {
+            var populator = new ObjectPopulator<CreateEditPartnerViewModel>(this);
+            populator.Populate(partner);
+        }
+
+        public virtual void Save()
+        {
+            using (var tx = Session.BeginTransaction())
+            {
+                Partner obj = editedPartner ?? new Partner();
+                obj.Populate(this);
+                Session.SaveOrUpdate(obj);
+                tx.Commit();
+            }
+
+            Close();
         }
 
         public   int Id { get; protected set; }
@@ -51,5 +74,7 @@ namespace WANIRPartners.ViewModels
         public   string AcquiredBy { get; set; }
         public   string ServicedBy { get; set; }
         public   string Other { get; set; }
+
+        private Partner editedPartner;
     }
 }

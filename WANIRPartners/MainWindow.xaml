@@ -37,7 +37,7 @@
         <DataTemplate DataType="{x:Type viewModels:CreateProjectViewModel}">
             <views:CreateProjectView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:CreatePartnerViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:CreateEditPartnerViewModel}">
             <views:CreatePartnerView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:MailInfoViewModel}">

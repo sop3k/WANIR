@@ -7,7 +7,7 @@
              xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid"
              xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="1000">
     <Grid Margin="20,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -23,12 +23,13 @@
                 <ComboBox SelectedItem="{Binding District}" ItemsSource="{Binding Districts}" MinWidth="150" Height="28" Margin="5"/>
                 <Label VerticalAlignment="Center" Margin="5">Typ:</Label>
                 <ComboBox SelectedItem="{Binding Type}" ItemsSource="{Binding Types}" MinWidth="150" Height="28" Margin="5"/>
+                <Label VerticalAlignment="Center" Margin="5">Tekst:</Label>
+                <TextBox Text="{Binding FullText, UpdateSourceTrigger=PropertyChanged}" MinWidth="250" Height="28" Margin="5" />
+                <Button Content="Szukaj..." Command="{Binding SearchCommand}" Height="28" HorizontalAlignment="Right"/>
             </StackPanel>
         </GroupBox>
         <ExtendedGridControl:ExtendedDataGrid ItemsSource="{Binding Partners}" 
-                                              SelectedItem="{Binding SelectedPartner}" 
-                                              VerticalAlignment="Stretch" 
-                                              HorizontalAlignment="Stretch" 
+                                              SelectedItem="{Binding SelectedPartner}"  
                                               Grid.Row="1" 
                                               GroupByHeaderText="Przeciągnij kolumnę aby pogrupować"
                                               FontSize="14"
@@ -36,37 +37,36 @@
                                               Margin="5"
                                               AutoGenerateColumns="False"
                                               IsReadOnly="True"
-                                              ColumnWidth="Auto"
-                                              VerticalScrollBarVisibility="Auto"
-                                              HorizontalScrollBarVisibility="Auto"
                                               RowHeight="25"
                                               Name="PartnersDataGrid"
+                                              MinColumnWidth="80"
+                                              ScrollViewer.CanContentScroll="False"
                                               >
-            <ExtendedGridControl:ExtendedDataGrid.Columns>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Nazwa partnera" AllowAutoFilter="False" Binding="{Binding Name}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Województwo" AllowAutoFilter="False" Binding="{Binding Province}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Powiat" AllowAutoFilter="False" Binding="{Binding District}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Gmina}" Width="auto" />
+            <ExtendedGridControl:ExtendedDataGrid.Columns >
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Nazwa partnera" AllowAutoFilter="False" Binding="{Binding Name}" MinWidth="110" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Województwo" AllowAutoFilter="False" Binding="{Binding Province}"  MinWidth="100" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Powiat" AllowAutoFilter="False" Binding="{Binding District}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Gmina}" />
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Telefon" AllowAutoFilter="False" Binding="{Binding Phone}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba kontaktowa" AllowAutoFilter="False" Binding="{Binding ContactPerson}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Email" AllowAutoFilter="False" Binding="{Binding Email}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Email bezporśredni" AllowAutoFilter="False" Binding="{Binding ContactEmail}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Stanowisko" AllowAutoFilter="False" Binding="{Binding Position}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Wydział" AllowAutoFilter="False" Binding="{Binding Department}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Obszar" AllowAutoFilter="False" Binding="{Binding Region}" Width="auto" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Telefon" AllowAutoFilter="False" Binding="{Binding Phone}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba kontaktowa" AllowAutoFilter="False" Binding="{Binding ContactPerson}" MinWidth="130"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Email" AllowAutoFilter="False" Binding="{Binding Email}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Email bezporśredni" AllowAutoFilter="False" Binding="{Binding ContactEmail}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Stanowisko" AllowAutoFilter="False" Binding="{Binding Position}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Wydział" AllowAutoFilter="False" Binding="{Binding Department}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Obszar" AllowAutoFilter="False" Binding="{Binding Region}" />
 
-                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Pisanie projektu" AllowAutoFilter="False" Binding="{Binding ProjectWriting}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Spotkanie ws. projektu" AllowAutoFilter="False" Binding="{Binding ProjectMeeting}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Realizacja projektu" AllowAutoFilter="False" Binding="{Binding ProjectRealization}" Width="auto" />
+                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Pisanie projektu" AllowAutoFilter="False" Binding="{Binding ProjectWriting}" />
+                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Spotkanie ws. projektu" AllowAutoFilter="False" Binding="{Binding ProjectMeeting}" />
+                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Realizacja projektu" AllowAutoFilter="False" Binding="{Binding ProjectRealization}" />
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Obsługiwany przez" AllowAutoFilter="False" Binding="{Binding ServicedBy}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Pozyskany przez" AllowAutoFilter="False" Binding="{Binding AcquiredBy}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Inne" AllowAutoFilter="False" Binding="{Binding Comment}" Width="auto" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Obsługiwany przez" AllowAutoFilter="False" Binding="{Binding ServicedBy}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Pozyskany przez" AllowAutoFilter="False" Binding="{Binding AcquiredBy}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Inne" AllowAutoFilter="False" Binding="{Binding Comment}" />
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.Calle}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.Date}" Width="auto" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.Info}" Width="*" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.Calle}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.Date}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.Info}" />
 
             </ExtendedGridControl:ExtendedDataGrid.Columns>
         </ExtendedGridControl:ExtendedDataGrid>
