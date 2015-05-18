@@ -134,7 +134,7 @@ namespace WANIRPartners.ViewModels
             Close();
         }
 
-        public bool FirstCallEnable { get { return String.IsNullOrEmpty(CallInfo.FirstCallee) == true; } }
+        public bool FirstCallEnable { get { return true; } }
         public bool SecondCallEnable { get { return String.IsNullOrEmpty(CallInfo.FirstCallee) == false; } }
 
         private readonly SingleProjectViewModel _singleProjectView;
