@@ -26,10 +26,11 @@ namespace WANIRPartners.Utils
                 else if(line.Trim().Length > 0)
                 {
                     province = line;
-                    provinces.Add(province, new List<string>());
+                    provinces.Add(province, new List<string> { Const.NOT_SET });
                 }
             }
 
+            provinces.Add(Const.NOT_SET, new List<string> { Const.NOT_SET });
             return provinces;
         }
     }

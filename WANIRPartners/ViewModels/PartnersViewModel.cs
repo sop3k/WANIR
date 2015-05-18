@@ -80,10 +80,10 @@ namespace WANIRPartners.ViewModels
                 if (!String.IsNullOrEmpty(Name))
                     criteria.Add(Restrictions.Like("Name", String.Format("%{0}%", Name)));
                 
-                if (!String.IsNullOrEmpty(Province))
+                if (!String.IsNullOrEmpty(Province) && Province != Const.NOT_SET)
                     criteria.Add(Restrictions.Eq("Province", Province));
-                
-                if (!String.IsNullOrEmpty(District))
+
+                if (!String.IsNullOrEmpty(District) && District != Const.NOT_SET)
                     criteria.Add(Restrictions.Eq("District", District));
                 
                 if (!String.IsNullOrEmpty(Type))

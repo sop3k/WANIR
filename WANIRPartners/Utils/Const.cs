@@ -35,6 +35,8 @@ namespace WANIRPartners.Utils
         public const string PARTNERS_SCHEMA = "Partners.schema";
         public const string PROJECTS_SCHEMA = "Projects.schema";
 
+        public const string NOT_SET = "Brak";
+
         public static Dictionary<String, List<String>> Provinces
         {
             get { return Boostrapper.Provinces; }

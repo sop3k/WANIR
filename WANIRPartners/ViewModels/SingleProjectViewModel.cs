@@ -88,9 +88,11 @@ namespace WANIRPartners.ViewModels
             get
             {
                 return from partner in Session.Query<Partner>()
-                    where partner.Province == CurrentProject.Province
-                          && partner.District == CurrentProject.District
-                          && partner.Type == CurrentProject.Type
+
+                       where (partner.Province == CurrentProject.Province || CurrentProject.Province == Const.NOT_SET || CurrentProject.Province == string.Empty)
+                          && (partner.District == CurrentProject.District || CurrentProject.District == Const.NOT_SET || CurrentProject.District == string.Empty)
+                          && (partner.Type == CurrentProject.Type || partner.Province == string.Empty )
+
                     from call in partner.Calls.DefaultIfEmpty()
                     select new PartnerInfoCall(partner, call);
             }
