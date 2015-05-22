@@ -34,6 +34,11 @@ namespace WANIRPartners.Mappings
             Map(x => x.AcquiredBy);
             Map(x => x.ServicedBy);
             Map(x => x.Other);
+            Map(x => x.SP);
+            Map(x => x.G);
+            Map(x => x.LO);
+            Map(x => x.ZSZTECH);
+            Map(x => x.P);
 
             HasMany(x => x.Calls).Inverse().Cascade.AllDeleteOrphan();
             HasMany(x => x.Mails).Inverse().Cascade.AllDeleteOrphan();

@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.TextFormatting;
 using Remotion.Linq.Clauses.ExpressionTreeVisitors;
 
+using LinqKit;
 using MvvmFoundation.Wpf;
 using NHibernate.Linq;
 
@@ -67,32 +70,66 @@ namespace WANIRPartners.ViewModels
             {
                 return new ObservableCollection<NamedCommand>
                 {
-                    new NamedCommand(Const.EDIT_CAPTION, 
-                        new RelayCommand( 
-                            () => ShowView(new CallInfoViewModel(this, CurrentProject, CurrentItem)),
-                            () => CurrentItem != null && !CurrentProject.Mailing)),
+                    new NamedCommand(Const.ADD_PARTNER_CAPTION, 
+                        new RelayCommand(AddPartner)),
 
                     new NamedCommand(Const.PRINT_CAPTION, 
                         new RelayCommand(
                             PrintCallInfo, 
-                            () => CurrentItem != null && CurrentItem.CallInfo != null))
-,
-                   new NamedCommand(Const.EXPORT_CAPTION, 
-                        new RelayCommand(ExportProjectCommand))
+                            () => CurrentItem != null && CurrentItem.CallInfo != null)),
+
+                   new NamedCommand(Const.EXPORT_PROJECT_CAPTION, 
+                        new RelayCommand(ExportProjectCommand)),
                 };
             }
         }
-        
+
+        override public ObservableCollection<NamedCommand> SpecificCommands
+        {
+            get
+            {
+                return new ObservableCollection<NamedCommand>
+                {
+                     new NamedCommand(Const.CALL_CAPTION, 
+                            new RelayCommand( 
+                                () => ShowView(new CallInfoViewModel(this, CurrentProject, CurrentItem)),
+                                () => CurrentItem != null && !CurrentProject.Mailing))
+                };
+            }
+        }
+
+        Expression<Func<Partner, bool>> PartnersWhereClause()
+        {
+            var predicate = PredicateBuilder.False<Partner>();
+
+            if (!string.IsNullOrEmpty(CurrentProject.Province) && CurrentProject.Province != Const.NOT_SET)
+            {
+                predicate = predicate.Or(p => p.Province == CurrentProject.Province);
+            }
+
+            if (!string.IsNullOrEmpty(CurrentProject.District) && CurrentProject.District != Const.NOT_SET)
+            {
+                predicate = predicate.Or(p => p.District == CurrentProject.District);
+            }
+
+            if (!string.IsNullOrEmpty(CurrentProject.Type) && CurrentProject.Type != Const.NOT_SET)
+            {
+                predicate = predicate.Or(p => p.Type == CurrentProject.Type);
+            }
+
+            if (!string.IsNullOrEmpty(CurrentProject.Region) && CurrentProject.Region != Const.NOT_SET)
+            {
+                predicate = predicate.Or(p => p.Region == CurrentProject.Region);
+            }
+
+            return predicate;
+        }
+
         public IEnumerable<PartnerInfoCall> PartnersWithCallInfo
         {
             get
             {
-                return from partner in Session.Query<Partner>()
-
-                       where (partner.Province == CurrentProject.Province || CurrentProject.Province == Const.NOT_SET || CurrentProject.Province == string.Empty)
-                          && (partner.District == CurrentProject.District || CurrentProject.District == Const.NOT_SET || CurrentProject.District == string.Empty)
-                          && (partner.Type == CurrentProject.Type || partner.Province == string.Empty )
-
+                return from partner in Session.Query<Partner>().Where(PartnersWhereClause())
                     from call in partner.Calls.DefaultIfEmpty()
                     select new PartnerInfoCall(partner, call);
             }
@@ -112,6 +149,11 @@ namespace WANIRPartners.ViewModels
                     PartnersWithCallInfo.ToList<PartnerInfoCall>(), null, Const.PROJECTS_SCHEMA
                 );
             }
+        }
+
+        private void AddPartner()
+        {
+            ShowView(new CreateEditPartnerViewModel(this.Parent, null));
         }
     }
 }

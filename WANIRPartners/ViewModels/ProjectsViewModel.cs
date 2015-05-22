@@ -25,6 +25,7 @@ namespace WANIRPartners.ViewModels
         {
             get { return Const.PROJECTS_CAPTION; }
         }
+
         override public ObservableCollection<NamedCommand> Commands
         {
             get
@@ -41,6 +42,14 @@ namespace WANIRPartners.ViewModels
                     cmds.AddRange(CurrentProjectView.Commands);
 
                 return new ObservableCollection<NamedCommand>(cmds);
+            }
+        }
+
+        override public ObservableCollection<NamedCommand> SpecificCommands
+        {
+            get
+            {
+                return CurrentProjectView.SpecificCommands;
             }
         }
 

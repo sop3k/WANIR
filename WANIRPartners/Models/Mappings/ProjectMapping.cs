@@ -18,6 +18,7 @@ namespace WANIRPartners.Mappings
 
             HasMany(x => x.Calls).Inverse().Cascade.AllDeleteOrphan();
             HasMany(x => x.Mails).Inverse().Cascade.AllDeleteOrphan();
+            HasMany(x => x.Partners);
         }
     }
 }

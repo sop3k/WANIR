@@ -9,6 +9,7 @@ namespace WANIRPartners.Models
             FirstDate = null;
             SecondDate = null;
             MeetingDate = null;
+            OfferDate = null;
         }
 
         virtual public int Id { get; set; }
@@ -17,6 +18,8 @@ namespace WANIRPartners.Models
         virtual public string FirstCallee { get; set; }
         virtual public string FirstInfo { get; set; }
         virtual public DateTime? FirstDate { get; set; }
+        virtual public bool Offer { get; set; }
+        virtual public DateTime? OfferDate { get; set; }
         #endregion
 
         #region SecondCall

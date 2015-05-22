@@ -36,6 +36,14 @@ namespace WANIRPartners.Models
         public virtual string AcquiredBy { get; set; }
         public virtual string ServicedBy { get; set; }
         public virtual string Other { get; set; }
+        public virtual int SP { get; set; }
+        public virtual int G { get; set; }
+        public virtual int LO { get; set; }
+        public virtual int ZSZTECH { get; set; }
+        public virtual int P { get; set; }
+
+        public virtual string Projects { get; set; }
+        public virtual string Aggrements { get; set; }
 
         public virtual IList<CallInfo> Calls{ get; set; }
         public virtual IList<MailInfo> Mails { get; set; }

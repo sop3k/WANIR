@@ -42,6 +42,12 @@ namespace WANIRPartners.ViewModels
 
         abstract public ObservableCollection<NamedCommand> Commands { get; }
 
+        virtual public ObservableCollection<NamedCommand> SpecificCommands
+        {
+            get;
+            private set;
+        }
+
         public IViewController ViewController { get; private set;}
         #endregion 
 
@@ -121,6 +127,16 @@ namespace WANIRPartners.ViewModels
             }
         }
 
+        public string Region
+        {
+            get { return _region; }
+            set
+            {
+                _region = value;
+                RaisePropertyChanged("Region");
+            }
+        }
+
         public IEnumerable<string> Districts
         {
             get
@@ -151,6 +167,7 @@ namespace WANIRPartners.ViewModels
         private string _type;
         private string _name;
         private string _fulltext;
+        private string _region;
     }
 
     public abstract class ChildPageViewModel : PageViewModel

@@ -9,17 +9,17 @@ namespace WANIRPartners.Models
     {
         public Project() { }
 
-        virtual public IEnumerable<Partner> Partners { get  { return new List<Partner>(); } }
-
         public virtual int Id { get; protected set; }
         public virtual string Name { get; set; }
         public virtual string Province { get; set; }
         public virtual string District { get; set; }
         public virtual bool Mailing { get; set; }
         public virtual string Type { get; set; }
+        public virtual string Region { get; set; }
 
         public virtual IList<CallInfo> Calls { get; set; }
         public virtual IList<MailInfo> Mails { get; set; }
+        public virtual IList<Partner> Partners { get; set;}
     }
 
     class ProjectGenerator

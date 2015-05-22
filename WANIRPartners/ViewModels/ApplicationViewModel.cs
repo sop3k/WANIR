@@ -66,6 +66,14 @@ namespace WANIRPartners.ViewModels
             }
         }
 
+        public ObservableCollection<NamedCommand> CurrentPageSpecificCommands
+        {
+            get
+            {
+                return CurrentPageViewModel.SpecificCommands;
+            }
+        }
+
         public PageViewModel CurrentPageViewModel
         {
             get
@@ -77,6 +85,7 @@ namespace WANIRPartners.ViewModels
                 _currentPageViewModel = value;
                 RaisePropertyChanged("CurrentPageViewModel");
                 RaisePropertyChanged("CurrentPageCommands");
+                RaisePropertyChanged("CurrentPageSpecificCommands");
             }
         }
 

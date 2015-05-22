@@ -15,21 +15,27 @@
                   SelectedItem="{Binding CurrentItem}"
                   FontSize="14"
                   IsReadOnly="True"
-                  BorderThickness="0" AutoGenerateColumns="False" GroupByControlVisibility="Collapsed" Margin="0,0,5,5">
+                  BorderThickness="0" 
+                  AutoGenerateColumns="False" 
+                  GroupByControlVisibility="Collapsed" 
+                  Margin="0,0,5,5" 
+                  MinColumnWidth="90"
+                  ColumnWidth="*">
             
             <ExtendedGridControl:ExtendedDataGrid.Columns>
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Nazwa partnera" AllowAutoFilter="False" Binding="{Binding Partner.Name}" />
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Województwo" AllowAutoFilter="False" Binding="{Binding Partner.Province}" />
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Powiat" AllowAutoFilter="False" Binding="{Binding Partner.District}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Partner.Gmina}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Partner.Gmina}"/>
                 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstDate}" Width="*"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstCallee}" Width="*"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstInfo}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data 1 rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstDate}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Oferta" AllowAutoFilter="False" Binding="{Binding OfferDate}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstInfo}" Width="*" />
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.SecondDate}" Width="*"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.SecondCallee}" Width="*"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.SecondInfo}" Width="*"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data 2 rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.SecondDate}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Spotkanie" AllowAutoFilter="False" Binding="{Binding CallInfo.Meeting}"/>
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Niezdecydowany" AllowAutoFilter="False" Binding="{Binding CallInfo.Undecided}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Odmowa(powód)" AllowAutoFilter="False" Binding="{Binding CallInfo.ResignationReason}" Width="*" />
             </ExtendedGridControl:ExtendedDataGrid.Columns>
             
         </ExtendedGridControl:ExtendedDataGrid>

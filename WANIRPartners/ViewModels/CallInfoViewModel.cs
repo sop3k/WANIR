@@ -4,7 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+
 using MvvmFoundation.Wpf;
+
+using WANIRPartners.Utils.Doc;
 using WANIRPartners.Utils;
 using WANIRPartners.Models;
 
@@ -89,6 +92,40 @@ namespace WANIRPartners.ViewModels
             }
         }
 
+        public string OfferDate
+        {
+            get
+            {
+                if (Offer)
+                    return CallInfo.OfferDate.ToString();
+                else
+                    return Const.NOT_SET;
+            }
+        }
+
+        public bool Offer
+        {
+            get { return CallInfo.Offer; }
+            set
+            {
+                CallInfo.Offer = value;
+                RaisePropertyChanged("Offer");
+            }
+        }
+
+        public bool PartnerEditable
+        {
+            get
+            {
+                return _partnerEditable;
+            }
+            set
+            {
+                _partnerEditable = value;
+                RaisePropertyChanged("PartnerEditable");
+            }
+        }
+
         public ICommand MoveToNextCommand {
             get 
             {
@@ -107,6 +144,33 @@ namespace WANIRPartners.ViewModels
                     SendMail, 
                     () => Partner.ContactEmail != null || Partner.Email != null);
             }
+        }
+
+        public ICommand MakePartnerEditableCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => TogglePartnerEditable()
+                );
+            }
+        }
+
+        public ICommand PrintCommand()
+        {
+            return new RelayCommand(
+                ()=>Print()
+            );
+        }
+
+        void Print()
+        {
+            DocumentPrinter.Print(Settings.CallReportPrintTemplatePath, CallInfo);
+        }
+
+        void TogglePartnerEditable()
+        {
+            PartnerEditable = !PartnerEditable;
         }
 
         void MoveToNextPartner()
@@ -137,6 +201,7 @@ namespace WANIRPartners.ViewModels
         public bool FirstCallEnable { get { return true; } }
         public bool SecondCallEnable { get { return String.IsNullOrEmpty(CallInfo.FirstCallee) == false; } }
 
+        private bool _partnerEditable;
         private readonly SingleProjectViewModel _singleProjectView;
         private PartnerInfoCall _next;
     }

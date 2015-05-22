@@ -14,10 +14,13 @@ namespace WANIRPartners.Utils
         public static string IMPORT_CAPTION = "Importuj";
         public const string YES_CAPTION = "Tak";
         public const string NO_CAPTION = "Nie";
+        public const string EXPORT_PROJECT_CAPTION = "Exportuj projekt";
+        public const string ADD_PARTNER_CAPTION = "Dodaj partnera";
 
         public const string ADD_PROJECT_CAPTION = "Dodaj projekt";
         public const string DELETE_PROJECT_CAPTION = "Usuń projekt";
-        
+
+        public const string CALL_CAPTION = "Zadzwoń";
         public const string REMOVE_PROJECT = "Usuwanie projektu";
         public const string SAVE_CAPTION = "Zapisz";
         public const string CANCEL_CAPTION = "Anuluj";
@@ -51,6 +54,7 @@ namespace WANIRPartners.Utils
             {
                 return new List<string>
                 {
+                    Const.NOT_SET,
                     "GMINA",
                     "POWIAT",
                     "OPS",
@@ -70,9 +74,10 @@ namespace WANIRPartners.Utils
             {
                 return new List<string>
                 {
-                    "WIEJSKI",
-                    "MIEJSKI",
-                    "WIEJSKO-MIEJSKI"
+                    Const.NOT_SET,
+                    "Wiejski",
+                    "Miejski",
+                    "Wiejsko-Miejski"
                 };
             }
         }
