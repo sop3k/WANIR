@@ -74,6 +74,7 @@
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        
         <ItemsControl Grid.Row="0" Grid.Column="0" ItemsSource="{Binding PageViewModels}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -82,16 +83,17 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding ViewName}" HorizontalAlignment="Right" 
+                    <Button Content="{Binding ViewName}" HorizontalAlignment="Right" IsEnabled="{Binding NotActive}"
                             Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
                             CommandParameter="{Binding }">
                         <Button.LayoutTransform>
                             <RotateTransform Angle="-90"/>
-                        </Button.LayoutTransform>
+                        </Button.LayoutTransform>  
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        
         <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CurrentPageCommands}" HorizontalAlignment="Left" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -104,6 +106,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        
         <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CurrentPageSpecificCommands}" HorizontalAlignment="Right" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -116,6 +119,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        
         <ContentControl Grid.Column="1" Grid.Row="0" Content="{Binding CurrentPageViewModel}"/>
     </Grid>
 

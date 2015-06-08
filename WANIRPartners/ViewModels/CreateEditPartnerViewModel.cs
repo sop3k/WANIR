@@ -65,11 +65,59 @@ namespace WANIRPartners.ViewModels
         public  string ContactPhone { get; set; }
         public  string ContactEmail { get; set; }
         public  string Comment { get; set; }
-        public  int CooperationYear { get; set; }
-        public  bool ProjectWritingAndRealization { get; set; }
-        public  bool ProjectWriting { get; set; }
-        public  bool ProjectMeeting { get; set; }
-        public  bool ProjectRealization { get; set; }
+        public  string ProjectWritingAndRealizationDetails { get; set; }
+        public  bool ProjectWritingAndRealization 
+        { 
+            get
+            {
+                return _projectWritingAndRealization;
+            }
+            set
+            {
+                _projectWritingAndRealization = value;
+                RaisePropertyChanged("ProjectWritingAndRealization");
+            }
+        }
+        public  string ProjectWritingDetails { get; set; }
+        public  bool ProjectWriting 
+        { 
+            get
+            {
+                return _projectWriting; 
+            }
+            set
+            {
+                _projectWriting = value;
+                RaisePropertyChanged("ProjectWriting");
+            }
+        }
+        public  string ProjectMeetingDetails { get; set; }
+        public  bool ProjectMeeting 
+        { 
+            get
+            {
+                return _projectMeeting;
+            }
+            set
+            {
+                _projectMeeting = value;
+                RaisePropertyChanged("ProjectMeeting");
+            }
+
+        }
+        public  string ProjectRealizationDetails { get; set; }
+        public  bool ProjectRealization 
+        {
+            get
+            {
+                return _projectRealization;
+            }
+            set
+            {
+                _projectRealization = value;
+                RaisePropertyChanged("ProjectRealization");
+            }
+        }
         public  string AcquiredBy { get; set; }
         public  string ServicedBy { get; set; }
         public  string Other { get; set; }
@@ -78,11 +126,23 @@ namespace WANIRPartners.ViewModels
         public  int LO { get; set; }
         public  int ZSZTECH { get; set; }
         public  int P { get; set; }
-
         public  string Projects { get; set; }
         public  string Aggrements { get; set; }
+        public  bool Cooperation 
+        { 
+            get{ return _cooperation; } 
+            set
+            {
+                _cooperation = value;
+                RaisePropertyChanged("Cooperation");
+            }
+        }
 
-
+        private bool _projectMeeting;
+        private bool _projectWriting;
+        private bool _projectWritingAndRealization;
+        private bool _cooperation;
+        private bool _projectRealization;
         private Partner editedPartner;
     }
 }

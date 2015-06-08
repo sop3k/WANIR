@@ -161,7 +161,7 @@
                         <Label Grid.Row="0" Grid.Column="4" Content="Oferta:" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <CheckBox Grid.Row="0" Grid.Column="4" IsChecked="{Binding Offer}" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="Brown" Margin="5"/>
 
-                        <DatePicker Grid.Row="0" Grid.Column="5" SelectedDate="{Binding OfferDate}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5" IsEnabled="{Binding Offer}"/>
+                        <DatePicker Grid.Row="0" Grid.Column="5" SelectedDate="{Binding OfferDate, Mode=OneWay}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5" IsEnabled="{Binding Offer}"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Uwagi:" FontSize="14" VerticalAlignment="Center"/>
                         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding CallInfo.FirstInfo}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>

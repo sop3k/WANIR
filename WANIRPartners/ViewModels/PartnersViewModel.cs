@@ -135,7 +135,14 @@ namespace WANIRPartners.ViewModels
         }
 
         private void ImportPartnersCommand()
-        { }
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "Excel Files (*.xls, *.xlsx)|*.xls;*.xlsx";
+            if (dialog.ShowDialog() == true)
+            {
+                PartnersExcelImporter.Import(dialog.FileName, Session, true);
+            }
+        }
 
         private void ExportPartnersCommand()
         {

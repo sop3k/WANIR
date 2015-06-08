@@ -14,7 +14,15 @@ namespace WANIRPartners.ViewModels
     public class MailInfoViewModel : CommonChildPageViewModel<MailInfo>
     {
         public MailInfoViewModel(ChildPageViewModel parent, Project project, IEnumerable<Partner> partners)
-            : base(parent.Parent)
+            : base(parent)
+        {
+            Project = project;
+            Partners = partners;
+            Date = DateTime.Now;
+        }
+
+        public MailInfoViewModel(PageViewModel parent, Project project, IEnumerable<Partner> partners)
+            : base(parent)
         {
             Project = project;
             Partners = partners;

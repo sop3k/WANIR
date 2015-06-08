@@ -100,26 +100,31 @@ namespace WANIRPartners.ViewModels
 
         Expression<Func<Partner, bool>> PartnersWhereClause()
         {
-            var predicate = PredicateBuilder.False<Partner>();
+            var predicate = PredicateBuilder.True<Partner>();
 
             if (!string.IsNullOrEmpty(CurrentProject.Province) && CurrentProject.Province != Const.NOT_SET)
             {
-                predicate = predicate.Or(p => p.Province == CurrentProject.Province);
+                predicate = predicate.And(p => p.Province == CurrentProject.Province);
             }
 
             if (!string.IsNullOrEmpty(CurrentProject.District) && CurrentProject.District != Const.NOT_SET)
             {
-                predicate = predicate.Or(p => p.District == CurrentProject.District);
+                predicate = predicate.And(p => p.District == CurrentProject.District);
             }
 
             if (!string.IsNullOrEmpty(CurrentProject.Type) && CurrentProject.Type != Const.NOT_SET)
             {
-                predicate = predicate.Or(p => p.Type == CurrentProject.Type);
+                predicate = predicate.And(p => p.Type == CurrentProject.Type);
             }
 
             if (!string.IsNullOrEmpty(CurrentProject.Region) && CurrentProject.Region != Const.NOT_SET)
             {
-                predicate = predicate.Or(p => p.Region == CurrentProject.Region);
+                predicate = predicate.And(p => p.Region == CurrentProject.Region);
+            }
+
+            if (CurrentProject.Cooperation.HasValue)
+            {
+                predicate = predicate.And(p => p.Cooperation == CurrentProject.Cooperation.Value);
             }
 
             return predicate;

@@ -87,8 +87,12 @@ namespace WANIRPartners.ViewModels
             {
                 return new RelayCommand<SingleProjectViewModel>(p =>
                 {
+                    CurrentProjectView.Deactivate();
+
                     CurrentProjectView = p;
                     ViewController.ChangePageCommand.Execute(this);
+
+                    CurrentProjectView.Activate();
                 });
             }
         }

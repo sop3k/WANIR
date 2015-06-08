@@ -8,7 +8,7 @@ namespace WANIRPartners.Utils
     class Const
     {
         public static string SEND_CAPTION = "Wyślij";
-        public static string SEND_ALL_CAPTION = "Wyślij do wszytskich";
+        public static string SEND_ALL_CAPTION = "Wyślij do wszystkich";
         public static string PRINT_CAPTION = "Drukuj";
         public static string EXPORT_CAPTION = "Exportuj";
         public static string IMPORT_CAPTION = "Importuj";
@@ -86,5 +86,33 @@ namespace WANIRPartners.Utils
         {
             get { return Enumerable.Range(2000, 20).ToList(); }
         }
+
+        public static List<bool> Cooperation
+        {
+            get { return new List<bool> { true, false }; }
+        }
+
+        public static string Convert(bool? x)
+        {
+            if (x.HasValue)
+                return x.Value ? YES_CAPTION : NO_CAPTION;
+            else
+                return NOT_SET;
+        }
+
+        public static bool? ConvertToBool(string x)
+        {
+            switch(x)
+            {
+                case Const.YES_CAPTION:
+                    return true;
+                case Const.NO_CAPTION:
+                    return false;
+                default:
+                    return null;
+            }
+        }
+
+
     }
 }

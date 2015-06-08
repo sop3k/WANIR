@@ -147,32 +147,57 @@
                     <Grid.RowDefinitions >
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0" Grid.ColumnSpan="6" Orientation="Horizontal">
-                        <CheckBox Margin="10" IsChecked="{Binding ProjectWritingAndRealization}">Pisanie i realizacja projektu</CheckBox>
-                        <CheckBox Margin="10" IsChecked="{Binding ProjectWriting}">Pisanie projektu (brak dof.)</CheckBox>
-                        <CheckBox Margin="10" IsChecked="{Binding ProjectMeeting}">Spotkanie ws. współpracy</CheckBox>
-                        <CheckBox Margin="10" IsChecked="{Binding ProjectRealization}">Realizacja usługi w wyniku przetargu</CheckBox>
-                    </StackPanel>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Współpraca:</Label>
+                    <CheckBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6"  IsChecked="{Binding Cooperation}" Margin="10"/>
+                    
+                    <Grid Grid.Row="1" Grid.ColumnSpan="6" IsEnabled="{Binding Cooperation}">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Rok rozpoczęcia współpracy:</Label>
-                    <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding CooperationYear}" ItemsSource="{Binding Years}" SelectedItem="{Binding CooperationYear}" Margin="10"/>
+                        <CheckBox Grid.Row="0" Margin="10" IsChecked="{Binding ProjectWritingAndRealization}">Pisanie i realizacja projektu(Rok/numer projektu/nazwa projektu)</CheckBox>
+                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Path=ProjectWritingAndRealizationDetails}" IsEnabled="{Binding ProjectWritingAndRealization}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
 
-                    <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Pozyskanie:</Label>
-                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Path=AcquiredBy}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
+                        <CheckBox Grid.Row="2" Margin="10" IsChecked="{Binding ProjectWriting}">Pisanie projektu (brak dof.) (Rok/działanie/nazwa projektu</CheckBox>
+                        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Path=ProjectWritingDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" IsEnabled="{Binding ProjectWriting}"/>
 
-                    <Label Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Obłsuga:</Label>
-                    <TextBox Grid.Row="1" Grid.Column="5" Text="{Binding Path=ServicesBy}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
+                        <CheckBox Grid.Row="4" Margin="10" IsChecked="{Binding ProjectMeeting}">Spotkanie ws. współpracy(data/działanie)</CheckBox>
+                        <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding Path=ProjectMeetingDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" IsEnabled="{Binding ProjectMeeting}"/>
 
-                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Komentarz:</Label>
-                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding Path=Comment}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" Height="80"/>
+                        <CheckBox Grid.Row="6" Margin="10" IsChecked="{Binding ProjectRealization}">Realizacja usługi w wyniku przetargu(Rok/numer umowy z bazy danych)</CheckBox>
+                        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding Path=ProjectRealizationDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"  IsEnabled="{Binding ProjectRealization}"/>
+                    </Grid>
 
+                
+                    <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Pozyskanie:</Label>
+                    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=AcquiredBy}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
+
+                    <Label Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Obłsuga:</Label>
+                    <TextBox Grid.Row="2" Grid.Column="4" Text="{Binding Path=ServicesBy}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
+
+                    <!--
+                    <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Komentarz:</Label>
+                    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding Path=Comment}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" Height="80"/>
+                    -->
                 </Grid>
             </GroupBox>
 
-            <GroupBox Grid.Column="0" Grid.Row="3" Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="8" Padding="5" Header="Umowy i przetargi">
+            <!--<GroupBox Grid.Column="0" Grid.Row="3" Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="8" Padding="5" Header="Umowy i przetargi">
                 <Grid Margin="2,2,2,2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -189,7 +214,7 @@
                     <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Przetarg:</Label>
                     <TextBox ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1" Grid.Column="1" Text="{Binding Path=Aggrements}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
                 </Grid>
-            </GroupBox>
+            </GroupBox>-->
 
         </Grid>
         

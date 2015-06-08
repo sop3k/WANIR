@@ -56,9 +56,9 @@
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Wydział" AllowAutoFilter="False" Binding="{Binding Department}" />
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Obszar" AllowAutoFilter="False" Binding="{Binding Region}" />
 
-                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Pisanie projektu" AllowAutoFilter="False" Binding="{Binding ProjectWriting}" />
-                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Spotkanie ws. projektu" AllowAutoFilter="False" Binding="{Binding ProjectMeeting}" />
-                <ExtendedColumn:ExtendedDataGridCheckBoxColumn Header="Realizacja projektu" AllowAutoFilter="False" Binding="{Binding ProjectRealization}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Pisanie projektu" AllowAutoFilter="False" Binding="{Binding ProjectWritingStr, Mode=OneWay}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Spotkanie ws. projektu" AllowAutoFilter="False" Binding="{Binding ProjectMeetingStr, Mode=OneWay}" />
+                <ExtendedColumn:ExtendedDataGridTextColumn Header="Realizacja projektu" AllowAutoFilter="False" Binding="{Binding ProjectRealizationStr, Mode=OneWay}" />
 
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Obsługiwany przez" AllowAutoFilter="False" Binding="{Binding ServicedBy}" />
                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Pozyskany przez" AllowAutoFilter="False" Binding="{Binding AcquiredBy}" />

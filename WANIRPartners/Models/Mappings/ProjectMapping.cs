@@ -15,6 +15,7 @@ namespace WANIRPartners.Mappings
             Map(x => x.Province);
             Map(x => x.Type);
             Map(x => x.Mailing);
+            Map(x => x.Cooperation).Nullable();
 
             HasMany(x => x.Calls).Inverse().Cascade.AllDeleteOrphan();
             HasMany(x => x.Mails).Inverse().Cascade.AllDeleteOrphan();

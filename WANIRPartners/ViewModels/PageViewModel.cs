@@ -40,6 +40,9 @@ namespace WANIRPartners.ViewModels
         #region Properties
         abstract public String ViewName { get; }
 
+        public bool Active { get; set; }
+        public bool NotActive { get { return !Active; } }
+
         abstract public ObservableCollection<NamedCommand> Commands { get; }
 
         virtual public ObservableCollection<NamedCommand> SpecificCommands
@@ -161,6 +164,10 @@ namespace WANIRPartners.ViewModels
         {
             get { return Const.Years; }
         }
+        public IEnumerable<string> YesNoNotSetChoices
+        {
+            get { return new List<string> { Const.NOT_SET, Const.YES_CAPTION, Const.NO_CAPTION }; }
+        }
 
         private string _province;
         private string _district;
@@ -168,6 +175,19 @@ namespace WANIRPartners.ViewModels
         private string _name;
         private string _fulltext;
         private string _region;
+
+        public void Activate()
+        {
+            Active = true;
+            RaisePropertyChanged("Active");
+            RaisePropertyChanged("NotActive");
+        }
+        public void Deactivate()
+        {
+            Active = false;
+            RaisePropertyChanged("Active");
+            RaisePropertyChanged("NotActive");
+        }
     }
 
     public abstract class ChildPageViewModel : PageViewModel

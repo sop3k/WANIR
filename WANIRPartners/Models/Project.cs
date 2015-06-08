@@ -16,6 +16,7 @@ namespace WANIRPartners.Models
         public virtual bool Mailing { get; set; }
         public virtual string Type { get; set; }
         public virtual string Region { get; set; }
+        public virtual bool? Cooperation { get; set; }
 
         public virtual IList<CallInfo> Calls { get; set; }
         public virtual IList<MailInfo> Mails { get; set; }

@@ -26,11 +26,15 @@ namespace WANIRPartners.Mappings
             Map(x => x.ContactEmail);
             Map(x => x.Region);
             Map(x => x.Comment);
-            Map(x => x.CooperationYear);
+            Map(x => x.Cooperation);
             Map(x => x.ProjectWritingAndRealization);
             Map(x => x.ProjectWriting);
             Map(x => x.ProjectMeeting);
             Map(x => x.ProjectRealization);
+            Map(x => x.ProjectWritingAndRealizationDetails);
+            Map(x => x.ProjectWritingDetails);
+            Map(x => x.ProjectMeetingDetails);
+            Map(x => x.ProjectRealizationDetails);
             Map(x => x.AcquiredBy);
             Map(x => x.ServicedBy);
             Map(x => x.Other);

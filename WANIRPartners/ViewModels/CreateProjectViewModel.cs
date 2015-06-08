@@ -39,5 +39,17 @@ namespace WANIRPartners.ViewModels
             get;
             private set;
         }
+
+        public bool? Cooperation
+        {
+            get;
+            set;
+        }
+
+        public string CooperationConverter
+        {
+            get { return Const.Convert(Cooperation); }
+            set { Cooperation = Const.ConvertToBool(value); }
+        }
     }
 }

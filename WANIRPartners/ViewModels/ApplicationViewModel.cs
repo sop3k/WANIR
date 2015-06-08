@@ -95,10 +95,14 @@ namespace WANIRPartners.ViewModels
 
         private void ChangeViewModel(PageViewModel viewModel)
         {
+            CurrentPageViewModel.Deactivate();
+
             if(viewModel == null)
                 CurrentPageViewModel = PageViewModels[0];
             else
                 CurrentPageViewModel = viewModel;
+
+            CurrentPageViewModel.Activate();
         }
 
         #endregion
