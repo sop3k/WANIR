@@ -40,12 +40,11 @@ namespace WANIRPartners.DB
 
     public class PGSQLSessionFactory
     {
-        private const string DbFile = "postgre.db";
-
+        const string connStr = "Server=155.133.87.66;Port=5432;Database=wanir_partnerzy_test;User Id=specuser;Password=5p3cu53R1;";
         public static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
-                .Database(SQLiteConfiguration.Standard.UsingFile(DbFile))
+                .Database(PostgreSQLConfiguration.Standard.ConnectionString(PGSQLSessionFactory.connStr))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<App>())
                 .ExposeConfiguration(BuildSchema)
                 .BuildSessionFactory();
@@ -53,9 +52,10 @@ namespace WANIRPartners.DB
 
         private static void BuildSchema(Configuration config)
         {
-            // this NHibernate tool takes a configuration (with mapping info in)
-            // and exports a database schema from it
+#if DEBUG
+            // this NHibernate tool takes a configuration (with mapping info in) 
             new SchemaExport(config).Create(false, true);
+#endif
         }
     }
 }

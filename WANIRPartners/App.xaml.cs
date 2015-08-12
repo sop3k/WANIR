@@ -16,10 +16,11 @@ namespace WANIRPartners
     {
         private void StartupHandler(object sender, System.Windows.StartupEventArgs e)
         {
+#if !DEBUG
             DispatcherUnhandledException +=
                 new DispatcherUnhandledExceptionEventHandler(
                     OnAppDispatcherUnhandledException);
-
+#endif
             Boostrapper.Initialize();
         }
 

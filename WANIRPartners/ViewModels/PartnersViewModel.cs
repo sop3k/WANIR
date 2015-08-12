@@ -62,7 +62,7 @@ namespace WANIRPartners.ViewModels
                     
                     new NamedCommand(Const.PRINT_CAPTION, 
                         new RelayCommand(PrintPartnerCommand, 
-                            () => SelectedPartner != null)), 
+                            () => SelectedPartner != null)) 
                 };
             }
         }
@@ -78,16 +78,16 @@ namespace WANIRPartners.ViewModels
                 var query = Session.CreateCriteria<Partner>();
 
                 if (!String.IsNullOrEmpty(Name))
-                    criteria.Add(Restrictions.Like("Name", String.Format("%{0}%", Name)));
-                
+                    criteria.Add(Restrictions.Like("Name", String.Format("%{0}%", Name.Trim())));
+
                 if (!String.IsNullOrEmpty(Province) && Province != Const.NOT_SET)
-                    criteria.Add(Restrictions.Eq("Province", Province));
+                    criteria.Add(Restrictions.Eq("Province", Province.Trim()));
 
                 if (!String.IsNullOrEmpty(District) && District != Const.NOT_SET)
-                    criteria.Add(Restrictions.Eq("District", District));
+                    criteria.Add(Restrictions.Eq("District", District.Trim()));
                 
                 if (!String.IsNullOrEmpty(Type))
-                    criteria.Add(Restrictions.Eq("Type", Type));
+                    criteria.Add(Restrictions.Eq("Type", Type.Trim()));
 
                 if (!String.IsNullOrEmpty(FullText))
                 {
@@ -122,35 +122,42 @@ namespace WANIRPartners.ViewModels
         private void AddPartnerCommand()
         {
             ShowView(new CreateEditPartnerViewModel(this, null));
+            RaisePropertyChanged("Partners");
         }
 
         private void EditPartnerCommand()
         {
             ShowView(new CreateEditPartnerViewModel(this, SelectedPartner));
+            RaisePropertyChanged("Partners");
         }
 
         private void DeletePartnerCommand()
         {
             ShowView(new DeletePartnerViewModel(this, SelectedPartner));
+            RaisePropertyChanged("Partners");
         }
 
         private void ImportPartnersCommand()
         {
             var dialog = new OpenFileDialog();
-            dialog.Filter = "Excel Files (*.xls, *.xlsx)|*.xls;*.xlsx";
+            dialog.Filter = "Excel Files (*.xls)|*.xls";
             if (dialog.ShowDialog() == true)
             {
                 PartnersExcelImporter.Import(dialog.FileName, Session, true);
+                RaisePropertyChanged("Partners");
             }
         }
 
         private void ExportPartnersCommand()
         {
             var dialog = new SaveFileDialog();
+            dialog.AddExtension = true;
+            dialog.Filter = "xlsx files (*.xlsx)|*.xlsx";
             if(dialog.ShowDialog() == true)
             {
                 new ExcelExporter<Partner>(dialog.FileName).Export(
                     Partners.ToList<Partner>(), null, Const.PARTNERS_SCHEMA);
+                RaisePropertyChanged("Partners");
             }
         }
 

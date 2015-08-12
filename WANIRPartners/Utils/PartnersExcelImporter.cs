@@ -33,51 +33,51 @@ namespace WANIRPartners.Utils
 
                 using(var tx = session.BeginTransaction())
                 {
+                    //Skip headers
+                    reader.Read();
+
                     while (reader.Read())
                     {
                         Partner partner = new Partner
                         {
-                            Name = reader.GetString(0),
-                            Type = reader.GetString(1),
-                            Province = reader.GetString(2),
-                            District = reader.GetString(3),
-                            Gmina = reader.GetString(4),
-                            Address = reader.GetString(5),
-                            Phone = reader.GetString(6),
-                            Email = reader.GetString(7),
-                            ContactPerson = reader.GetString(8),
-                            Position = reader.GetString(9),
-                            Department = reader.GetString(10),
-                            ContactAddress = reader.GetString(11),
-                            ContactPhone = reader.GetString(12),
-                            ContactEmail = reader.GetString(13),
-                            Region = reader.GetString(14),
-                            SP = reader.GetInt32(15),
-                            G = reader.GetInt32(16),
-                            P = reader.GetInt32(17),
-                            LO = reader.GetInt32(18),
-                            ZSZTECH = reader.GetInt32(19),
-                            Other = reader.GetString(20),
-                            ProjectWritingAndRealization = Const.ConvertToBool(reader.GetString(21)) ?? false,
-                            ProjectWriting = Const.ConvertToBool(reader.GetString(22)) ?? false,
-                            ProjectMeeting = Const.ConvertToBool(reader.GetString(23)) ?? false,
-                            ProjectRealization = Const.ConvertToBool(reader.GetString(24)) ?? false,
-                            Comment = reader.GetString(25),
-                            Projects = reader.GetString(26),
-                            Aggrements = reader.GetString(27),
-                            AcquiredBy = reader.GetString(28),
-                            ServicedBy = reader.GetString(29),
-                            Cooperation = !string.IsNullOrEmpty(reader.GetString(30))
-
+                            Name = TypeUtils.GetStringFromReader(reader, 0),
+                            Type = TypeUtils.GetStringFromReader(reader, 1),
+                            Province = TypeUtils.GetStringFromReader(reader, 2),
+                            District = TypeUtils.GetStringFromReader(reader, 3),
+                            Gmina = TypeUtils.GetStringFromReader(reader, 4),
+                            Address = TypeUtils.GetStringFromReader(reader, 5),
+                            Phone = TypeUtils.GetStringFromReader(reader, 6),
+                            Email = TypeUtils.GetStringFromReader(reader, 7),
+                            ContactPerson = TypeUtils.GetStringFromReader(reader, 8),
+                            Position = TypeUtils.GetStringFromReader(reader, 9),
+                            Department = TypeUtils.GetStringFromReader(reader, 10),
+                            ContactAddress = TypeUtils.GetStringFromReader(reader, 11),
+                            ContactPhone = TypeUtils.GetStringFromReader(reader, 12),
+                            ContactEmail = TypeUtils.GetStringFromReader(reader, 13),
+                            Region = TypeUtils.GetStringFromReader(reader, 14),
+                            SP = TypeUtils.GetIntFromReader(reader, 15),
+                            G = TypeUtils.GetIntFromReader(reader, 16),
+                            P = TypeUtils.GetIntFromReader(reader, 17),
+                            LO = TypeUtils.GetIntFromReader(reader, 18),
+                            ZSZTECH = TypeUtils.GetIntFromReader(reader, 19),
+                            Other = TypeUtils.GetStringFromReader(reader, 20),
+                            Cooperation = Const.ConvertToBool(TypeUtils.GetStringFromReader(reader, 21)) ?? false,
+                            ProjectWritingAndRealization = Const.ConvertToBool(TypeUtils.GetStringFromReader(reader, 22)) ?? false,
+                            ProjectWritingAndRealizationDetails = TypeUtils.GetStringFromReader(reader, 23),
+                            ProjectWriting = Const.ConvertToBool(TypeUtils.GetStringFromReader(reader, 24)) ?? false,
+                            ProjectWritingDetails = TypeUtils.GetStringFromReader(reader, 25),
+                            ProjectMeeting = Const.ConvertToBool(TypeUtils.GetStringFromReader(reader, 26)) ?? false,
+                            ProjectMeetingDetails = TypeUtils.GetStringFromReader(reader, 27),
+                            ProjectRealization = Const.ConvertToBool(TypeUtils.GetStringFromReader(reader, 28)) ?? false,
+                            ProjectRealizationDetails = TypeUtils.GetStringFromReader(reader, 29),
+                            Comment = TypeUtils.GetStringFromReader(reader, 30),
+                            AcquiredBy = TypeUtils.GetStringFromReader(reader, 31),
+                            ServicedBy = TypeUtils.GetStringFromReader(reader, 32)
                         };
-
                         session.Save(partner);
-
                     }
-
                     tx.Commit();
                     reader.Close();
-
                     return 0;
                 }
             }

@@ -7,7 +7,10 @@ namespace WANIRPartners.Models
 {
     public class Project : ObjectPopulator<Project>
     {
-        public Project() { }
+        public Project() 
+        {
+            RemovedPartners = new List<Partner>();
+        }
 
         public virtual int Id { get; protected set; }
         public virtual string Name { get; set; }
@@ -20,7 +23,7 @@ namespace WANIRPartners.Models
 
         public virtual IList<CallInfo> Calls { get; set; }
         public virtual IList<MailInfo> Mails { get; set; }
-        public virtual IList<Partner> Partners { get; set;}
+        public virtual IList<Partner> RemovedPartners { get; set; }
     }
 
     class ProjectGenerator

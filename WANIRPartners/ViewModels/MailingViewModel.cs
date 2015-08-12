@@ -35,7 +35,9 @@ namespace WANIRPartners.ViewModels
                         () => ShowView(new CreateProjectViewModel(this, true)))),
                     new NamedCommand(Const.DELETE_CAPTION, new RelayCommand(
                         ShowDeleteProjectView,
-                        () => CurrentProjectView != null && ProjectsViews.Count != 0))
+                        () => CurrentProjectView != null && ProjectsViews.Count != 0)),
+                     new NamedCommand(Const.ADD_PARTNER_CAPTION, 
+                        new RelayCommand(AddPartner)),
                 };
 
                 if(CurrentProjectView != null)
@@ -87,6 +89,10 @@ namespace WANIRPartners.ViewModels
                     CurrentProjectView.Activate();
                 });
             }
+        }
+        private void AddPartner()
+        {
+            ShowView(new CreateEditPartnerViewModel(this, null));
         }
         
         MailProjectViewModel _currentProjectView;

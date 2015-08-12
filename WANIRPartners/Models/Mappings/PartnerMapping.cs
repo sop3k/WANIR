@@ -46,6 +46,13 @@ namespace WANIRPartners.Mappings
 
             HasMany(x => x.Calls).Inverse().Cascade.AllDeleteOrphan();
             HasMany(x => x.Mails).Inverse().Cascade.AllDeleteOrphan();
+
+            HasManyToMany(x => x.RemovedFrom)
+                .Table("RemovedFromProject")
+                .ParentKeyColumn("ProjectId")
+                .ChildKeyColumn("PartnerId")
+                .LazyLoad()
+                .Cascade.SaveUpdate();
         }
     }
 }

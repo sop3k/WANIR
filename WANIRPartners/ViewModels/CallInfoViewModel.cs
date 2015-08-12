@@ -27,9 +27,9 @@ namespace WANIRPartners.ViewModels
                 CallInfo = call.CallInfo;
          
             _singleProjectView = (SingleProjectViewModel)parent;
-            _next = _singleProjectView.PartnersWithCallInfo
-                .SkipWhile(x => x.CallInfo != null)
-                .FirstOrDefault();
+            
+            //To set CallInfo as soon as possible.
+            //Save(false);
         }
 
         #region View
@@ -92,14 +92,19 @@ namespace WANIRPartners.ViewModels
             }
         }
 
-        public string OfferDate
+        public DateTime OfferDate
         {
             get
             {
                 if (Offer)
-                    return CallInfo.OfferDate.ToString();
+                    return CallInfo.OfferDate.Value;
                 else
-                    return Const.NOT_SET;
+                    return DateTime.Now;
+            }
+
+            set
+            {
+                CallInfo.OfferDate = value;
             }
         }
 
@@ -111,6 +116,10 @@ namespace WANIRPartners.ViewModels
                 CallInfo.Offer = value;
                 RaisePropertyChanged("Offer");
             }
+        }
+        public bool OfferStr
+        {
+            get { return CallInfo.Offer; }
         }
 
         public bool PartnerEditable
@@ -130,8 +139,7 @@ namespace WANIRPartners.ViewModels
             get 
             {
                 return new RelayCommand(
-                    MoveToNextPartner, 
-                    () => _next != null
+                    MoveToNextPartner
                 ); 
             }
         }
@@ -171,12 +179,32 @@ namespace WANIRPartners.ViewModels
         void TogglePartnerEditable()
         {
             PartnerEditable = !PartnerEditable;
+            Save(false);
         }
 
         void MoveToNextPartner()
-        {
-            Save();
-            ShowView(new CallInfoViewModel(_singleProjectView, Project, _next));
+        { 
+
+            var items = _singleProjectView.Items.ToList();
+            var currentIndex = items.FindIndex(p => p.Partner == Partner);
+
+            for(int i=currentIndex+1; i<_singleProjectView.Items.Count(); i++)
+            {
+                var next = Session.QueryOver<CallInfo>()
+                    .Where(p => p.Partner == items[i].Partner)
+                    .SingleOrDefault();
+
+                if (next== null)
+                {
+                    Save(true);
+                    ShowView(new CallInfoViewModel(
+                        _singleProjectView, 
+                        Project, 
+                        new PartnerInfoCall(Project, items[i].Partner, null)));
+                    
+                    break;
+                }       
+            }
         }
 
         void SendMail()
@@ -185,6 +213,11 @@ namespace WANIRPartners.ViewModels
         }
 
         public override void Save()
+        {
+            Save(true);
+        }
+
+        public void Save(bool close)
         {
             using (var tx = Session.BeginTransaction())
             {
@@ -195,11 +228,9 @@ namespace WANIRPartners.ViewModels
                 tx.Commit();
             }
 
-            Close();
+            if(close)
+                Close();
         }
-
-        public bool FirstCallEnable { get { return true; } }
-        public bool SecondCallEnable { get { return String.IsNullOrEmpty(CallInfo.FirstCallee) == false; } }
 
         private bool _partnerEditable;
         private readonly SingleProjectViewModel _singleProjectView;

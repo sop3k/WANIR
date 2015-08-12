@@ -7,6 +7,7 @@ using System.Data.Common;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using Excel;
 
 namespace WANIRPartners.Utils
 {
@@ -22,6 +23,22 @@ namespace WANIRPartners.Utils
                 return itemvalue;
             }
             return default(T);
+        }
+
+        public static int GetIntFromReader(IExcelDataReader reader, int index)
+        {
+            string tmp = reader.GetString(index);
+            int vout = 0;
+            int.TryParse(tmp, out vout);
+            return vout;
+        }
+
+        public static string GetStringFromReader(IExcelDataReader reader, int index)
+        {
+            string tmp = reader.GetString(index);
+            if (string.IsNullOrEmpty(tmp))
+                return "";
+            return tmp.Trim();
         }
     }
 }

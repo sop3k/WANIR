@@ -49,7 +49,9 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
-                return CurrentProjectView.SpecificCommands;
+                return CurrentProjectView != null
+                    ? CurrentProjectView.SpecificCommands 
+                    : new ObservableCollection<NamedCommand>();
             }
         }
 
@@ -87,7 +89,8 @@ namespace WANIRPartners.ViewModels
             {
                 return new RelayCommand<SingleProjectViewModel>(p =>
                 {
-                    CurrentProjectView.Deactivate();
+                    if(CurrentProjectView  != null)
+                        CurrentProjectView.Deactivate();
 
                     CurrentProjectView = p;
                     ViewController.ChangePageCommand.Execute(this);

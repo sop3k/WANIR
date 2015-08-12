@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpftk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="5" Header="Nowy mail">
@@ -16,7 +17,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0"  Content="Data wysyłki:" FontSize="14" VerticalAlignment="Center"/>
-            <DatePicker Grid.Row="0" Grid.Column="1"  SelectedDate="{Binding Date}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+            <wpftk:DateTimePicker Grid.Row="0" Grid.Column="1"  Value="{Binding Date}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Temat:" FontSize="14" VerticalAlignment="Center"/>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Subject}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
         </Grid>

@@ -1,32 +1,16 @@
-AutoFilter=True
-Nazwa partnera=Partner.Name
-Typ partnera=Partner.Type
-Województwo=Partner.Province	
-Powiat=Partner.District	
-Gmina=Partner.Gmina	
-Adres korespondencyjny (ogólny)=Partner.Address	
-Telefon (ogólny)=Partner.Phone
-e-mail (ogólny)=Partner.Email
-Nazwisko imię osoby do kontaktu=Partner.ContactPerson	
-Stanowisko=Partner.Position	
-Wydział=Partner.Department	
-Adres korespondencyjny (jeśli inny niż ogólny)=Partner.ContactAddress	
-Telefon (bezpośredni)=Partner.ContactPhone	
-e-mail (bezpośredni)=Partner.ContactEmail	
-Obszar (W, M, WM)=Partner.Region	
-#SP=Partner.	
-#G=Partner.	
-#P=Partner.	
-#LO=Partner.
-#ZSZ/TECH=Partner.	
-Inne jednostki organizacyjne=Partner.Other	
-Pisanie i realizacja projektu=Partner.ProjectWritingAndRealizationStr	
-Pisanie projektu (brak dof.)=Partner.ProjectWritingStr	
-Spotkanie ws. współpracy=Partner.ProjectMeetingStr 	
-Realizacja usługi w wyniku przetargu=Partner.ProjectRealizationStr	
-Inne (komentarz)=Partner.Comment
-Współpraca=Partner.CooperationStr
-Projekt (projekty) - nr projektu (S)=Partner.Projects	
-Przetarg (nr umowy/nr z bazy)=Partner.Aggrements	
-Osoba wanir (pozyskanie)=Partner.AcquiredBy	
-Osoba wanir (obsługa)=Partner.ServicedBy
+        public virtual bool Cooperation { get; set; }
+        public virtual bool ProjectWritingAndRealization { get; set; }
+        public virtual bool ProjectWriting { get; set; }
+        public virtual bool ProjectMeeting { get; set; }
+        public virtual bool ProjectRealization { get; set; }
+
+        public virtual string CooperationStr { get { return Const.Convert(Cooperation); } }
+        public virtual string ProjectWritingAndRealizationStr { get { return Const.Convert(ProjectWritingAndRealization);  } }
+        public virtual string ProjectWritingStr { get { return Const.Convert(ProjectWriting); } }
+        public virtual string ProjectMeetingStr { get { return Const.Convert(ProjectMeeting); } }
+        public virtual string ProjectRealizationStr { get { return Const.Convert(ProjectRealization); } }
+
+        public virtual string ProjectWritingAndRealizationDetails { get; set; }
+        public virtual string ProjectWritingDetails { get; set; }
+        public virtual string ProjectMeetingDetails { get; set; }
+        public virtual string ProjectRealizationDetails { get; set; }

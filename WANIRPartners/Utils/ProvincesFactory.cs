@@ -25,7 +25,7 @@ namespace WANIRPartners.Utils
                 }
                 else if(line.Trim().Length > 0)
                 {
-                    province = line;
+                    province = line.Trim();
                     provinces.Add(province, new List<string> { Const.NOT_SET });
                 }
             }

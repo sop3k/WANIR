@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using WANIRPartners.ViewModels;
+
 namespace WANIRPartners.Views
 {
     /// <summary>
@@ -23,6 +25,12 @@ namespace WANIRPartners.Views
         public SingleProjectView()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(SingleProjectView_Loaded);
+        }
+
+        void SingleProjectView_Loaded(object sender, RoutedEventArgs args)
+        {
+            (DataContext as SingleProjectViewModel).View = this;
         }
     }
 }

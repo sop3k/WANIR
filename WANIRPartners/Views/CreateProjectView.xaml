@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpftk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <GroupBox Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="8" Padding="5" Header="Nowy projekt">
@@ -24,16 +25,16 @@
             <TextBox Grid.Column="1" Grid.Row="0" Height="28" Text="{Binding Name}"  Margin="10"/>
 
             <Label Grid.Column="0" Grid.Row="1" Content="Typ:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
-            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Types}" SelectedItem="{Binding Type}" Margin="10"/>
+            <wpftk:CheckComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Types}" SelectedItem="{Binding Type}" Margin="10"/>
 
             <Label Grid.Column="0" Grid.Row="2" Content="Wojewodztwo:" Margin="10"/>
-            <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Provinces}" SelectedItem="{Binding Province}" Margin="10"/>
+            <wpftk:CheckComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Provinces}" SelectedItem="{Binding Province}" Margin="10"/>
 
             <Label Grid.Column="0" Grid.Row="3" Content="Powiat:" Margin="10"/>
-            <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Districts}" SelectedItem="{Binding District}" Margin="10"/>
+            <wpftk:CheckComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Districts}" SelectedItem="{Binding District}" Margin="10"/>
 
             <Label Grid.Column="0" Grid.Row="4" Content="Obszar:" Margin="10"/>
-            <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Regions}" SelectedItem="{Binding Region}" Margin="10"/>
+            <wpftk:CheckComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Regions}" SelectedItem="{Binding Region}" Margin="10"/>
 
             <Label Grid.Column="0" Grid.Row="5" Content="Współpraca:" Margin="10"/>
             <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding YesNoNotSetChoices}" SelectedItem="{Binding CooperationConverter}" Margin="10"/>

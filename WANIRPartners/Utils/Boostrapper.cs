@@ -14,7 +14,11 @@ namespace WANIRPartners.Utils
 
         public static void Initialize()
         {
+#if DEBUG
             SessionFactory = DB.SQLiteSessionFactory.CreateSessionFactory();
+#else
+            SessionFactory = DB.PGSQLSessionFactory.CreateSessionFactory();
+#endif
             Provinces = ProvincesFactory.Initialize();
 #if DEBUG
             using (var session = SessionFactory.OpenSession())

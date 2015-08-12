@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using MvvmFoundation.Wpf;
 
 using LinqKit;
+
 using NHibernate.Linq;
 
 using WANIRPartners.Models;
@@ -56,10 +57,7 @@ namespace WANIRPartners.ViewModels
                 return new ObservableCollection<NamedCommand>
                 {
                      new NamedCommand(Const.SEND_ALL_CAPTION, 
-                        new RelayCommand(() => SendMail(Partners))),
-                
-                    new NamedCommand(Const.SEND_CAPTION, 
-                        new RelayCommand(() => SendMail(CurrentPartner)))
+                        new RelayCommand(() => SendMail(Partners)))
                 };
             }
         }

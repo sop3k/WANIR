@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -11,10 +12,12 @@ using System.Windows.Media.TextFormatting;
 using Remotion.Linq.Clauses.ExpressionTreeVisitors;
 
 using LinqKit;
+
 using MvvmFoundation.Wpf;
 using NHibernate.Linq;
 
 using WANIRPartners.Models;
+using WANIRPartners.Views;
 using WANIRPartners.Utils;
 using WANIRPartners.Utils.Doc;
 
@@ -22,11 +25,14 @@ namespace WANIRPartners.ViewModels
 {
     public class PartnerInfoCall
     {
-        public PartnerInfoCall(Partner partner, CallInfo info)
+        public PartnerInfoCall(Project project, Partner partner, CallInfo info)
         {
+            CallInfo = null;
+            if(info != null && project == info.Project)
+                CallInfo = info;
+
             Id = partner.Id;
             Partner = partner;
-            CallInfo = info;
         }
         public int Id { get; set; }
         public string Name { get { return Partner.Name; } }
@@ -45,6 +51,8 @@ namespace WANIRPartners.ViewModels
             CurrentProject = project;
         }
 
+        public SingleProjectView View { get; set; }
+
         override public string ViewName
         {
             get { return CurrentProject.Name; }
@@ -56,12 +64,12 @@ namespace WANIRPartners.ViewModels
         
         public Partner CurrentPartner
         {
-            get { return CurrentItem.Partner; }
+            get { return CurrentItem != null ? CurrentItem.Partner : null; }
         }
         
         public CallInfo CurrentCallInfo
         {
-            get { return CurrentItem.CallInfo; }
+            get { return CurrentItem != null ? CurrentItem.CallInfo : null; }
         }
         
         override public ObservableCollection<NamedCommand> Commands
@@ -72,13 +80,21 @@ namespace WANIRPartners.ViewModels
                 {
                     new NamedCommand(Const.ADD_PARTNER_CAPTION, 
                         new RelayCommand(AddPartner)),
+                    
+                    new NamedCommand(Const.SEND_CAPTION, 
+                        new RelayCommand(SendMail, 
+                            () => CurrentPartner != null)),
+
+                    new NamedCommand(Const.REMOVE_PARTNER_FROM_PROJECT, 
+                        new RelayCommand(RemovePartnerFromProject,
+                            () => CurrentPartner != null)),
 
                     new NamedCommand(Const.PRINT_CAPTION, 
                         new RelayCommand(
                             PrintCallInfo, 
                             () => CurrentItem != null && CurrentItem.CallInfo != null)),
 
-                   new NamedCommand(Const.EXPORT_PROJECT_CAPTION, 
+                    new NamedCommand(Const.EXPORT_PROJECT_CAPTION, 
                         new RelayCommand(ExportProjectCommand)),
                 };
             }
@@ -127,6 +143,10 @@ namespace WANIRPartners.ViewModels
                 predicate = predicate.And(p => p.Cooperation == CurrentProject.Cooperation.Value);
             }
 
+            if (CurrentProject.RemovedPartners != null)
+            {
+                predicate = predicate.And(p => !CurrentProject.RemovedPartners.Contains(p));
+            }
             return predicate;
         }
 
@@ -134,10 +154,16 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
-                return from partner in Session.Query<Partner>().Where(PartnersWhereClause())
-                    from call in partner.Calls.DefaultIfEmpty()
-                    select new PartnerInfoCall(partner, call);
+                return from partner in Session.Query<Partner>()
+                           .Where(PartnersWhereClause())
+                       from call in partner.Calls.DefaultIfEmpty()
+                    select new PartnerInfoCall(CurrentProject, partner, call);
             }
+        }
+
+        public IEnumerable<PartnerInfoCall> Items
+        {
+            get { return View.PartnersGrid.Items.Cast<PartnerInfoCall>(); }
         }
         
         private void PrintCallInfo()
@@ -159,6 +185,25 @@ namespace WANIRPartners.ViewModels
         private void AddPartner()
         {
             ShowView(new CreateEditPartnerViewModel(this.Parent, null));
+        }
+
+        private void RemovePartnerFromProject()
+        {
+            using (var tx = Session.BeginTransaction())
+            {
+                CurrentProject.RemovedPartners.Add(CurrentPartner);
+                CurrentPartner.RemovedFrom.Add(CurrentProject);
+
+                Session.SaveOrUpdate(CurrentProject);
+                Session.SaveOrUpdate(CurrentPartner);
+                
+                tx.Commit();
+            }
+        }
+       
+        private void SendMail()
+        {
+            ShowView(new MailInfoViewModel(this.Parent, CurrentProject, new List<Partner> { CurrentPartner }));
         }
     }
 }

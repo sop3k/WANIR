@@ -16,6 +16,7 @@ namespace WANIRPartners.Utils
         public const string NO_CAPTION = "Nie";
         public const string EXPORT_PROJECT_CAPTION = "Exportuj projekt";
         public const string ADD_PARTNER_CAPTION = "Dodaj partnera";
+        public const string REMOVE_PARTNER_FROM_PROJECT = "Usuñ z projektu";
 
         public const string ADD_PROJECT_CAPTION = "Dodaj projekt";
         public const string DELETE_PROJECT_CAPTION = "Usuń projekt";

@@ -59,6 +59,7 @@ namespace WANIRPartners.Models
 
         public virtual IList<CallInfo> Calls{ get; set; }
         public virtual IList<MailInfo> Mails { get; set; }
+        public virtual IList<Project> RemovedFrom { get; set; }
     }
 
     class PartnerGenerator
