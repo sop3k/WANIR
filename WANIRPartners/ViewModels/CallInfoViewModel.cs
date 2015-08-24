@@ -191,7 +191,7 @@ namespace WANIRPartners.ViewModels
             for(int i=currentIndex+1; i<_singleProjectView.Items.Count(); i++)
             {
                 var next = Session.QueryOver<CallInfo>()
-                    .Where(p => p.Partner == items[i].Partner)
+                    .Where(p => p.Partner == items[i].Partner && p.Project == items[i].Project)
                     .SingleOrDefault();
 
                 if (next== null)
