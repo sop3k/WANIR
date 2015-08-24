@@ -221,7 +221,7 @@
                         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CallInfo.SecondCallee}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="0" Grid.Column="2" Content="Data rozmowy:" FontSize="14" VerticalAlignment="Center"/>
-                        <wpftk:DateTimePicker Grid.Row="0" Grid.Column="3" Value="{Binding SecondDate}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
+                        <DatePicker Grid.Row="0" Grid.Column="3" SelectedDate="{Binding SecondDate}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Spotkanie:" FontSize="14" VerticalAlignment="Top" Margin="5"/>
                         <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding CallInfo.MeetingStr}" FontSize="16" VerticalAlignment="Center" Foreground="Brown" Margin="5" SelectedValue="Nie">
