@@ -33,6 +33,7 @@ namespace WANIRPartners.ViewModels
 
             Id = partner.Id;
             Partner = partner;
+            Project = project;
         }
         public int Id { get; set; }
         public string Name { get { return Partner.Name; } }
@@ -41,6 +42,7 @@ namespace WANIRPartners.ViewModels
 
         public Partner Partner { get; set; }
         public CallInfo CallInfo { get ; set; }
+        public Project Project { get; set; }
     };
 
     public class SingleProjectViewModel : ChildPageViewModel
@@ -120,22 +122,22 @@ namespace WANIRPartners.ViewModels
 
             if (!string.IsNullOrEmpty(CurrentProject.Province) && CurrentProject.Province != Const.NOT_SET)
             {
-                predicate = predicate.And(p => p.Province == CurrentProject.Province);
+                predicate = predicate.And(p => CurrentProject.Province.Split(',').Contains(p.Province));
             }
 
             if (!string.IsNullOrEmpty(CurrentProject.District) && CurrentProject.District != Const.NOT_SET)
             {
-                predicate = predicate.And(p => p.District == CurrentProject.District);
+                predicate = predicate.And(p => CurrentProject.District.Split(',').Contains(p.District));
             }
 
             if (!string.IsNullOrEmpty(CurrentProject.Type) && CurrentProject.Type != Const.NOT_SET)
             {
-                predicate = predicate.And(p => p.Type == CurrentProject.Type);
+                predicate = predicate.And(p => CurrentProject.Type.Split(',').Contains(p.Type));
             }
 
             if (!string.IsNullOrEmpty(CurrentProject.Region) && CurrentProject.Region != Const.NOT_SET)
             {
-                predicate = predicate.And(p => p.Region == CurrentProject.Region);
+                predicate = predicate.And(p => CurrentProject.Region.Split(',').Contains(p.Region));
             }
 
             if (CurrentProject.Cooperation.HasValue)

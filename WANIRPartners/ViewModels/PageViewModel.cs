@@ -144,8 +144,12 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
-                return Province != null ? Const.Provinces[Province]
-                    : new List<string>();
+                if (Province != null)
+                {
+                    foreach (var province in Province.Split(','))
+                        foreach(var district in Const.Provinces[province])
+                            yield return district;
+                }
             }
         }
         public IEnumerable<string> Provinces
