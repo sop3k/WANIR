@@ -109,11 +109,15 @@ namespace WANIRPartners.ViewModels
                 return new ObservableCollection<NamedCommand>
                 {
                      new NamedCommand(Const.CALL_CAPTION, 
-                            new RelayCommand( 
-                                () => ShowView(new CallInfoViewModel(this, CurrentProject, CurrentItem)),
+                            new RelayCommand( ShowCallInfoViewCall,
                                 () => CurrentItem != null && !CurrentProject.Mailing))
                 };
             }
+        }
+
+        void ShowCallInfoViewCall()
+        {
+            ShowView(new CallInfoViewModel(this, CurrentProject, CurrentItem));
         }
 
         Expression<Func<Partner, bool>> PartnersWhereClause()
@@ -156,16 +160,27 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
-                return from partner in Session.Query<Partner>()
+                var p =  from partner in Session.Query<Partner>()
                            .Where(PartnersWhereClause())
                        from call in partner.Calls.DefaultIfEmpty()
                     select new PartnerInfoCall(CurrentProject, partner, call);
+                return p;
             }
         }
 
         public IEnumerable<PartnerInfoCall> Items
         {
-            get { return View.PartnersGrid.Items.Cast<PartnerInfoCall>(); }
+            get
+            {
+                try
+                {
+                    return View.PartnersGrid.Items.Cast<PartnerInfoCall>();
+                }
+                catch
+                {
+                    return new List<PartnerInfoCall>();
+                }
+            }
         }
         
         private void PrintCallInfo()

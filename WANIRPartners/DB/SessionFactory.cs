@@ -54,7 +54,7 @@ namespace WANIRPartners.DB
         {
 #if DEBUG
             // this NHibernate tool takes a configuration (with mapping info in) 
-            new SchemaExport(config).Create(false, true);
+            // new SchemaExport(config).Create(false, true);
 #endif
         }
     }

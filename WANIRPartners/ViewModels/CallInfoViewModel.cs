@@ -22,14 +22,14 @@ namespace WANIRPartners.ViewModels
             Project = project;
 
             if (call.CallInfo == null)
-                CallInfo = new CallInfo { Partner = Partner, Project = Project };
+                call.CallInfo = CallInfo = new CallInfo { Partner = Partner, Project = Project };
             else
                 CallInfo = call.CallInfo;
          
             _singleProjectView = (SingleProjectViewModel)parent;
             
             //To set CallInfo as soon as possible.
-            //Save(false);
+            Save(false);
         }
 
         #region View

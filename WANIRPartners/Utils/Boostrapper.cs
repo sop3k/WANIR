@@ -14,13 +14,13 @@ namespace WANIRPartners.Utils
 
         public static void Initialize()
         {
-#if DEBUG
-            SessionFactory = DB.SQLiteSessionFactory.CreateSessionFactory();
-#else
+//#if DEBUG
+//            SessionFactory = DB.SQLiteSessionFactory.CreateSessionFactory();
+//#else
             SessionFactory = DB.PGSQLSessionFactory.CreateSessionFactory();
-#endif
+//#endif
             Provinces = ProvincesFactory.Initialize();
-#if DEBUG
+#if False
             using (var session = SessionFactory.OpenSession())
             {
                 Models.PartnerGenerator.GeneratePartners(session, 100, "");

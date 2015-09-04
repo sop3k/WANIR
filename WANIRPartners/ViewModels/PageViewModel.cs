@@ -144,7 +144,7 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
-                if (Province != null)
+                if (!String.IsNullOrEmpty(Province))
                 {
                     foreach (var province in Province.Split(','))
                         foreach(var district in Const.Provinces[province])
