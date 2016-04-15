@@ -32,6 +32,7 @@ namespace WANIRPartners.Mappings
             Map(x => x.ProjectMeeting);
             Map(x => x.ProjectRealization);
             Map(x => x.ProjectWritingAndRealizationDetails);
+            Map(x => x.ProjectWritingInAssessment);
             Map(x => x.ProjectWritingDetails);
             Map(x => x.ProjectMeetingDetails);
             Map(x => x.ProjectRealizationDetails);
@@ -44,8 +45,8 @@ namespace WANIRPartners.Mappings
             Map(x => x.ZSZTECH);
             Map(x => x.P);
 
-            HasMany(x => x.Calls).Inverse().Cascade.AllDeleteOrphan();
-            HasMany(x => x.Mails).Inverse().Cascade.AllDeleteOrphan();
+            HasMany(x => x.Calls).Inverse().Cascade.DeleteOrphan();
+            HasMany(x => x.Mails).Inverse().Cascade.DeleteOrphan();
 
             HasManyToMany(x => x.RemovedFrom)
                 .Table("RemovedFromProject")

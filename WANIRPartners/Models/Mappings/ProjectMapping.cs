@@ -17,15 +17,15 @@ namespace WANIRPartners.Mappings
             Map(x => x.Mailing);
             Map(x => x.Cooperation).Nullable();
 
-            HasMany(x => x.Calls).Inverse().Cascade.AllDeleteOrphan();
-            HasMany(x => x.Mails).Inverse().Cascade.AllDeleteOrphan();
+            HasMany(x => x.Calls).Inverse().Cascade.DeleteOrphan();
+            HasMany(x => x.Mails).Inverse().Cascade.DeleteOrphan();
 
             HasManyToMany(x => x.RemovedPartners)
                 .Table("RemovedFromProject")
                 .ParentKeyColumn("ProjectId")
                 .ChildKeyColumn("PartnerId")
                 .LazyLoad()
-                .Cascade.SaveUpdate();
+                .Cascade.DeleteOrphan();
         }
     }
 }

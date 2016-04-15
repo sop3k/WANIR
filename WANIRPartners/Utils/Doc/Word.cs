@@ -361,6 +361,22 @@ namespace WANIRPartners.Utils.Doc
                 {"COMMENT",                         "Comment"},
                 {"ACQUIRED_BY",                     "AcquiredBy"},
                 {"SERVICED_BY",                     "ServicedBy"},
+                
+                //CallInfo
+                {"FIRST_CALLE",                     "FirstCallee"},
+                {"FIRST_INFO",                      "FirstInfo"},
+                {"FIRST_DATE",                      "FirstDateStr"},
+                {"OFFER",                           "OfferStr"},
+                {"SECOND_CALLEE",                   "SecondCallee"},
+                {"SECOND_INFO",                     "SecondInfo"},
+                {"SECOND_DATE",                     "SecondDateStr"},
+                {"UNDECIDED",                       "Undecided"},
+                {"RESIGNATION_REASON",              "ResignationReason"},
+                {"MEETING_PERSON",                  "MeetingPerson"},
+                {"ACTIVE_PROJECT",                  "ActiveProjectStr"},
+                {"MEETING_DATE",                    "MeetingDate"},
+                {"PROJECT_WRITER",                  "ProjectWriter"},
+                {"MEETING_INFO",                    "MeetingInfo"}
             };
 
         public static Object GetAspect(String name)

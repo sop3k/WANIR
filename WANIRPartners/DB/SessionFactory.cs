@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -40,11 +41,13 @@ namespace WANIRPartners.DB
 
     public class PGSQLSessionFactory
     {
-        const string connStr = "Server=155.133.87.66;Port=5432;Database=wanir_partnerzy_test;User Id=specuser;Password=5p3cu53R1;";
         public static ISessionFactory CreateSessionFactory()
         {
+            string ip = (new StreamReader(new FileStream("database.config", FileMode.Open))).ReadLine();
+            string connStr = String.Format("Server={0};Port=5432;Database=wanir_partnerzy_test;User Id=specuser;Password=5p3cu53R1;", ip);
+
             return Fluently.Configure()
-                .Database(PostgreSQLConfiguration.Standard.ConnectionString(PGSQLSessionFactory.connStr))
+                .Database(PostgreSQLConfiguration.Standard.ConnectionString(connStr))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<App>())
                 .ExposeConfiguration(BuildSchema)
                 .BuildSessionFactory();

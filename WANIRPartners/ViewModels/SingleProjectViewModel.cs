@@ -40,6 +40,21 @@ namespace WANIRPartners.ViewModels
         public string District { get { return Partner.District; } }
 
 
+        public string PartnerName{get{return Partner.Name;}}
+        public string PartnerProvince{get{return Partner.Province;}}
+        public string PartnerDistrict{get{return Partner.District;}}
+        public string PartnerGmina{get{return Partner.Gmina;}}
+
+        public string CallInfoFirstCallee{get{return CallInfo.FirstCallee;}}
+        public string CallInfoFirstDateStr{get{return CallInfo.FirstDateStr;}}
+        public string CallInfoOfferStr{get{return CallInfo.OfferStr;}}
+        public string CallInfoFirstInfo{get{return CallInfo.FirstInfo;}}
+
+        public string CallInfoSecondDateStr{get{return CallInfo.SecondDateStr;}}
+        public string CallInfoMeetingStr { get { return CallInfo.MeetingStr; } }
+        public string CallInfoUndecided { get { return CallInfo.Undecided; } }
+        public string CallInfoResignationReason { get { return CallInfo.ResignationReason; } }
+
         public Partner Partner { get; set; }
         public CallInfo CallInfo { get ; set; }
         public Project Project { get; set; }
@@ -160,11 +175,12 @@ namespace WANIRPartners.ViewModels
         {
             get
             {
-                var p =  from partner in Session.Query<Partner>()
-                           .Where(PartnersWhereClause())
-                       from call in partner.Calls.DefaultIfEmpty()
-                    select new PartnerInfoCall(CurrentProject, partner, call);
-                return p;
+                var partners = from partner in Session.Query<Partner>().Where(PartnersWhereClause()) select partner;
+                foreach(Partner p in partners)
+                {
+                    var call = p.Calls.Where(x => x.Project == CurrentProject).FirstOrDefault();
+                    yield return new PartnerInfoCall(CurrentProject, p, call);
+                }
             }
         }
 

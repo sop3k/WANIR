@@ -25,7 +25,7 @@ namespace WANIRPartners.ViewModels
             PageViewModels.Add(new SettingsViewModel(this));
 
             // Set starting page
-            CurrentPageViewModel = PageViewModels[0];
+             CurrentPageViewModel = PageViewModels[0];
 
         }
 

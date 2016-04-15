@@ -12,6 +12,7 @@ namespace WANIRPartners.DB.Mappings
             Map(x => x.FirstCallee);
             Map(x => x.FirstInfo);
             Map(x => x.FirstDate);
+            Map(x => x.OfferDate);
 
             Map(x => x.SecondCallee);
             Map(x => x.SecondInfo);
@@ -24,9 +25,10 @@ namespace WANIRPartners.DB.Mappings
             Map(x => x.ActiveProject);
             Map(x => x.ProjectWriter);
             Map(x => x.MeetingInfo);
+            Map(x => x.Offer);
 
             References(x => x.Partner);
-            References(x => x.Project);         
+            References(x => x.Project);   
         }
     }
 }

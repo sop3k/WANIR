@@ -5,42 +5,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid"
              xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:utils="clr-namespace:WANIRPartners.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <ExtendedGridControl:ExtendedDataGrid ItemsSource="{Binding PartnersWithCallInfo}" 
-                  HorizontalAlignment="Stretch" 
-                  GroupByHeaderText="Przeciągnij kolumnę aby pogrupować"
-                  VerticalAlignment="Stretch"
-                  SelectionMode="Single"
-                  SelectedItem="{Binding CurrentItem}"
-                  FontSize="14"
-                  IsReadOnly="True"
-                  BorderThickness="0" 
-                  AutoGenerateColumns="False" 
-                  Margin="0,0,5,5" 
-                  MinColumnWidth="90"
-                  ColumnWidth="auto"
-                  HideColumnChooser="True"
-                  x:Name="PartnersGrid">
+        <Grid.Resources>
+            <Style TargetType="{x:Type xcdg:HierarchicalGroupByControl}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
+            <utils:RowHeaderAddition x:Key="HeaderRowAddition" />
+            <Style x:Key="itemIndexSelectorStyle" TargetType="{x:Type xcdg:RowSelector}">
+                <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Path=ItemIndex}" />
+            </Style>
+            <Style TargetType="{x:Type xcdg:DataRow}">
+                <Setter Property="xcdg:RowSelector.RowSelectorStyle" Value="{StaticResource itemIndexSelectorStyle}" />
+                <!--<Setter Property="xcdg:RowSelector.RowSelectorStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=ItemIndex, Converter={StaticResource HeaderRowAddition}}" /> -->
+            </Style>
+            <Style TargetType="{x:Type xcdg:TableflowView}">
+                <Setter Property="RowSelectorPaneWidth" Value="35"/>
+            </Style>
+        </Grid.Resources>
+        <xcdg:DataGridControl
+            ItemsSource="{Binding PartnersWithCallInfo}" 
+            SelectedItem="{Binding CurrentItem}"  
+            Grid.Row="1" 
+            FontSize="14"
+            ReadOnly="True"
+            ScrollViewer.CanContentScroll="False"
+            SelectionMode="Single"
+            BorderThickness="0" 
+            Margin="0,0,5,5"
+            Name="PartnersGrid"
+            AutoCreateColumns="False"
+        >
+            <xcdg:DataGridControl.Columns >
+                <xcdg:Column Title="Nazwa partnera" FieldName="PartnerName"/>
+                <xcdg:Column Title="Województwo" FieldName="Partner.Province" />
+                <xcdg:Column Title="Powiat" FieldName="PartnerDistrict" />
+                <xcdg:Column Title="Gmina" FieldName="PartnerGmina"/>
 
-        <ExtendedGridControl:ExtendedDataGrid.Columns>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Nazwa partnera" AllowAutoFilter="False" Binding="{Binding Partner.Name}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Województwo" AllowAutoFilter="False" Binding="{Binding Partner.Province}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Powiat" AllowAutoFilter="False" Binding="{Binding Partner.District}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Partner.Gmina}"/>
+                <xcdg:Column Title="Osoba wyk. 1 rozmowę" FieldName="CallInfoFirstCallee" />
+                <xcdg:Column Title="Data 1 rozmowy" FieldName="CallInfoFirstDateStr" />
+                <xcdg:Column Title="Oferta" FieldName="CallInfoOfferStr" />
+                <xcdg:Column Title="Uwagi" FieldName="CallInfoFirstInfo" />
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wyk. 1 rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstCallee}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data 1 rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstDateStr}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Oferta" AllowAutoFilter="False" Binding="{Binding CallInfo.OfferStr}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.FirstInfo}" />
-
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data 2 rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.SecondDateStr}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Spotkanie" AllowAutoFilter="False" Binding="{Binding CallInfo.MeetingStr}"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Niezdecydowany" AllowAutoFilter="False" Binding="{Binding CallInfo.Undecided}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Odmowa(powód)" AllowAutoFilter="False" Binding="{Binding CallInfo.ResignationReason}" />
-            </ExtendedGridControl:ExtendedDataGrid.Columns>
-            
-        </ExtendedGridControl:ExtendedDataGrid>
+                <xcdg:Column Title="Data 2 rozmowy" FieldName="CallInfoSecondDateStr" />
+                <xcdg:Column Title="Spotkanie" FieldName="CallInfoMeetingStr"/>
+                <xcdg:Column Title="Niezdecydowany" FieldName="CallInfoUndecided" />
+                <xcdg:Column Title="Odmowa(powód)" FieldName="CallInfoResignationReason" />
+            </xcdg:DataGridControl.Columns >
+        </xcdg:DataGridControl> 
     </Grid>
 </UserControl>

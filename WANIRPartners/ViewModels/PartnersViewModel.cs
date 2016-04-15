@@ -71,6 +71,7 @@ namespace WANIRPartners.ViewModels
 
         public ObservableCollection<Partner> Partners
         {
+
             get
             {
                 List<SimpleExpression> criteria = new List<SimpleExpression>();

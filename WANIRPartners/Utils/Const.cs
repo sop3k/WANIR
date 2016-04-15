@@ -64,6 +64,7 @@ namespace WANIRPartners.Utils
                     "SZKOŁA GIMNAZJALNA",
                     "SZKOŁA ZAWODOWA/TECHNIKUM",
                     "SZKOŁA PONAD GIMNAZJALNA",
+                    "STOWARZYSZENIE",
                     "INNY"
                 };
             }

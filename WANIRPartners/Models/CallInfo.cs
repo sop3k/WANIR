@@ -67,6 +67,7 @@ namespace WANIRPartners.Models
         }
         virtual public string ProjectWriter{ get; set; }
         virtual public string MeetingInfo { get; set; }
+        
         #endregion
 
         virtual public Project Project { get; set; }

@@ -83,6 +83,12 @@
 
                     <Label Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Email bezprośredni:</Label>
                     <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding Path=ContactEmail}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
+
+                    <Label Grid.Row="4" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Obszar:</Label>
+                    <ComboBox Grid.Row="4" Grid.Column="5" Text="{Binding Region}" 
+                          ItemsSource="{Binding Regions}" 
+                          SelectedItem="{Binding Region}" Margin="10"/>
+
                 </Grid>
             </GroupBox>
 
@@ -107,11 +113,6 @@
                     <Grid.RowDefinitions >
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-
-                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Obszar:</Label>
-                    <ComboBox Grid.Row="0" Grid.Column="1" Text="{Binding Region}" 
-                          ItemsSource="{Binding Regions}" 
-                          SelectedItem="{Binding Region}" Margin="10"/>
 
                     <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">SP:</Label>
                     <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding Path=SP}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" Width="40"/>

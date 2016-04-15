@@ -45,6 +45,7 @@ namespace WANIRPartners.Models
         public virtual string ProjectWritingDetails { get; set; }
         public virtual string ProjectMeetingDetails { get; set; }
         public virtual string ProjectRealizationDetails { get; set; }
+        virtual public string ProjectWritingInAssessment { get; set; }
         public virtual string AcquiredBy { get; set; }
         public virtual string ServicedBy { get; set; }
         public virtual string Other { get; set; }

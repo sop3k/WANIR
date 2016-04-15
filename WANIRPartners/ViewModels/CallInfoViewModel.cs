@@ -117,9 +117,9 @@ namespace WANIRPartners.ViewModels
                 RaisePropertyChanged("Offer");
             }
         }
-        public bool OfferStr
+        public string OfferStr
         {
-            get { return CallInfo.Offer; }
+            get { return CallInfo.OfferStr; }
         }
 
         public bool PartnerEditable
@@ -221,6 +221,7 @@ namespace WANIRPartners.ViewModels
         {
             using (var tx = Session.BeginTransaction())
             {
+
                 Session.SaveOrUpdate(CallInfo);
                 Session.SaveOrUpdate(Partner);
                 Session.SaveOrUpdate(Project);

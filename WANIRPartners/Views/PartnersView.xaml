@@ -6,9 +6,28 @@
              xmlns:models="clr-namespace:WANIRPartners.Utils"
              xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid"
              xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:utils="clr-namespace:WANIRPartners.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1000">
     <Grid Margin="20,0,0,0">
+        <Grid.Resources>
+            <Style TargetType="{x:Type xcdg:HierarchicalGroupByControl}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
+            <utils:RowHeaderAddition x:Key="HeaderRowAddition" />
+            <Style x:Key="itemIndexSelectorStyle" TargetType="{x:Type xcdg:RowSelector}">
+                <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Path=ItemIndex}" />
+            </Style>
+            <Style TargetType="{x:Type xcdg:DataRow}">
+                <Setter Property="xcdg:RowSelector.RowSelectorStyle" Value="{StaticResource itemIndexSelectorStyle}" />
+                <!--<Setter Property="xcdg:RowSelector.RowSelectorStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=ItemIndex, Converter={StaticResource HeaderRowAddition}}" /> -->
+            </Style>
+            <Style TargetType="{x:Type xcdg:TableflowView}"> 
+                <Setter Property="RowSelectorPaneWidth" Value="35"/>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
@@ -28,49 +47,43 @@
                 <Button Content="Szukaj..." Command="{Binding SearchCommand}" Height="28" HorizontalAlignment="Right"/>
             </StackPanel>
         </GroupBox>
-        <ExtendedGridControl:ExtendedDataGrid ItemsSource="{Binding Partners}" 
-                                              SelectedItem="{Binding SelectedPartner}"  
-                                              Grid.Row="1" 
-                                              GroupByHeaderText="Przeciągnij kolumnę aby pogrupować"
-                                              FontSize="14"
-                                              Theme="Windows7"
-                                              Margin="5"
-                                              AutoGenerateColumns="False"
-                                              IsReadOnly="True"
-                                              RowHeight="25"
-                                              Name="PartnersDataGrid"
-                                              MinColumnWidth="80"
-                                              ScrollViewer.CanContentScroll="False"
-                                              HideColumnChooser="True"
-                                              >
-            <ExtendedGridControl:ExtendedDataGrid.Columns >
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Nazwa partnera" AllowAutoFilter="False" Binding="{Binding Name}" MinWidth="110" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Województwo" AllowAutoFilter="False" Binding="{Binding Province}"  MinWidth="130" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Powiat" AllowAutoFilter="False" Binding="{Binding District}" MinWidth="150"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Gmina" AllowAutoFilter="False" Binding="{Binding Gmina}" MinWidth="150"/>
+        <xcdg:DataGridControl
+            ItemsSource="{Binding Partners}" 
+            SelectedItem="{Binding SelectedPartner}"  
+            Grid.Row="1" 
+            FontSize="14"
+            Margin="5"
+            Name="PartnersDataGrid"
+            ReadOnly="True"
+            ScrollViewer.CanContentScroll="False"
+        >
+            <xcdg:DataGridControl.Columns >
+                <xcdg:Column Title="Nazwa partnera" FieldName="Name" MinWidth="110" />
+                <xcdg:Column Title="Województwo" FieldName="Province"  MinWidth="130" />
+                <xcdg:Column Title="Powiat" FieldName="District}" MinWidth="150"/>
+                <xcdg:Column Title="Gmina" FieldName="Gmina" MinWidth="150"/>
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Telefon" AllowAutoFilter="False" Binding="{Binding Phone}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba kontaktowa" AllowAutoFilter="False" Binding="{Binding ContactPerson}" MinWidth="200"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Email" AllowAutoFilter="False" Binding="{Binding Email}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Email bezporśredni" AllowAutoFilter="False" Binding="{Binding ContactEmail}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Stanowisko" AllowAutoFilter="False" Binding="{Binding Position}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Wydział" AllowAutoFilter="False" Binding="{Binding Department}"  MinWidth="200"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Obszar" AllowAutoFilter="False" Binding="{Binding Region}" />
+                <xcdg:Column Title="Telefon" FieldName="Phone" />
+                <xcdg:Column Title="Osoba kontaktowa" FieldName="ContactPerson" MinWidth="200"/>
+                <xcdg:Column Title="Email" FieldName="Email" />
+                <xcdg:Column Title="Email bezporśredni" FieldName="ContactEmail" />
+                <xcdg:Column Title="Stanowisko" FieldName="Position" />
+                <xcdg:Column Title="Wydział" FieldName="Department"  MinWidth="200"/>
+                <xcdg:Column Title="Obszar" FieldName="Region" />
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Pisanie projektu" AllowAutoFilter="False" Binding="{Binding ProjectWritingStr, Mode=OneWay}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Spotkanie ws. projektu" AllowAutoFilter="False" Binding="{Binding ProjectMeetingStr, Mode=OneWay}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Realizacja projektu" AllowAutoFilter="False" Binding="{Binding ProjectRealizationStr, Mode=OneWay}" />
+                <xcdg:Column Title="Pisanie projektu" FieldName="ProjectWritingStr" />
+                <xcdg:Column Title="Spotkanie ws. projektu" FieldName="ProjectMeetingStr" />
+                <xcdg:Column Title="Realizacja projektu" FieldName="ProjectRealizationStr" />
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Obsługiwany przez" AllowAutoFilter="False" Binding="{Binding ServicedBy}"  MinWidth="200"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Pozyskany przez" AllowAutoFilter="False" Binding="{Binding AcquiredBy}"  MinWidth="200"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Inne" AllowAutoFilter="False" Binding="{Binding Comment}" />
+                <xcdg:Column Title="Obsługiwany przez" FieldName="ServicedBy"  MinWidth="200"/>
+                <xcdg:Column Title="Pozyskany przez" FieldName="AcquiredBy"  MinWidth="200"/>
+                <xcdg:Column Title="Inne" FieldName="Comment" />
 
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Data rozmowy" AllowAutoFilter="False" Binding="{Binding CallInfo.Calle}" />
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Osoba wykonująca rozmowę" AllowAutoFilter="False" Binding="{Binding CallInfo.Date}"  MinWidth="200"/>
-                <ExtendedColumn:ExtendedDataGridTextColumn Header="Uwagi" AllowAutoFilter="False" Binding="{Binding CallInfo.Info}" />
+                <!--<xcdg:Column Title="Data rozmowy" FieldName="{Binding CallInfo.Calle}" />
+                <xcdg:Column Title="Osoba wykonująca rozmowę" FieldName="{Binding CallInfo.Date}"  MinWidth="200"/>
+                <xcdg:Column Title="Uwagi" FieldName="{Binding CallInfo.Info}" />-->
 
-            </ExtendedGridControl:ExtendedDataGrid.Columns>
-        </ExtendedGridControl:ExtendedDataGrid>
+            </xcdg:DataGridControl.Columns>
+        </xcdg:DataGridControl>
     </Grid>
-    
 </UserControl>
