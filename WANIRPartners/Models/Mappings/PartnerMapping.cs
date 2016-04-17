@@ -31,11 +31,14 @@ namespace WANIRPartners.Mappings
             Map(x => x.ProjectWriting);
             Map(x => x.ProjectMeeting);
             Map(x => x.ProjectRealization);
-            Map(x => x.ProjectWritingAndRealizationDetails);
             Map(x => x.ProjectWritingInAssessment);
+            Map(x => x.ProjectRealizationOther);
+            Map(x => x.ProjectWritingAndRealizationDetails);
+            Map(x => x.ProjectWritingInAssessmentDetails);
             Map(x => x.ProjectWritingDetails);
             Map(x => x.ProjectMeetingDetails);
             Map(x => x.ProjectRealizationDetails);
+            Map(x => x.ProjectRealizationOtherDetails);
             Map(x => x.AcquiredBy);
             Map(x => x.ServicedBy);
             Map(x => x.Other);

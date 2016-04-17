@@ -91,7 +91,7 @@
 
                 </Grid>
             </GroupBox>
-
+<!--
             <GroupBox Grid.Column="0" Grid.Row="1" Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="8" Padding="5">
                 <Grid Margin="2,2,2,2">
                     <Grid.ColumnDefinitions>
@@ -134,7 +134,7 @@
 
                 </Grid>
             </GroupBox>
-
+-->
             <GroupBox Grid.Column="0" Grid.Row="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"  Margin="8" Padding="5">
                 <Grid Margin="2,2,2,2">
                     <Grid.ColumnDefinitions>
@@ -169,32 +169,43 @@
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <CheckBox Grid.Row="0" Margin="10" IsChecked="{Binding ProjectWritingAndRealization}">Pisanie i realizacja projektu(Rok/numer projektu/nazwa projektu)</CheckBox>
-                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Path=ProjectWritingAndRealizationDetails}" IsEnabled="{Binding ProjectWritingAndRealization}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
+                        <CheckBox Grid.Row="0" Margin="10" IsChecked="{Binding ProjectMeeting}">Spotkanie ws. współpracy(data/cel)</CheckBox>
+                        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Path=ProjectMeetingDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" IsEnabled="{Binding ProjectMeeting}"/>
 
-                        <CheckBox Grid.Row="2" Margin="10" IsChecked="{Binding ProjectWriting}">Pisanie projektu (brak dof.) (Rok/działanie/nazwa projektu</CheckBox>
-                        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Path=ProjectWritingDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" IsEnabled="{Binding ProjectWriting}"/>
+                        <CheckBox Grid.Row="2" Margin="10" IsChecked="{Binding ProjectWritingInAssessment}">Pisanie projektu w ocenie (rok/działanie/nazwa projektu)</CheckBox>
+                        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Path=ProjectWritingInAssessmentDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"  IsEnabled="{Binding ProjectWritingInAssessment}"/>
 
-                        <CheckBox Grid.Row="4" Margin="10" IsChecked="{Binding ProjectMeeting}">Spotkanie ws. współpracy(data/działanie)</CheckBox>
-                        <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding Path=ProjectMeetingDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" IsEnabled="{Binding ProjectMeeting}"/>
+                        <CheckBox Grid.Row="4" Margin="10" IsChecked="{Binding ProjectWriting}">Pisanie projektu (brak dof.) (Rok/działanie/nazwa projektu</CheckBox>
+                        <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding Path=ProjectWritingDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" IsEnabled="{Binding ProjectWriting}"/>
 
-                        <CheckBox Grid.Row="6" Margin="10" IsChecked="{Binding ProjectRealization}">Realizacja usługi w wyniku przetargu(Rok/numer umowy z bazy danych)</CheckBox>
-                        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding Path=ProjectRealizationDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"  IsEnabled="{Binding ProjectRealization}"/>
+                        <CheckBox Grid.Row="6" Margin="10" IsChecked="{Binding ProjectWritingAndRealization}">Pisanie i realizacja projektu(Rok/numer projektu/nazwa projektu)</CheckBox>
+                        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding Path=ProjectWritingAndRealizationDetails}" IsEnabled="{Binding ProjectWritingAndRealization}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
+
+                        <CheckBox Grid.Row="8" Margin="10" IsChecked="{Binding ProjectRealization}">Realizacja usługi w wyniku przetargu(Rok/numer umowy z bazy danych)</CheckBox>
+                        <TextBox Grid.Row="9" Grid.Column="3" Text="{Binding Path=ProjectRealizationDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"  IsEnabled="{Binding ProjectRealization}"/>
+
+                        <CheckBox Grid.Row="10" Margin="10" IsChecked="{Binding ProjectRealizationOther}">Inne:</CheckBox>
+                        <TextBox Grid.Row="11" Grid.Column="3" Text="{Binding Path=ProjectRealizationOtherDetails}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"  IsEnabled="{Binding ProjectRealizationOther}"/>
+
                     </Grid>
 
-                
+                <!--
                     <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Pozyskanie:</Label>
                     <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=AcquiredBy}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
 
                     <Label Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Obłsuga:</Label>
                     <TextBox Grid.Row="2" Grid.Column="4" Text="{Binding Path=ServicesBy}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"/>
 
-                    <!--
+                 -->   
                     <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">Komentarz:</Label>
                     <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding Path=Comment}" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" Height="80"/>
-                    -->
+                 
                 </Grid>
             </GroupBox>
 

@@ -71,13 +71,13 @@
                 <xcdg:Column Title="Wydział" FieldName="Department"  MinWidth="200"/>
                 <xcdg:Column Title="Obszar" FieldName="Region" />
 
-                <xcdg:Column Title="Pisanie projektu" FieldName="ProjectWritingStr" />
                 <xcdg:Column Title="Spotkanie ws. projektu" FieldName="ProjectMeetingStr" />
+                <xcdg:Column Title="Pisanie projektu" FieldName="ProjectWritingStr" />
                 <xcdg:Column Title="Realizacja projektu" FieldName="ProjectRealizationStr" />
+                <xcdg:Column Title="Pisanie projektu w ocenie" FieldName="ProjectWritingInAssessmentStr" />
+                <xcdg:Column Title="Inne realizacje" FieldName="ProjectRealizationOtherStr" />
 
-                <xcdg:Column Title="Obsługiwany przez" FieldName="ServicedBy"  MinWidth="200"/>
-                <xcdg:Column Title="Pozyskany przez" FieldName="AcquiredBy"  MinWidth="200"/>
-                <xcdg:Column Title="Inne" FieldName="Comment" />
+                <xcdg:Column Title="Komentarz" FieldName="Comment" />
 
                 <!--<xcdg:Column Title="Data rozmowy" FieldName="{Binding CallInfo.Calle}" />
                 <xcdg:Column Title="Osoba wykonująca rozmowę" FieldName="{Binding CallInfo.Date}"  MinWidth="200"/>

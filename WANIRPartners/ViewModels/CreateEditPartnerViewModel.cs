@@ -78,6 +78,19 @@ namespace WANIRPartners.ViewModels
                 RaisePropertyChanged("ProjectWritingAndRealization");
             }
         }
+        public bool ProjectWritingInAssessment
+        {
+            get
+            {
+                return _projectWritingInAssessment;
+            }
+            set
+            {
+                _projectWritingInAssessment = value;
+                RaisePropertyChanged("ProjectWritingInAssessment");
+            }
+        }
+        public string ProjectWritingInAssessmentDetails { get; set; }
         public  string ProjectWritingDetails { get; set; }
         public  bool ProjectWriting 
         { 
@@ -118,6 +131,20 @@ namespace WANIRPartners.ViewModels
                 RaisePropertyChanged("ProjectRealization");
             }
         }
+        public bool ProjectRealizationOther
+        {
+            get
+            {
+                return _projectRealizationOther;
+            }
+            set
+            {
+                _projectRealizationOther = value;
+                RaisePropertyChanged("ProjectRealizationOther");
+            }
+        }
+        public string ProjectRealizationOtherDetails { get; set; }
+
         public  string AcquiredBy { get; set; }
         public  string ServicedBy { get; set; }
         public  string Other { get; set; }
@@ -141,6 +168,8 @@ namespace WANIRPartners.ViewModels
         private bool _projectMeeting;
         private bool _projectWriting;
         private bool _projectWritingAndRealization;
+        private bool _projectWritingInAssessment;
+        private bool _projectRealizationOther;
         private bool _cooperation;
         private bool _projectRealization;
         private Partner editedPartner;

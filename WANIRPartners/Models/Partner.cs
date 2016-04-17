@@ -34,18 +34,23 @@ namespace WANIRPartners.Models
         public virtual bool ProjectWriting { get; set; }
         public virtual bool ProjectMeeting { get; set; }
         public virtual bool ProjectRealization { get; set; }
+        public virtual bool ProjectWritingInAssessment { get; set; }
+        public virtual bool ProjectRealizationOther { get; set; }
 
         public virtual string CooperationStr { get { return Const.Convert(Cooperation); } }
         public virtual string ProjectWritingAndRealizationStr { get { return Const.Convert(ProjectWritingAndRealization);  } }
         public virtual string ProjectWritingStr { get { return Const.Convert(ProjectWriting); } }
         public virtual string ProjectMeetingStr { get { return Const.Convert(ProjectMeeting); } }
         public virtual string ProjectRealizationStr { get { return Const.Convert(ProjectRealization); } }
+        public virtual string ProjectWritingInAssessmentStr { get { return Const.Convert(ProjectWritingInAssessment); } }
+        public virtual string ProjectRealizationOtherStr { get { return Const.Convert(ProjectRealizationOther); } }
 
         public virtual string ProjectWritingAndRealizationDetails { get; set; }
         public virtual string ProjectWritingDetails { get; set; }
         public virtual string ProjectMeetingDetails { get; set; }
         public virtual string ProjectRealizationDetails { get; set; }
-        virtual public string ProjectWritingInAssessment { get; set; }
+        virtual public string ProjectWritingInAssessmentDetails { get; set; }
+        virtual public string ProjectRealizationOtherDetails { get; set; }
         public virtual string AcquiredBy { get; set; }
         public virtual string ServicedBy { get; set; }
         public virtual string Other { get; set; }
