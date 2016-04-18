@@ -239,6 +239,13 @@ namespace WANIRPartners.Utils.Doc
             {
                 Munger munger = new Munger((String)aspect);
                 value = munger.GetValue(target);
+
+                if(value == null)
+                {
+                    string partner_aspect = String.Format("Partner.{0}", (String)aspect);
+                    munger = new Munger(partner_aspect);
+                    value = munger.GetValue(target);
+                }
             }
 
             if (value == null)
@@ -352,12 +359,17 @@ namespace WANIRPartners.Utils.Doc
                 {"ZSZ_TECH",                "ZSZTECH"},
                 {"OTHERS",                  "Others"},
                 {"PROJECT_WRITING_AND_REALIZATION", "ProjectWritingAndRealizationStr"},
+                {"PROJECT_WRITING_AND_REALIZATION_DETAILS", "ProjectWritingAndRealizationDetails"},
                 {"PROJECTS",                        "Projects"},
                 {"PROJECT_WRITING",                 "ProjectWritingStr"},
                 {"PROJECT_MEETING",                 "ProjectMeetingStr"},
                 {"PROJECT_MEETING_DETAILS",         "ProjectMeetingDetails"},
                 {"PROJECT_REALIZATION",             "ProjectRealizationStr"},
                 {"PROJECT_REALIZATION_DETAILS",     "ProjectRealizationDetails"},
+                {"PROJECT_WRITING_IN_ASSESSMENT_DETAILS",     "ProjectWritingInAssessmentDetails"},
+                {"PROJECT_WRITING_IN_ASSESSMENT",     "ProjectWritingInAssessmentStr"},
+                {"PROJECT_REALIZATION_OTHER",     "ProjectRealizationOtherStr"},
+                {"PROJECT_REALIZATION_OTHER_DETAILS",     "ProjectRealizationOtherDetails"},
                 {"COMMENT",                         "Comment"},
                 {"ACQUIRED_BY",                     "AcquiredBy"},
                 {"SERVICED_BY",                     "ServicedBy"},
